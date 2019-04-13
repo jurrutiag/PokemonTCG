@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 public class Charizard extends Fuego {
 
-    public Charizard() {
-        super(78, new Attack[]{new ScratchAttack()});
+    public Charizard(Entrenador entrenador) {
+        super(78, new Attack[]{new ScratchAttack()}, entrenador);
     }
 
     @Override
@@ -23,8 +23,4 @@ public class Charizard extends Fuego {
         return "Charizard";
     }
 
-    @Override
-    public void printCardInfo(PrintStream out) {
-        printPokemonInfo(getHp(), getId(), getName(), out);
-    }
 }

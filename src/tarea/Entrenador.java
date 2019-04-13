@@ -18,13 +18,23 @@ public class Entrenador {
         this.juego = juego;
 
         mano = new ArrayList<Carta>();
+        banca = new ArrayList<Carta>();
+
         for (int i = 0; i < 7; i++) {
-            mano.add(Mazo.drawCard());
+            mano.add(Mazo.drawCard(this));
         }
     }
 
+    public Juego getJuego() {
+        return juego;
+    }
+
     public void setPokemonActivo(int indiceMano) {
-        banca.add(0, mano.get(indiceMano));
+        banca.add(mano.get(indiceMano));
+    }
+
+    public Entrenador getContrincante() {
+        return contrincante;
     }
 
     public void swapPokemonActivo(int indiceBanca) {
@@ -36,31 +46,31 @@ public class Entrenador {
     }
 
     public int bancaSize() {
-        return mano.size();
+        return banca.size();
     }
 
     public Pokemon getPokemonActivo() {
-        return (Pokemon) mano.get(0);
+        return (Pokemon) banca.get(0);
     }
 
     public void pokemonActivoAtaca(int attackNum) {
-        getPokemonActivo().attack(attackNum, contrincante.getPokemonActivo());
+        getPokemonActivo().attack(attackNum, contrincante);
     }
 
-    public void listarCartas(PrintStream out, ArrayList<Carta> cartas) {
+    public void listarCartas(PrintStream out, ArrayList<Carta> cartas, String format) {
         // new PrintStream(new NullOutputStream());
-        for (int i = 0; i < mano.size(); i++) {
-            out.printf("%d -- ", i + 1);
-            mano.get(i).printCardInfo(out);
+        for (int i = 0; i < cartas.size(); i++) {
+            out.printf(format, String.format("%d -- ", i + 1));
+            cartas.get(i).printCardInfo(out);
         }
     }
 
-    public void listarCartasMano(PrintStream out) {
-        listarCartas(out, mano);
+    public void listarCartasMano(PrintStream out, String format) {
+        listarCartas(out, mano, format);
     }
 
-    public void listarCartasBanca(PrintStream out) {
-        listarCartas(out, banca);
+    public void listarCartasBanca(PrintStream out, String format) {
+        listarCartas(out, banca, format);
     }
 
     public Carta getCartaMano(int cartaSeleccionada) {
@@ -71,8 +81,8 @@ public class Entrenador {
         return banca.get(cartaSeleccionada);
     }
 
-    public void listarAtaquesPosibles(PrintStream out) {
-        getPokemonActivo().listarAtaques(out);
+    public void listarAtaquesPosibles(PrintStream out, String format) {
+        getPokemonActivo().listarAtaques(out, format);
     }
 
 }

@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 public class Bulbasaur extends Planta {
 
-    public Bulbasaur() {
-        super(45, new Attack[]{new ScratchAttack()});
+    public Bulbasaur(Entrenador entrenador) {
+        super(45, new Attack[]{new ScratchAttack()}, entrenador);
     }
 
     @Override
@@ -21,10 +21,5 @@ public class Bulbasaur extends Planta {
     @Override
     public String getName() {
         return "Bulbasaur";
-    }
-
-    @Override
-    public void printCardInfo(PrintStream out) {
-        printPokemonInfo(getHp(), getId(), getName(), out);
     }
 }

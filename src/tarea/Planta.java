@@ -2,13 +2,14 @@ package tarea;
 
 public abstract class Planta extends Pokemon {
 
-    public Planta(int i, Attack[] attacks) {
-        super(i, attacks);
+    public Planta(int i, Attack[] attacks, Entrenador entrenador) {
+        super(i, attacks, entrenador);
     }
 
+
     @Override
-    public void attack(int attackNum, Pokemon pokemonContrario) {
-        pokemonContrario.recibeAtaquePlanta(this.getAttackDamage(attackNum));
+    public void attack(int attackNum, Entrenador contrincante) {
+        contrincante.getPokemonActivo().recibeAtaquePlanta(this.getAttackDamage(attackNum));
     }
     public void recibeAtaquePlanta(int attackDamage) {
         this.bajarHpEn(attackDamage);

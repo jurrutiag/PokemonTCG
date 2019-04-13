@@ -1,13 +1,13 @@
 package tarea;
 
 public abstract class Fuego extends Pokemon{
-    public Fuego(int i, Attack[] attacks) {
-        super(i, attacks);
+    public Fuego(int i, Attack[] attacks, Entrenador entrenador) {
+        super(i, attacks, entrenador);
     }
 
     @Override
-    public void attack(int attackNum, Pokemon pokemonContrario) {
-        pokemonContrario.recibeAtaqueFuego(attackNum);
+    public void attack(int attackNum, Entrenador contrincante) {
+        contrincante.getPokemonActivo().recibeAtaqueFuego(this.getAttackDamage(attackNum));
     }
     public void recibeAtaquePlanta(int attackDamage) {
         this.bajarHpEn(attackDamage);

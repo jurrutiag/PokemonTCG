@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 public class Ivysaur extends Planta {
 
-    public Ivysaur(){
-        super(60, new Attack[]{new ScratchAttack()});
+    public Ivysaur(Entrenador entrenador){
+        super(60, new Attack[]{new ScratchAttack()}, entrenador);
     }
 
     @Override
@@ -21,9 +21,5 @@ public class Ivysaur extends Planta {
     @Override
     public String getName() {
         return "Ivysaur";
-    }
-    @Override
-    public void printCardInfo(PrintStream out) {
-        printPokemonInfo(getHp(), getId(), getName(), out);
     }
 }

@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 public class Venusaur extends Planta {
 
-    public Venusaur() {
-        super(80, new Attack[]{new ScratchAttack()});
+    public Venusaur(Entrenador entrenador) {
+        super(80, new Attack[]{new ScratchAttack()}, entrenador);
     }
 
     @Override
@@ -22,9 +22,5 @@ public class Venusaur extends Planta {
     @Override
     public String getName() {
         return "Venusaur";
-    }
-    @Override
-    public void printCardInfo(PrintStream out) {
-        printPokemonInfo(getHp(), getId(), getName(), out);
     }
 }

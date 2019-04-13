@@ -5,8 +5,8 @@ import java.io.PrintStream;
 public class Charmander extends Fuego {
 
 
-    public Charmander() {
-        super(39, new Attack[]{new ScratchAttack()});
+    public Charmander(Entrenador entrenador) {
+        super(39, new Attack[]{new ScratchAttack()}, entrenador);
     }
 
     @Override
@@ -22,9 +22,5 @@ public class Charmander extends Fuego {
     @Override
     public String getName() {
         return "Charmander";
-    }
-    @Override
-    public void printCardInfo(PrintStream out) {
-        printPokemonInfo(getHp(), getId(), getName(), out);
     }
 }

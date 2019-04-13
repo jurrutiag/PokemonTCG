@@ -13,11 +13,15 @@ public class Juego {
     private Entrenador entrenadorActivo;
     private Scanner entradaActiva;
 
+    private PrintStream out;
+
     private int turno;
     private boolean finished;
 
     public Juego() throws ReflectiveOperationException {
         turno = Math.random() < 0.5 ? 1 : 2;
+
+        out = System.out;
 
         finished = false;
 
@@ -36,23 +40,24 @@ public class Juego {
         this.entradaActiva = entradaJugador1;
     }
 
-    public void jugar(PrintStream out) {
+    public void jugar() {
 
-        siguienteTurno(out);
+        siguienteTurno();
 
-        setUpEntrenadorActivo(out);
+        setUpEntrenadorActivo();
 
-        siguienteTurno(out);
+        siguienteTurno();
 
-        setUpEntrenadorActivo(out);
+        setUpEntrenadorActivo();
 
         while (!finished) {
-            jugadaEntrenadorActivo(out);
+            siguienteTurno();
+            jugadaEntrenadorActivo();
         }
 
     }
 
-    public void siguienteTurno(PrintStream out) {
+    public void siguienteTurno() {
         if (turno == 1) {
             this.entrenadorActivo = entrenador2;
             this.entradaActiva = entradaJugador2;
@@ -62,55 +67,80 @@ public class Juego {
             this.entradaActiva = entradaJugador1;
             turno = 1;
         }
-        out.printf("Turno de Jugador %s...\n", turno);
+        out.printf("|| Turno de Jugador %s... ||\n", turno);
     }
 
-    public void setUpEntrenadorActivo(PrintStream out) {
+    public void setUpEntrenadorActivo() {
 
-        out.println("Seleccione su pokemon activo:\n");
+        out.printf("\tSeleccione su pokemon activo:\n");
 
-        entrenadorActivo.listarCartasMano(out);
+        entrenadorActivo.listarCartasMano(out, "\t\t%s");
 
         int cartaSeleccionada = entradaActiva.nextInt() - 1;
         if (entrenadorActivo.getCartaMano(cartaSeleccionada).esSeleccionableActiva()) {
             entrenadorActivo.setPokemonActivo(cartaSeleccionada);
-            out.println("Haz seleccionado a: ");
+            out.printf("\tHas seleccionado a: \n\t");
             entrenadorActivo.getPokemonActivo().printCardInfo(out);
             out.println("\n");
         } else {
-            out.println("Carta no seleccionable como activa...");
-            setUpEntrenadorActivo(out);
+            out.println("\tCarta no seleccionable como activa...");
+            setUpEntrenadorActivo();
         }
 
 
     }
 
-    private void jugadaEntrenadorActivo(PrintStream out) {
-        out.println("Seleccionar jugada: ");
-        out.println("1 -- Atacar...");
-        out.println("2 -- Listar cartas...");
+    private void jugadaEntrenadorActivo() {
+        out.printf("\tPokemon Activo -- ");
+        entrenadorActivo.getPokemonActivo().printCardInfo(out);
+        out.printf("\tSeleccionar jugada: \n");
+        out.printf("\t\t1 -- Atacar...\n");
+        out.printf("\t\t2 -- Informacion de pokemon activo...\n");
+        out.printf("\t\t3 -- Listar cartas en la mano...\n");
+        out.printf("\t\t4 -- Listar cartas en la banca...\n");
 
         int opcion = entradaActiva.nextInt();
 
         switch  (opcion) {
             case 1:
-               jugadorActivoAtaca(out);
-               break;
+                jugadorActivoAtaca(out);
+                break;
+            case 2:
+                entrenadorActivo.getPokemonActivo().printCardInfo(out);
+                jugadaEntrenadorActivo();
+                break;
+            case 3:
+                entrenadorActivo.listarCartasMano(out, "\t\t %s");
+                jugadaEntrenadorActivo();
+                break;
+            case 4:
+                entrenadorActivo.listarCartasBanca(out, "\t\t %s");
+                jugadaEntrenadorActivo();
+                break;
         }
     }
 
     private void jugadorActivoAtaca(PrintStream out) {
-        out.println("Seleccione ataque:");
+        out.println("\tSeleccione ataque:");
 
-        entrenadorActivo.listarAtaquesPosibles(out);
+        entrenadorActivo.listarAtaquesPosibles(out, "\t\t%s");
 
-        int opcion = entradaActiva.nextInt();
+        int opcion = entradaActiva.nextInt() - 1;
         entrenadorActivo.pokemonActivoAtaca(opcion);
+
+        out.printf(">> -- P%s: %s ataca a P%s: %s -- <<\n", turno, entrenadorActivo.getPokemonActivo().getName(), (turno % 2) + 1, entrenadorActivo.getContrincante().getPokemonActivo().getName());
     }
 
     public static void main(String[] args) throws ReflectiveOperationException {
         Juego juego = new Juego();
-        juego.jugar(System.out);
+        juego.jugar();
     }
 
+    public PrintStream getOutput() {
+        return out;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
 }
