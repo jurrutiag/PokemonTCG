@@ -2,10 +2,15 @@ package tarea;
 
 import java.io.PrintStream;
 
-public class Charmeleon extends Pokemon {
+public class Charmeleon extends Fuego {
+
+    public Charmeleon() {
+        super(58, new Attack[]{new ScratchAttack()});
+    }
+
     @Override
     public int getHp() {
-        return 58;
+        return super.getHp();
     }
 
     @Override

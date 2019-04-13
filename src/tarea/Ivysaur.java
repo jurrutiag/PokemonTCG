@@ -2,7 +2,11 @@ package tarea;
 
 import java.io.PrintStream;
 
-public class Ivysaur extends Pokemon {
+public class Ivysaur extends Planta {
+
+    public Ivysaur(){
+        super(60, new Attack[]{new ScratchAttack()});
+    }
 
     @Override
     public int getId() {
@@ -11,7 +15,7 @@ public class Ivysaur extends Pokemon {
 
     @Override
     public int getHp() {
-        return 60;
+        return super.getHp();
     }
 
     @Override

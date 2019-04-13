@@ -1,12 +1,14 @@
 package test;
 
+import org.junit.Before;
+import org.junit.Test;
 import tarea.Entrenador;
 import tarea.NullOutputStream;
 
 import java.io.PrintStream;
 
 public class EntrenadorTest {
-
+    /*
     Entrenador entrenador1;
     Entrenador entrenador2;
 
@@ -40,5 +42,5 @@ public class EntrenadorTest {
     @Test
     public void verCartas() {
         entrenador1.listarCartas(new PrintStream(new NullOutputStream()));
-    }
+    }*/
 }

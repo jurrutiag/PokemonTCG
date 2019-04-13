@@ -1,17 +1,25 @@
 package tarea;
 
-public class Energia extends Carta {
+import java.io.PrintStream;
+
+public class Energia implements Carta {
 
     public Energia() {
 
     }
 
-    public Energia(String name) {
-        super(name);
+    @Override
+    public String getName() {
+        return null;
     }
 
     @Override
     public boolean esSeleccionableActiva() {
         return false;
+    }
+
+    @Override
+    public void printCardInfo(PrintStream out) {
+
     }
 }

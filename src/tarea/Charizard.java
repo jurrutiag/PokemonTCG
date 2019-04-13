@@ -2,10 +2,15 @@ package tarea;
 
 import java.io.PrintStream;
 
-public class Charizard extends Pokemon {
+public class Charizard extends Fuego {
+
+    public Charizard() {
+        super(78, new Attack[]{new ScratchAttack()});
+    }
+
     @Override
     public int getHp() {
-        return 78;
+        return super.getHp();
     }
 
     @Override
