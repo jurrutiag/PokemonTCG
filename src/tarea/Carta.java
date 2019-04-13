@@ -1,8 +1,10 @@
 package tarea;
 
-public abstract class Carta extends Mazo{
+import java.io.PrintStream;
 
-    public abstract getName();
+public interface Carta {
+    public String getName();
+    public boolean esSeleccionableActiva();
 
-    public abstract boolean esSeleccionableActiva();
+    void printCardInfo(PrintStream out);
 }

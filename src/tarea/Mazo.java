@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class Mazo {
 
-    private static final String[] pokemones = {"Pikachu"};
-    private static final String[] energias = {"Planta"};
+    private static final String[] pokemones = {"Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard"};
+
+    private static final String[] energias = {"Planta", "Fuego", "Agua", "Rayo", "Lucha", "Psiquico"};
 
     public static Carta drawCard() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         if (Math.random() < 0.5) {

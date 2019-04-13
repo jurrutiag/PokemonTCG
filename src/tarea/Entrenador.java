@@ -10,17 +10,17 @@ public class Entrenador {
     private ArrayList<Carta> banca;
     private int pokemonActivo;
     private Scanner entrada;
+    private Juego juego;
 
-    public Entrenador() {
+
+    public Entrenador(Scanner in, Juego juego) throws ReflectiveOperationException {
+        entrada = in;
+        this.juego = juego;
+
         banca = new ArrayList<Carta>();
         for (int i = 0; i <= 7; i++) {
-            banca.add(new Carta());
+            banca.add(Mazo.drawCard());
         }
-    }
-
-    public Entrenador(Scanner in) {
-        this();
-        entrada = in;
     }
 
     public void setPokemonActivo(PrintStream out) {
@@ -39,12 +39,12 @@ public class Entrenador {
         return banca.size();
     }
 
-    public Carta getPokemonActivo() {
-        return banca.get(0);
+    public Pokemon getPokemonActivo() {
+        return (Pokemon) banca.get(0);
     }
 
-    public void pokemonActivoAtaca(int i) {
-        getPokemonActivo().attack(i);
+    public void pokemonActivoAtaca(int attackNum) {
+        getPokemonActivo().attack(attackNum);
     }
 
     public void listarCartas(PrintStream out) {
