@@ -2,36 +2,36 @@ package cc3002.tarea1;
 
 import java.io.PrintStream;
 
-public abstract class Pokemon implements Carta {
+public abstract class Pokemon implements Card {
 
     private int hp;
-    private Entrenador entrenador;
+    private Trainer trainer;
     private Attack[] attacks = new Attack[4];
 
-    public Pokemon(int hp, Attack[] attacks, Entrenador entrenador) {
+    public Pokemon(int hp, Attack[] attacks, Trainer trainer) {
         this.hp = hp;
         this.attacks = attacks;
-        this.entrenador = entrenador;
+        this.trainer = trainer;
     }
 
     public int getHp() {
         return hp;
     }
 
-    public int getCantidadAtaques() {
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getAttacksAmount() {
         return attacks.length;
     }
 
     @Override
-    public boolean esSeleccionableActiva() {
+    public boolean isActivelySelectable() {
         return true;
     }
 
-    public void printCardInfo(PrintStream out) {
-        out.printf("Nombre: %s, id: %d, Vida: %d\n", this.getName(), this.getId(), this.getHp());
-    }
-
-    public void bajarHpEn(int damage) {
+    public void receiveDamage(int damage) {
         if (damage > 0) {
             hp -= damage;
         }
@@ -41,34 +41,27 @@ public abstract class Pokemon implements Carta {
         }
     }
 
-    public abstract void attack(int attackNum, Entrenador contrincante);
+    public abstract void attack(int attackNum, Trainer opponent);
 
     public abstract int getId();
 
-    public abstract void recibeAtaquePlanta(int attackDamage);
-    public abstract void recibeAtaqueFuego(int attackDamage);
-    public abstract void recibeAtaqueAgua(int attackDamage);
-    public abstract void recibeAtaqueRayo(int attackDamage);
-    public abstract void recibeAtaqueLucha(int attackDamage);
-    public abstract void recibeAtaquePsiquico(int attackDamage);
+    public abstract void receiveGrassAttack(int attackDamage);
+    public abstract void receiveFireAttack(int attackDamage);
+    public abstract void receiveWaterAttack(int attackDamage);
+    public abstract void receiveElectricAttack(int attackDamage);
+    public abstract void receiveFightingAttack(int attackDamage);
+    public abstract void receivePsychicAttack(int attackDamage);
 
 
     public int getAttackDamage(int attackNum) throws ArrayIndexOutOfBoundsException {
-        return attacks[attackNum].getDamage();
-    }
-
-    public void listarAtaques(PrintStream out, String format) {
-        for (int i = 0; i < attacks.length; i++) {
-            out.printf(format, String.format("%d -- %s\n", i + 1, attacks[i].getName()));
-        }
+        return attacks[attackNum - 1].getDamage();
     }
 
     public void dead() {
-        getEntrenador().getJuego().getOutput().printf("\t%s de P%s ha muerto...\n", this.getName(), this.getEntrenador().getJuego().getTurno());
-        getEntrenador().swapNextNotDead();
+        getTrainer().swapNextNotDead();
     }
 
-    private Entrenador getEntrenador() {
-        return entrenador;
+    public Trainer getTrainer() {
+        return trainer;
     }
 }
