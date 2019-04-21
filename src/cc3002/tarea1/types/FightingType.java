@@ -13,6 +13,7 @@ public abstract class FightingType extends Pokemon {
 
     @Override
     public void attack(int attackNum, Trainer opponent) {
+        this.checkEnergies(attackNum);
         opponent.getActivePokemon().receiveFightingAttack(this.getAttackDamage(attackNum));
     }
     public void receiveGrassAttack(int attackDamage) {

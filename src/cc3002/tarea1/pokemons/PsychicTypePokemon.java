@@ -2,12 +2,11 @@ package cc3002.tarea1.pokemons;
 
 import cc3002.tarea1.Attack;
 import cc3002.tarea1.Trainer;
-import cc3002.tarea1.ScratchAttack;
-import cc3002.tarea1.types.Psychic;
+import cc3002.tarea1.types.PsychicType;
 
-public class PsychicPokemon extends Psychic {
+public class PsychicTypePokemon extends PsychicType {
 
-    public PsychicPokemon(int hp, Attack[] attack, Trainer trainer) {
+    public PsychicTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);
     }
     @Override
@@ -22,6 +21,6 @@ public class PsychicPokemon extends Psychic {
 
     @Override
     public String getName() {
-        return "PsychicPokemon";
+        return "PsychicTypePokemon";
     }
 }

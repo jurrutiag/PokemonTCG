@@ -76,6 +76,10 @@ public class Trainer {
         hand.add(card);
     }
 
+    public void addEnergy(Energy energy) {
+        this.getActivePokemon().bindEnergy(energy);
+    }
+
     public void addPokemonToBench(int handIndex) {
         assert(bench.size() < 6);
         bench.add((Pokemon) hand.get(handIndex));

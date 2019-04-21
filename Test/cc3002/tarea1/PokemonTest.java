@@ -1,19 +1,34 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.Abilities.Attacks.*;
+import cc3002.tarea1.energies.*;
 import cc3002.tarea1.pokemons.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PokemonTest {
 
     Trainer trainer1;
     Trainer trainer2;
 
-    Attack[] attacks1;
+    Attack[] electricAttacks;
+    Attack[] fightingAttacks;
+    Attack[] fireAttacks;
+    Attack[] grassAttacks;
+    Attack[] psychicAttacks;
+    Attack[] waterAttacks;
+
     Attack[] attacks2;
     Attack[] attacks3;
+
+    Energy electricEnergy;
+    Energy fightingEnergy;
+    Energy fireEnergy;
+    Energy grassEnergy;
+    Energy psychicEnergy;
+    Energy waterEnergy;
 
     Pokemon electricPokemon;
     Pokemon fightingPokemon;
@@ -32,9 +47,22 @@ public class PokemonTest {
 
     @Before
     public void setUp() {
-        attacks1 = new Attack[] {new ScratchAttack()};
-        attacks2 = new Attack[] {new ScratchAttack(), new ScratchAttack()};
-        attacks3 = new Attack[] {new ScratchAttack(), new ScratchAttack(), new ScratchAttack()};
+        electricAttacks = new Attack[] {new ElectricAttack()};
+        fightingAttacks = new Attack[] {new FightingAttack()};
+        fireAttacks = new Attack[] {new FireAttack()};
+        grassAttacks = new Attack[] {new GrassAttack()};
+        psychicAttacks = new Attack[] {new PsychicAttack()};
+        waterAttacks = new Attack[] {new WaterAttack()};
+
+        attacks2 = new Attack[] {new ElectricAttack(), new FightingAttack()};
+        attacks3 = new Attack[] {new ElectricAttack(), new FightingAttack(), new FireAttack()};
+
+        electricEnergy = new ElectricEnergy();
+        fightingEnergy = new FightingEnergy();
+        fireEnergy = new FireEnergy();
+        grassEnergy = new GrassEnergy();
+        psychicEnergy = new PsychicEnergy();
+        waterEnergy = new WaterEnergy();
 
         trainer1 = new Trainer();
         trainer2 = new Trainer();
@@ -42,19 +70,19 @@ public class PokemonTest {
         trainer1.setOpponent(trainer2);
         trainer2.setOpponent(trainer1);
 
-        electricPokemon = new ElectricTypePokemon(50, attacks1, trainer1);
-        fightingPokemon = new FightingTypePokemon(50, attacks1, trainer1);
-        firePokemon = new FireTypePokemon(50, attacks1, trainer1);
-        grassPokemon = new GrassTypePokemon(50, attacks1, trainer1);
-        psychicPokemon = new PsychicPokemon(50, attacks1, trainer1);
-        waterPokemon = new WaterTypePokemon(50, attacks1, trainer1);
+        electricPokemon = new ElectricTypePokemon(50, electricAttacks, trainer1);
+        fightingPokemon = new FightingTypePokemon(50, fightingAttacks, trainer1);
+        firePokemon = new FireTypePokemon(50, fireAttacks, trainer1);
+        grassPokemon = new GrassTypePokemon(50, grassAttacks, trainer1);
+        psychicPokemon = new PsychicTypePokemon(50, psychicAttacks, trainer1);
+        waterPokemon = new WaterTypePokemon(50, waterAttacks, trainer1);
 
-        electricPokemon2 = new ElectricTypePokemon(50, attacks1, trainer2);
-        fightingPokemon2 = new FightingTypePokemon(50, attacks1, trainer2);
-        firePokemon2 = new FireTypePokemon(50, attacks1, trainer2);
-        grassPokemon2 = new GrassTypePokemon(50, attacks1, trainer2);
-        psychicPokemon2 = new PsychicPokemon(50, attacks1, trainer2);
-        waterPokemon2 = new WaterTypePokemon(50, attacks1, trainer2);
+        electricPokemon2 = new ElectricTypePokemon(50, electricAttacks, trainer2);
+        fightingPokemon2 = new FightingTypePokemon(50, fightingAttacks, trainer2);
+        firePokemon2 = new FireTypePokemon(50, fireAttacks, trainer2);
+        grassPokemon2 = new GrassTypePokemon(50, grassAttacks, trainer2);
+        psychicPokemon2 = new PsychicTypePokemon(50, psychicAttacks, trainer2);
+        waterPokemon2 = new WaterTypePokemon(50, waterAttacks, trainer2);
     }
 
     @Test
@@ -97,7 +125,7 @@ public class PokemonTest {
         fightingPokemon = new FightingTypePokemon(50, attacks2, trainer1);
         firePokemon = new FireTypePokemon(50, attacks2, trainer1);
         grassPokemon = new GrassTypePokemon(50, attacks2, trainer1);
-        psychicPokemon = new PsychicPokemon(50, attacks2, trainer1);
+        psychicPokemon = new PsychicTypePokemon(50, attacks2, trainer1);
         waterPokemon = new WaterTypePokemon(50, attacks2, trainer1);
 
         assertEquals(2, electricPokemon.getAttacksAmount());
@@ -111,7 +139,7 @@ public class PokemonTest {
         fightingPokemon = new FightingTypePokemon(50, attacks3, trainer1);
         firePokemon = new FireTypePokemon(50, attacks3, trainer1);
         grassPokemon = new GrassTypePokemon(50, attacks3, trainer1);
-        psychicPokemon = new PsychicPokemon(50, attacks3, trainer1);
+        psychicPokemon = new PsychicTypePokemon(50, attacks3, trainer1);
         waterPokemon = new WaterTypePokemon(50, attacks3, trainer1);
 
         assertEquals(3, electricPokemon.getAttacksAmount());
@@ -191,32 +219,44 @@ public class PokemonTest {
 
         trainer2.addCard(electricPokemon2);
         trainer2.addPokemonToBench(0);
+        electricPokemon.bindEnergy(new ElectricEnergy());
+        electricPokemon.bindEnergy(new ElectricEnergy());
         electricPokemon.attack(1, trainer2);
         assertEquals(0, trainer2.getActivePokemon().getHp());
 
         trainer2.addCard(fightingPokemon2);
         trainer2.addPokemonToBench(0);
         fightingPokemon.attack(1, trainer2);
+        fightingPokemon.bindEnergy(new FightingEnergy());
+        fightingPokemon.bindEnergy(new FightingEnergy());
         assertEquals(0, trainer2.getActivePokemon().getHp());
 
         trainer2.addCard(firePokemon2);
         trainer2.addPokemonToBench(0);
         firePokemon.attack(1, trainer2);
+        firePokemon.bindEnergy(new FireEnergy());
+        firePokemon.bindEnergy(new FireEnergy());
         assertEquals(0, trainer2.getActivePokemon().getHp());
 
         trainer2.addCard(grassPokemon2);
         trainer2.addPokemonToBench(0);
         grassPokemon.attack(1, trainer2);
+        grassPokemon.bindEnergy(new GrassEnergy());
+        grassPokemon.bindEnergy(new GrassEnergy());
         assertEquals(0, trainer2.getActivePokemon().getHp());
 
         trainer2.addCard(psychicPokemon2);
         trainer2.addPokemonToBench(0);
         psychicPokemon.attack(1, trainer2);
+        psychicPokemon.bindEnergy(new PsychicEnergy());
+        psychicPokemon.bindEnergy(new PsychicEnergy());
         assertEquals(0, trainer2.getActivePokemon().getHp());
 
         trainer2.addCard(waterPokemon2);
         trainer2.addPokemonToBench(0);
         waterPokemon.attack(1, trainer2);
+        waterPokemon.bindEnergy(new WaterEnergy());
+        waterPokemon.bindEnergy(new WaterEnergy());
         assertEquals(0, trainer2.getActivePokemon().getHp());
     }
 
@@ -434,6 +474,40 @@ public class PokemonTest {
         assertEquals(trainer2, grassPokemon2.getTrainer());
         assertEquals(trainer2, psychicPokemon2.getTrainer());
         assertEquals(trainer2, waterPokemon2.getTrainer());
+    }
+
+    @Test
+    public void bindEnergy() {
+        assertEquals(0, electricPokemon.getEnergies().getElectricEnergies());
+        assertEquals(0, electricPokemon.getEnergies().getFightingEnergies());
+        assertEquals(0, electricPokemon.getEnergies().getFireEnergies());
+        assertEquals(0, electricPokemon.getEnergies().getGrassEnergies());
+        assertEquals(0, electricPokemon.getEnergies().getPsychicEnergies());
+        assertEquals(0, electricPokemon.getEnergies().getWaterEnergies());
+
+        electricPokemon.bindEnergy(electricEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getElectricEnergies());
+        electricPokemon.bindEnergy(fightingEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getFightingEnergies());
+        electricPokemon.bindEnergy(fireEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getFireEnergies());
+        electricPokemon.bindEnergy(grassEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getGrassEnergies());
+        electricPokemon.bindEnergy(psychicEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getPsychicEnergies());
+        electricPokemon.bindEnergy(waterEnergy);
+        assertEquals(1, electricPokemon.getEnergies().getWaterEnergies());
+
+    }
+
+    @Test
+    public void getName() {
+        assertEquals("ElectricTypePokemon", electricPokemon.getName());
+        assertEquals("FightingTypePokemon", fightingPokemon.getName());
+        assertEquals("FireTypePokemon", firePokemon.getName());
+        assertEquals("GrassTypePokemon", grassPokemon.getName());
+        assertEquals("PsychicTypePokemon", psychicPokemon.getName());
+        assertEquals("WaterTypePokemon", waterPokemon.getName());
     }
 
 }

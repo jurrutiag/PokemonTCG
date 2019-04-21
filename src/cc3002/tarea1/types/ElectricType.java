@@ -13,6 +13,7 @@ public abstract class ElectricType extends Pokemon {
 
     @Override
     public void attack(int attackNum, Trainer opponent) {
+        this.checkEnergies(attackNum);
         opponent.getActivePokemon().receiveElectricAttack(this.getAttackDamage(attackNum));
     }
     public void receiveGrassAttack(int attackDamage) {

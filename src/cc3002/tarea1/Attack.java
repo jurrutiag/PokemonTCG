@@ -1,6 +1,7 @@
 package cc3002.tarea1;
 
-public interface Attack {
+public interface Attack extends Ability {
     public int getDamage();
-    public String getName();
+    public String getDescription();
+    public EnergySet getCost();
 }

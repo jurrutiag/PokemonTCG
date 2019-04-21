@@ -1,17 +1,19 @@
 package cc3002.tarea1;
 
-import java.io.PrintStream;
-
 public abstract class Pokemon implements Card {
 
     private int hp;
     private Trainer trainer;
-    private Attack[] attacks = new Attack[4];
+    private Attack[] attacks;
+
+    private EnergySet energies;
 
     public Pokemon(int hp, Attack[] attacks, Trainer trainer) {
         this.hp = hp;
         this.attacks = attacks;
         this.trainer = trainer;
+
+        energies = new EnergySet();
     }
 
     public int getHp() {
@@ -45,6 +47,8 @@ public abstract class Pokemon implements Card {
 
     public abstract int getId();
 
+    public abstract String getName();
+
     public abstract void receiveGrassAttack(int attackDamage);
     public abstract void receiveFireAttack(int attackDamage);
     public abstract void receiveWaterAttack(int attackDamage);
@@ -63,5 +67,17 @@ public abstract class Pokemon implements Card {
 
     public Trainer getTrainer() {
         return trainer;
+    }
+
+    public void bindEnergy(Energy energy) {
+        energies.addEnergy(energy);
+    }
+
+    public EnergySet getEnergies() {
+        return energies;
+    }
+
+    public void checkEnergies(int attackNum) {
+        assert(attacks[attackNum - 1].getCost().includesEnergies(this.energies));
     }
 }

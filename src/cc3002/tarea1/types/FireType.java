@@ -11,6 +11,7 @@ public abstract class FireType extends Pokemon {
 
     @Override
     public void attack(int attackNum, Trainer opponent) {
+        this.checkEnergies(attackNum);
         opponent.getActivePokemon().receiveFireAttack(this.getAttackDamage(attackNum));
     }
     public void receiveGrassAttack(int attackDamage) {
