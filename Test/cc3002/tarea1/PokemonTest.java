@@ -114,12 +114,12 @@ public class PokemonTest {
 
     @Test
     public void getAttacksAmount() throws Exception {
-        assertEquals(1, electricPokemon.getAttacksAmount());
-        assertEquals(1, fightingPokemon.getAttacksAmount());
-        assertEquals(1, firePokemon.getAttacksAmount());
-        assertEquals(1, grassPokemon.getAttacksAmount());
-        assertEquals(1, psychicPokemon.getAttacksAmount());
-        assertEquals(1, waterPokemon.getAttacksAmount());
+        assertEquals(1, electricPokemon.getAbilitiesAmount());
+        assertEquals(1, fightingPokemon.getAbilitiesAmount());
+        assertEquals(1, firePokemon.getAbilitiesAmount());
+        assertEquals(1, grassPokemon.getAbilitiesAmount());
+        assertEquals(1, psychicPokemon.getAbilitiesAmount());
+        assertEquals(1, waterPokemon.getAbilitiesAmount());
 
         electricPokemon = new ElectricTypePokemon(50, attacks2, trainer1);
         fightingPokemon = new FightingTypePokemon(50, attacks2, trainer1);
@@ -128,12 +128,12 @@ public class PokemonTest {
         psychicPokemon = new PsychicTypePokemon(50, attacks2, trainer1);
         waterPokemon = new WaterTypePokemon(50, attacks2, trainer1);
 
-        assertEquals(2, electricPokemon.getAttacksAmount());
-        assertEquals(2, fightingPokemon.getAttacksAmount());
-        assertEquals(2, firePokemon.getAttacksAmount());
-        assertEquals(2, grassPokemon.getAttacksAmount());
-        assertEquals(2, psychicPokemon.getAttacksAmount());
-        assertEquals(2, waterPokemon.getAttacksAmount());
+        assertEquals(2, electricPokemon.getAbilitiesAmount());
+        assertEquals(2, fightingPokemon.getAbilitiesAmount());
+        assertEquals(2, firePokemon.getAbilitiesAmount());
+        assertEquals(2, grassPokemon.getAbilitiesAmount());
+        assertEquals(2, psychicPokemon.getAbilitiesAmount());
+        assertEquals(2, waterPokemon.getAbilitiesAmount());
 
         electricPokemon = new ElectricTypePokemon(50, attacks3, trainer1);
         fightingPokemon = new FightingTypePokemon(50, attacks3, trainer1);
@@ -142,12 +142,12 @@ public class PokemonTest {
         psychicPokemon = new PsychicTypePokemon(50, attacks3, trainer1);
         waterPokemon = new WaterTypePokemon(50, attacks3, trainer1);
 
-        assertEquals(3, electricPokemon.getAttacksAmount());
-        assertEquals(3, fightingPokemon.getAttacksAmount());
-        assertEquals(3, firePokemon.getAttacksAmount());
-        assertEquals(3, grassPokemon.getAttacksAmount());
-        assertEquals(3, psychicPokemon.getAttacksAmount());
-        assertEquals(3, waterPokemon.getAttacksAmount());
+        assertEquals(3, electricPokemon.getAbilitiesAmount());
+        assertEquals(3, fightingPokemon.getAbilitiesAmount());
+        assertEquals(3, firePokemon.getAbilitiesAmount());
+        assertEquals(3, grassPokemon.getAbilitiesAmount());
+        assertEquals(3, psychicPokemon.getAbilitiesAmount());
+        assertEquals(3, waterPokemon.getAbilitiesAmount());
     }
 
     @Test

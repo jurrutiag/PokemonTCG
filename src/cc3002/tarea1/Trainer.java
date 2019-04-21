@@ -29,7 +29,9 @@ public class Trainer {
     }
 
     public void swapActivePokemon(int benchIndex) {
-        Collections.swap(bench, 0, benchIndex);
+        if (bench.get(benchIndex).isActivelySelectable()) {
+            Collections.swap(bench, 0, benchIndex);
+        }
     }
 
     public void swapNextNotDead() {
@@ -69,7 +71,7 @@ public class Trainer {
     }
 
     public int maxNumAttacks() {
-        return getActivePokemon().getAttacksAmount();
+        return getActivePokemon().getAbilitiesAmount();
     }
 
     public void addCard(Card card) {
