@@ -2,6 +2,8 @@ package cc3002.tarea1;
 
 /**
  * Card interface gives common methods to cards.
+ *
+ * @author Juan Urrutia
  */
 public interface Card {
     /**

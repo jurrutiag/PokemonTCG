@@ -2,6 +2,8 @@ package cc3002.tarea1;
 
 /**
  * Attack interface gives all Attacks commond methods.
+ *
+ * @author Juan Urrutia
  */
 public interface Attack extends Ability {
 

@@ -5,7 +5,9 @@ import cc3002.tarea1.Trainer;
 import cc3002.tarea1.Pokemon;
 
 /**
- * Class representing the fire type of Pokemons
+ * Class representing the fire type of Pokemons.
+ *
+ * @author Juan Urrutia
  */
 public abstract class FireType extends Pokemon {
 
