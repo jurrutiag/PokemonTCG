@@ -1,5 +1,7 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.energies.*;
+
 import java.util.HashMap;
 
 /**
@@ -8,7 +10,7 @@ import java.util.HashMap;
  *
  * @author Juan Urrutia
  */
-public class EnergySet {
+public class EnergySet implements IEnergy{
 
     /**
      * A HashMap for the base structure of the set.
@@ -34,12 +36,12 @@ public class EnergySet {
     public EnergySet(int electric, int fighting, int fire, int grass, int psychic, int water) {
         energies = new HashMap<String, Integer>();
 
-        energies.put("Electric", electric);
-        energies.put("Fighting", fighting);
-        energies.put("Fire", fire);
-        energies.put("Grass", grass);
-        energies.put("Psychic", psychic);
-        energies.put("Water", water);
+        energies.put(new ElectricEnergy().getName(), electric);
+        energies.put(new FightingEnergy().getName(), fighting);
+        energies.put(new FireEnergy().getName(), fire);
+        energies.put(new GrassEnergy().getName(), grass);
+        energies.put(new PsychicEnergy().getName(), psychic);
+        energies.put(new WaterEnergy().getName(), water);
     }
 
     /**
@@ -47,7 +49,7 @@ public class EnergySet {
      * to the energy that wants to be added, uses double dispatch.
      * @param energy The energy to be added to the set.
      */
-    public void addEnergy(Energy energy) {
+    public void addEnergy(IEnergy energy) {
         energy.addTo(this);
     }
 
@@ -56,7 +58,7 @@ public class EnergySet {
      * @return Returns the ammount of fire energies in the set.
      */
     public int getFireEnergies() {
-        return energies.get("Fire");
+        return energies.get(new FireEnergy().getName());
     }
 
     /**
@@ -64,7 +66,7 @@ public class EnergySet {
      * @return Returns the ammount of grass energies in the set.
      */
     public int getGrassEnergies() {
-        return energies.get("Grass");
+        return energies.get(new GrassEnergy().getName());
     }
 
     /**
@@ -72,7 +74,7 @@ public class EnergySet {
      * @return Returns the ammount of psychic energies in the set.
      */
     public int getPsychicEnergies() {
-        return energies.get("Psychic");
+        return energies.get(new PsychicEnergy().getName());
     }
 
     /**
@@ -80,7 +82,7 @@ public class EnergySet {
      * @return Returns the ammount of water energies in the set.
      */
     public int getWaterEnergies() {
-        return energies.get("Water");
+        return energies.get(new WaterEnergy().getName());
     }
 
     /**
@@ -88,7 +90,7 @@ public class EnergySet {
      * @return Returns the ammount of electric energies in the set.
      */
     public int getElectricEnergies() {
-        return energies.get("Electric");
+        return energies.get(new ElectricEnergy().getName());
     }
 
     /**
@@ -96,7 +98,7 @@ public class EnergySet {
      * @return Returns the ammount of fighting energies in the set.
      */
     public int getFightingEnergies() {
-        return energies.get("Fighting");
+        return energies.get(new FightingEnergy().getName());
     }
 
 
@@ -104,42 +106,42 @@ public class EnergySet {
      * Adds one electric energy to the set.
      */
     public void addElectric() {
-        energies.replace("Electric", energies.get("Electric") + 1);
+        energies.replace(new ElectricEnergy().getName(), energies.get(new ElectricEnergy().getName()) + 1);
     }
 
     /**
      * Adds one fighting energy to the set.
      */
     public void addFighting() {
-        energies.replace("Fighting", energies.get("Fighting") + 1);
+        energies.replace(new FightingEnergy().getName(), energies.get(new FightingEnergy().getName()) + 1);
     }
 
     /**
      * Adds one fire energy to the set.
      */
     public void addFire() {
-        energies.replace("Fire", energies.get("Fire") + 1);
+        energies.replace(new FireEnergy().getName(), energies.get(new FireEnergy().getName()) + 1);
     }
 
     /**
      * Adds one grass energy to the set.
      */
     public void addGrass() {
-        energies.replace("Grass", energies.get("Grass") + 1);
+        energies.replace(new GrassEnergy().getName(), energies.get(new GrassEnergy().getName()) + 1);
     }
 
     /**
      * Adds one psychic energy to the set.
      */
     public void addPsychic() {
-        energies.replace("Psychic", energies.get("Psychic") + 1);
+        energies.replace(new PsychicEnergy().getName(), energies.get(new PsychicEnergy().getName()) + 1);
     }
 
     /**
      * Adds one water energy to the set.
      */
     public void addWater() {
-        energies.replace("Water", energies.get("Water") + 1);
+        energies.replace(new WaterEnergy().getName(), energies.get(new WaterEnergy().getName()) + 1);
     }
 
     /**
@@ -153,5 +155,16 @@ public class EnergySet {
             isIncluded = isIncluded && (this.energies.get(key) >= energySet.energies.get(key));
         }
         return isIncluded;
+    }
+
+    /**
+     * Adds a an EnergySet to the current set.
+     * @param energySet The EnergySet to be added.
+     */
+    @Override
+    public void addTo(EnergySet energySet) {
+        for (String key: this.energies.keySet()) {
+            energySet.energies.put(key, energySet.energies.get(key) + this.energies.get(key));
+        }
     }
 }

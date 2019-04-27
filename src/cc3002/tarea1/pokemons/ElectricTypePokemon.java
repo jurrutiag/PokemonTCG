@@ -6,6 +6,7 @@ import cc3002.tarea1.types.ElectricType;
 
 public class ElectricTypePokemon extends ElectricType {
 
+    public ElectricTypePokemon(Trainer trainer) {super(0, new Attack[] {}, trainer);}
     public ElectricTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);
     }
@@ -23,4 +24,5 @@ public class ElectricTypePokemon extends ElectricType {
     public String getName() {
         return "ElectricTypePokemon";
     }
+
 }

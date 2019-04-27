@@ -6,6 +6,8 @@ import cc3002.tarea1.types.WaterType;
 
 public class WaterTypePokemon extends WaterType {
 
+    public WaterTypePokemon(Trainer trainer) {super(0, new Attack[] {}, trainer);}
+
     public WaterTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);
     }

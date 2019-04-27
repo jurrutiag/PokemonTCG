@@ -6,6 +6,8 @@ import cc3002.tarea1.types.FightingType;
 
 public class FightingTypePokemon extends FightingType {
 
+    public FightingTypePokemon(Trainer trainer) {super(0, new Attack[] {}, trainer);}
+
     public FightingTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);
     }

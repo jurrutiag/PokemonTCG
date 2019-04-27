@@ -4,11 +4,13 @@ import cc3002.tarea1.Abilities.Attacks.ElectricAttack;
 import cc3002.tarea1.Abilities.Attacks.FightingAttack;
 import cc3002.tarea1.Abilities.Attacks.FireAttack;
 import cc3002.tarea1.energies.ElectricEnergy;
-import cc3002.tarea1.pokemons.*;
+import cc3002.tarea1.pokemons.ElectricTypePokemon;
+import cc3002.tarea1.pokemons.GrassTypePokemon;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TrainerTest {
 
@@ -32,12 +34,6 @@ public class TrainerTest {
 
         trainer1.setOpponent(trainer2);
         trainer2.setOpponent(trainer1);
-    }
-
-    @Test
-    public void setActivePokemon() throws Exception {
-        trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.setActivePokemon(0);
     }
 
     @Test
@@ -103,6 +99,7 @@ public class TrainerTest {
     public void activePokemonAttack() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         trainer1.addPokemonToBench(0);
+        trainer1.addEnergy(new EnergySet(2, 0, 0, 0, 0, 0));
         trainer2.addCard(new GrassTypePokemon(50, attacks, trainer1));
         trainer2.addPokemonToBench(0);
 
@@ -138,9 +135,12 @@ public class TrainerTest {
     @Test
     public void addPokemonToBench() throws Exception {
         assertEquals(0, trainer1.benchSize());
+        assertEquals(0, trainer1.handSize());
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
+        assertEquals(1, trainer1.handSize());
         assertEquals(0, trainer1.benchSize());
         trainer1.addPokemonToBench(0);
+        assertEquals(0, trainer1.handSize());
         assertEquals(1, trainer1.benchSize());
     }
 
@@ -184,7 +184,7 @@ public class TrainerTest {
         assertTrue(trainer1.benchSize() <= 5);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void benchFull() {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         trainer1.addPokemonToBench(0);
@@ -199,8 +199,12 @@ public class TrainerTest {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         trainer1.addPokemonToBench(0);
 
+        assertEquals(6, trainer1.benchSize());
+
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         trainer1.addPokemonToBench(0);
+
+        assertEquals(6, trainer1.benchSize());
     }
 
     @Test

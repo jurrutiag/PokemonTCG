@@ -5,6 +5,7 @@ import cc3002.tarea1.Trainer;
 import cc3002.tarea1.types.GrassType;
 
 public class GrassTypePokemon extends GrassType {
+    public GrassTypePokemon(Trainer trainer) {super(0, new Attack[] {}, trainer);}
 
     public GrassTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);

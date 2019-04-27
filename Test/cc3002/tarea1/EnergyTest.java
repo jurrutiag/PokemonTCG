@@ -116,4 +116,14 @@ public class EnergyTest {
         assertFalse(energies2.includesEnergies(energies));
     }
 
+    @Test
+    public void getName() {
+        assertEquals("ElectricEnergy", electricEnergy.getName());
+        assertEquals("FightingEnergy", fightingEnergy.getName());
+        assertEquals("FireEnergy", fireEnergy.getName());
+        assertEquals("GrassEnergy", grassEnergy.getName());
+        assertEquals("PsychicEnergy", psychicEnergy.getName());
+        assertEquals("WaterEnergy", waterEnergy.getName());
+    }
+
 }

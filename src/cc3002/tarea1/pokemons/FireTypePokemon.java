@@ -6,6 +6,7 @@ import cc3002.tarea1.types.FireType;
 
 public class FireTypePokemon extends FireType {
 
+    public FireTypePokemon(Trainer trainer) {super(0, new Attack[] {}, trainer);}
 
     public FireTypePokemon(int hp, Attack[] attack, Trainer trainer) {
         super(hp, attack, trainer);

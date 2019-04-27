@@ -1,5 +1,8 @@
 package cc3002.tarea1;
 
+/**
+ * Class that represents a Pokemon, the fighting creatures.
+ */
 public abstract class Pokemon implements Card {
 
     /**
@@ -58,8 +61,7 @@ public abstract class Pokemon implements Card {
     }
 
     /**
-     * Checks if the a Pokemon is selectable as an active Pokemon.
-     * @return Returns true if the Pokemon is not dead.
+     * {@inheritDoc}
      */
     @Override
     public boolean isActivelySelectable() {
@@ -78,6 +80,22 @@ public abstract class Pokemon implements Card {
             hp = 0;
             this.dead();
         }
+    }
+
+    /**
+     * Calls the receive damage method for the Pokemon with twice the damage.
+     * @param damage The damage that will be duplicated.
+     */
+    public void receiveWeaknessDamage(int damage) {
+        this.receiveDamage(2 * damage);
+    }
+
+    /**
+     * Calls the receive damage method for the Pokemon with 30 points less of damage.
+     * @param damage The damage that will be reduced.
+     */
+    public void receiveResistantDamage(int damage) {
+        this.receiveDamage(damage - 30);
     }
 
     /**
@@ -160,7 +178,7 @@ public abstract class Pokemon implements Card {
      * Binds an energy to the Pokemon adding it to the Energy set of the Pokemon.
      * @param energy Energy to be binded.
      */
-    public void bindEnergy(Energy energy) {
+    public void bindEnergy(IEnergy energy) {
         energies.addEnergy(energy);
     }
 
@@ -173,10 +191,11 @@ public abstract class Pokemon implements Card {
     }
 
     /**
-     * Checks if the Pokemon has the energies required for the ability represented by attackNum to be casted.
-     * @param attackNum Index plus one of the ability to request for.
+     * Checks if the Pokemon has the energies required for the ability represented by abilityNum to be casted.
+     * @param abilityNum Index plus one of the ability to request for.
+     * @return Returns true if the ability can be casted.
      */
-    public void checkEnergies(int attackNum) {
-        assert(((Attack) abilities[attackNum - 1]).getCost().includesEnergies(this.energies));
+    public boolean checkEnergies(int abilityNum) {
+        return this.energies.includesEnergies(((Attack) abilities[abilityNum - 1]).getCost());
     }
 }
