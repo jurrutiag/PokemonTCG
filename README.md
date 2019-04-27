@@ -15,11 +15,11 @@ The game has a trainer class, which consists on one player who has a hand with u
 6. Electric
 ```
 
-And they are put toghether in an EnergySet object that contains the count of each energy type and has methods for adding or removing energies or EnergySets and comparing EnergySets. EnergySets and Energies both extend from IEnergy an interface created so that EnergySets and Energies could interact easier.
+And they are put toghether in an EnergySet object that contains the count of each energy type and has methods for adding or removing Energies or EnergySets and comparing EnergySets. EnergySets and Energies both extend from IEnergy an interface created so that EnergySets and Energies could interact easier.
 
 Each trainer has an opponent and is able to cast an ability in the ability set of his Pokemon. The abilities on any Pokemon are for now only attacks, they were implemented as an interface that inherits from the Ability interface. Each attack has an energy cost in the form of EnergySet, a description, a damage and a name, so with the attacks a trainer can deal damage to the active Pokemon of the opponent.
 
-Each Pokemon has a type, and each type has a resistance and a weakness, so if the trainer decides to attack his opponent, the damage dealt to the active Pokemon of the opponent will depend on it's type resistance and weakness. The type table showing the resistances and weakness is the following one:
+Each Pokemon has a type, and each type has a resistance and a weakness, so if the trainer decides to attack his opponent, the damage dealt to the active Pokemon of the opponent will depend on it's type resistance and weakness, if the Pokemon that receives the attack is resistant to the attacking pokemon's type, then it receives 30 points less damage than the actual attack damage. If the Pokemon that receives the attack is weak to the attacking Pokemon's type, then it receives twice the actual attack damage. The type table showing the resistances and weaknesses is the following one:
 
 | Type | Weakness | Resistance |
 | ---- |:--------:| ----------:|
@@ -30,7 +30,7 @@ Each Pokemon has a type, and each type has a resistance and a weakness, so if th
 | Fighting | Psychic, Grass |  |
 | Psychic | Psychic | Fighting |
 
-To implement the attack resitances and weakness, double dispatch was used, then, each Pokemon type is responsible for the ammount damage it receives from each type, therefore, the weakness and resistance caracteristic of each type is inside these methods.
+To implement the attack resitances and weaknesses, double dispatch was used, then, each Pokemon type is responsible for the ammount of  damage it receives from each type, therefore, the weakness and resistance caracteristic of each type is inside these methods.
 
 A Pokemon has an ammount of hp, an id, a name, an abilities array and a trainer. The hp represents the ammount of health left, if it reaches zero, then the Pokemon is dead and is eliminated from the bench. The id represents the unique identifier for each Pokemon. The name of the Pokemon can be repeated in different Pokemons (that is Pokemons with different id's). The abilities array can hold up to four abilities. Finally, the trainer is the owner of the Pokemon.
 
