@@ -2,6 +2,8 @@ package cc3002.tarea1;
 
 /**
  * Interface provided for adding energies and EnergySet
+ *
+ * @author Juan Urrutia
  */
 public interface IEnergy {
     /**
@@ -9,4 +11,6 @@ public interface IEnergy {
      * @param energySet The energy set that will add the IEnergy.
      */
     void addTo(EnergySet energySet);
+
+    void beRemovedFrom(EnergySet energySet);
 }

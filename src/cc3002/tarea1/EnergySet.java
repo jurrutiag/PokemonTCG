@@ -45,6 +45,18 @@ public class EnergySet implements IEnergy{
     }
 
     /**
+     *
+     * @return Returns the ammount of energies the Set has.
+     */
+    public int energySetSize() {
+        int sum = 0;
+        for (String key : energies.keySet()) {
+            sum += energies.get(key);
+        }
+        return sum;
+    }
+
+    /**
      * Adds an energy to the set that receives the message. This method sends a message
      * to the energy that wants to be added, uses double dispatch.
      * @param energy The energy to be added to the set.
@@ -54,94 +66,29 @@ public class EnergySet implements IEnergy{
     }
 
     /**
-     *
-     * @return Returns the ammount of fire energies in the set.
+     * Removes an IEnergy from the current set.
+     * @param energy
      */
-    public int getFireEnergies() {
-        return energies.get(new FireEnergy().getName());
+    public void removeEnergy(IEnergy energy) {
+        energy.beRemovedFrom(this);
     }
 
     /**
      *
-     * @return Returns the ammount of grass energies in the set.
+     * @param energy Energy to be asked for.
+     * @return Returns the amount of a specific energy in the set.
      */
-    public int getGrassEnergies() {
-        return energies.get(new GrassEnergy().getName());
+    public int getEnergies(Energy energy) {
+        return energies.get(energy.getName());
     }
 
     /**
-     *
-     * @return Returns the ammount of psychic energies in the set.
+     * Replaces the value stored in key in the HashMap for a new value
+     * @param key The key of the Set which value will be replaced.
+     * @param value The value to be changed to.
      */
-    public int getPsychicEnergies() {
-        return energies.get(new PsychicEnergy().getName());
-    }
-
-    /**
-     *
-     * @return Returns the ammount of water energies in the set.
-     */
-    public int getWaterEnergies() {
-        return energies.get(new WaterEnergy().getName());
-    }
-
-    /**
-     *
-     * @return Returns the ammount of electric energies in the set.
-     */
-    public int getElectricEnergies() {
-        return energies.get(new ElectricEnergy().getName());
-    }
-
-    /**
-     *
-     * @return Returns the ammount of fighting energies in the set.
-     */
-    public int getFightingEnergies() {
-        return energies.get(new FightingEnergy().getName());
-    }
-
-
-    /**
-     * Adds one electric energy to the set.
-     */
-    public void addElectric() {
-        energies.replace(new ElectricEnergy().getName(), energies.get(new ElectricEnergy().getName()) + 1);
-    }
-
-    /**
-     * Adds one fighting energy to the set.
-     */
-    public void addFighting() {
-        energies.replace(new FightingEnergy().getName(), energies.get(new FightingEnergy().getName()) + 1);
-    }
-
-    /**
-     * Adds one fire energy to the set.
-     */
-    public void addFire() {
-        energies.replace(new FireEnergy().getName(), energies.get(new FireEnergy().getName()) + 1);
-    }
-
-    /**
-     * Adds one grass energy to the set.
-     */
-    public void addGrass() {
-        energies.replace(new GrassEnergy().getName(), energies.get(new GrassEnergy().getName()) + 1);
-    }
-
-    /**
-     * Adds one psychic energy to the set.
-     */
-    public void addPsychic() {
-        energies.replace(new PsychicEnergy().getName(), energies.get(new PsychicEnergy().getName()) + 1);
-    }
-
-    /**
-     * Adds one water energy to the set.
-     */
-    public void addWater() {
-        energies.replace(new WaterEnergy().getName(), energies.get(new WaterEnergy().getName()) + 1);
+    public void replaceValue(String key, int value) {
+        energies.replace(key, value);
     }
 
     /**
@@ -165,6 +112,20 @@ public class EnergySet implements IEnergy{
     public void addTo(EnergySet energySet) {
         for (String key: this.energies.keySet()) {
             energySet.energies.put(key, energySet.energies.get(key) + this.energies.get(key));
+        }
+    }
+
+    /**
+     * Removes an EnergySet from another, that is, subtraction of sets
+     * @param energySet The set from which this set will be removed.
+     */
+    public void beRemovedFrom(EnergySet energySet) {
+        for (String key: this.energies.keySet()) {
+            if (energySet.energies.get(key) - this.energies.get(key) >= 0) {
+                energySet.energies.put(key, energySet.energies.get(key) - this.energies.get(key));
+            } else {
+                energySet.energies.put(key, 0);
+            }
         }
     }
 }

@@ -495,25 +495,25 @@ public class PokemonTest {
 
     @Test
     public void bindEnergy() {
-        assertEquals(0, electricPokemon.getEnergies().getElectricEnergies());
-        assertEquals(0, electricPokemon.getEnergies().getFightingEnergies());
-        assertEquals(0, electricPokemon.getEnergies().getFireEnergies());
-        assertEquals(0, electricPokemon.getEnergies().getGrassEnergies());
-        assertEquals(0, electricPokemon.getEnergies().getPsychicEnergies());
-        assertEquals(0, electricPokemon.getEnergies().getWaterEnergies());
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(new ElectricEnergy()));
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(fightingEnergy));
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(fireEnergy));
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(grassEnergy));
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(psychicEnergy));
+        assertEquals(0, electricPokemon.getEnergySet().getEnergies(waterEnergy));
 
         electricPokemon.bindEnergy(electricEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getElectricEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(electricEnergy));
         electricPokemon.bindEnergy(fightingEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getFightingEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(fightingEnergy));
         electricPokemon.bindEnergy(fireEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getFireEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(fireEnergy));
         electricPokemon.bindEnergy(grassEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getGrassEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(grassEnergy));
         electricPokemon.bindEnergy(psychicEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getPsychicEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(psychicEnergy));
         electricPokemon.bindEnergy(waterEnergy);
-        assertEquals(1, electricPokemon.getEnergies().getWaterEnergies());
+        assertEquals(1, electricPokemon.getEnergySet().getEnergies(waterEnergy));
 
     }
 

@@ -3,7 +3,7 @@ package cc3002.tarea1;
 import cc3002.tarea1.Abilities.Attacks.ElectricAttack;
 import cc3002.tarea1.Abilities.Attacks.FightingAttack;
 import cc3002.tarea1.Abilities.Attacks.FireAttack;
-import cc3002.tarea1.energies.ElectricEnergy;
+import cc3002.tarea1.energies.*;
 import cc3002.tarea1.pokemons.ElectricTypePokemon;
 import cc3002.tarea1.pokemons.GrassTypePokemon;
 import org.junit.Before;
@@ -213,12 +213,12 @@ public class TrainerTest {
         trainer1.addPokemonToBench(0);
         trainer1.addEnergy(new ElectricEnergy());
 
-        assertEquals(1, trainer1.getActivePokemon().getEnergies().getElectricEnergies());
-        assertEquals(0, trainer1.getActivePokemon().getEnergies().getFightingEnergies());
-        assertEquals(0, trainer1.getActivePokemon().getEnergies().getFireEnergies());
-        assertEquals(0, trainer1.getActivePokemon().getEnergies().getGrassEnergies());
-        assertEquals(0, trainer1.getActivePokemon().getEnergies().getPsychicEnergies());
-        assertEquals(0, trainer1.getActivePokemon().getEnergies().getWaterEnergies());
+        assertEquals(1, trainer1.getActivePokemon().getEnergySet().getEnergies(new ElectricEnergy()));
+        assertEquals(0, trainer1.getActivePokemon().getEnergySet().getEnergies(new FightingEnergy()));
+        assertEquals(0, trainer1.getActivePokemon().getEnergySet().getEnergies(new FireEnergy()));
+        assertEquals(0, trainer1.getActivePokemon().getEnergySet().getEnergies(new GrassEnergy()));
+        assertEquals(0, trainer1.getActivePokemon().getEnergySet().getEnergies(new PsychicEnergy()));
+        assertEquals(0, trainer1.getActivePokemon().getEnergySet().getEnergies(new WaterEnergy()));
     }
 
     @Test

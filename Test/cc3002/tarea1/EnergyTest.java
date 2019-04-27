@@ -31,38 +31,38 @@ public class EnergyTest {
 
     @Test
     public void addEnergy() {
-        assertEquals(0, energies.getElectricEnergies());
-        assertEquals(0, energies.getFightingEnergies());
-        assertEquals(0, energies.getFireEnergies());
-        assertEquals(0, energies.getGrassEnergies());
-        assertEquals(0, energies.getPsychicEnergies());
-        assertEquals(0, energies.getWaterEnergies());
+        assertEquals(0, energies.getEnergies(electricEnergy));
+        assertEquals(0, energies.getEnergies(psychicEnergy));
+        assertEquals(0, energies.getEnergies(fireEnergy));
+        assertEquals(0, energies.getEnergies(grassEnergy));
+        assertEquals(0, energies.getEnergies(psychicEnergy));
+        assertEquals(0, energies.getEnergies(waterEnergy));
 
-        energies.addElectric();
-        assertEquals(1, energies.getElectricEnergies());
-        energies.addFighting();
-        assertEquals(1, energies.getFightingEnergies());
-        energies.addFire();
-        assertEquals(1, energies.getFireEnergies());
-        energies.addGrass();
-        assertEquals(1, energies.getGrassEnergies());
-        energies.addPsychic();
-        assertEquals(1, energies.getPsychicEnergies());
-        energies.addWater();
-        assertEquals(1, energies.getWaterEnergies());
+        energies.addEnergy(new ElectricEnergy());
+        assertEquals(1, energies.getEnergies(electricEnergy));
+        energies.addEnergy(new FightingEnergy());
+        assertEquals(1, energies.getEnergies(fightingEnergy));
+        energies.addEnergy(new FireEnergy());
+        assertEquals(1, energies.getEnergies(fireEnergy));
+        energies.addEnergy(new GrassEnergy());
+        assertEquals(1, energies.getEnergies(grassEnergy));
+        energies.addEnergy(new PsychicEnergy());
+        assertEquals(1, energies.getEnergies(psychicEnergy));
+        energies.addEnergy(new WaterEnergy());
+        assertEquals(1, energies.getEnergies(waterEnergy));
 
-        energies.addElectric();
-        assertEquals(2, energies.getElectricEnergies());
-        energies.addFighting();
-        assertEquals(2, energies.getFightingEnergies());
-        energies.addFire();
-        assertEquals(2, energies.getFireEnergies());
-        energies.addGrass();
-        assertEquals(2, energies.getGrassEnergies());
-        energies.addPsychic();
-        assertEquals(2, energies.getPsychicEnergies());
-        energies.addWater();
-        assertEquals(2, energies.getWaterEnergies());
+        energies.addEnergy(new ElectricEnergy());
+        assertEquals(2, energies.getEnergies(electricEnergy));
+        energies.addEnergy(new FightingEnergy());
+        assertEquals(2, energies.getEnergies(fightingEnergy));
+        energies.addEnergy(new FireEnergy());
+        assertEquals(2, energies.getEnergies(fireEnergy));
+        energies.addEnergy(new GrassEnergy());
+        assertEquals(2, energies.getEnergies(grassEnergy));
+        energies.addEnergy(new PsychicEnergy());
+        assertEquals(2, energies.getEnergies(psychicEnergy));
+        energies.addEnergy(new WaterEnergy());
+        assertEquals(2, energies.getEnergies(waterEnergy));
     }
 
     @Test
@@ -124,6 +124,35 @@ public class EnergyTest {
         assertEquals("GrassEnergy", grassEnergy.getName());
         assertEquals("PsychicEnergy", psychicEnergy.getName());
         assertEquals("WaterEnergy", waterEnergy.getName());
+    }
+
+    @Test
+    public void energySetSize() {
+        assertEquals(0, energies.energySetSize());
+        energies.addEnergy(new WaterEnergy());
+        assertEquals(1, energies.energySetSize());
+        energies.addEnergy(new ElectricEnergy());
+        assertEquals(2, energies.energySetSize());
+        energies.addEnergy(new FireEnergy());
+        assertEquals(3, energies.energySetSize());
+        energies.addEnergy(new FightingEnergy());
+        assertEquals(4, energies.energySetSize());
+        energies.addEnergy(new PsychicEnergy());
+        assertEquals(5, energies.energySetSize());
+        energies.addEnergy(new GrassEnergy());
+        assertEquals(6, energies.energySetSize());
+
+        energies.removeEnergy(new WaterEnergy());
+        assertEquals(5, energies.energySetSize());
+        energies.removeEnergy(new WaterEnergy());
+        assertEquals(5, energies.energySetSize());
+        energies.removeEnergy(new EnergySet(7, 3, 4, 0, 5, 5));
+        assertEquals(1, energies.energySetSize());
+        energies.removeEnergy(new EnergySet(0, 0, 0, 100, 0, 0));
+        assertEquals(0, energies.energySetSize());
+        energies.addEnergy(new WaterEnergy());
+        assertEquals(1, energies.energySetSize());
+
     }
 
 }

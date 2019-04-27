@@ -2,6 +2,8 @@ package cc3002.tarea1;
 
 /**
  * Class that represents a Pokemon, the fighting creatures.
+ *
+ * @author Juan Urrutia
  */
 public abstract class Pokemon implements Card {
 
@@ -186,7 +188,7 @@ public abstract class Pokemon implements Card {
      *
      * @return Returns the Energy set of the Pokemon.
      */
-    public EnergySet getEnergies() {
+    public EnergySet getEnergySet() {
         return energies;
     }
 

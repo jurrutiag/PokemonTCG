@@ -5,6 +5,8 @@ import java.util.Collections;
 
 /**
  * Class that represents a Trainer, the player of the game.
+ *
+ * @author Juan Urrutia
  */
 public class Trainer {
 
@@ -147,11 +149,19 @@ public class Trainer {
     }
 
     /**
+     *
+     * @return Returns true if the bench is full.
+     */
+    public boolean checkBenchFull() {
+        return !(bench.size() < 6);
+    }
+
+    /**
      * Moves a pokemon from the hand to the bench if the bench is not full, if it's full nothing is done.
      * @param handIndex The index of the card in the hand.
      */
     public void addPokemonToBench(int handIndex) {
-        if(bench.size() < 6) {
+        if(!checkBenchFull()) {
             bench.add((Pokemon) hand.get(handIndex));
             hand.remove(handIndex);
             if (bench.get(0).getHp() == 0) {
