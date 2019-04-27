@@ -64,6 +64,18 @@ public class Trainer {
                 swapActivePokemon(i);
             }
         }
+        this.clearDead();
+    }
+
+    /**
+     * Removes the dead Pokemons from the bench.
+     */
+    public void clearDead() {
+        for (int i = 0; i < bench.size(); i++) {
+            if (bench.get(i).getHp() == 0) {
+                bench.remove(i);
+            }
+        }
     }
 
     /**
