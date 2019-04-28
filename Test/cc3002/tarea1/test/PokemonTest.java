@@ -14,39 +14,39 @@ import static org.junit.Assert.assertEquals;
 
 public class PokemonTest {
 
-    Trainer trainer1;
-    Trainer trainer2;
+    private Trainer trainer1;
+    private Trainer trainer2;
 
-    Attack[] electricAttacks;
-    Attack[] fightingAttacks;
-    Attack[] fireAttacks;
-    Attack[] grassAttacks;
-    Attack[] psychicAttacks;
-    Attack[] waterAttacks;
+    private Attack[] electricAttacks;
+    private Attack[] fightingAttacks;
+    private Attack[] fireAttacks;
+    private Attack[] grassAttacks;
+    private Attack[] psychicAttacks;
+    private Attack[] waterAttacks;
 
-    Attack[] attacks2;
-    Attack[] attacks3;
+    private Attack[] attacks2;
+    private Attack[] attacks3;
 
-    Energy electricEnergy;
-    Energy fightingEnergy;
-    Energy fireEnergy;
-    Energy grassEnergy;
-    Energy psychicEnergy;
-    Energy waterEnergy;
+    private Energy electricEnergy;
+    private Energy fightingEnergy;
+    private Energy fireEnergy;
+    private Energy grassEnergy;
+    private Energy psychicEnergy;
+    private Energy waterEnergy;
 
-    Pokemon electricPokemon;
-    Pokemon fightingPokemon;
-    Pokemon firePokemon;
-    Pokemon grassPokemon;
-    Pokemon psychicPokemon;
-    Pokemon waterPokemon;
+    private Pokemon electricPokemon;
+    private Pokemon fightingPokemon;
+    private Pokemon firePokemon;
+    private Pokemon grassPokemon;
+    private Pokemon psychicPokemon;
+    private Pokemon waterPokemon;
 
-    Pokemon electricPokemon2;
-    Pokemon fightingPokemon2;
-    Pokemon firePokemon2;
-    Pokemon grassPokemon2;
-    Pokemon psychicPokemon2;
-    Pokemon waterPokemon2;
+    private Pokemon electricPokemon2;
+    private Pokemon fightingPokemon2;
+    private Pokemon firePokemon2;
+    private Pokemon grassPokemon2;
+    private Pokemon psychicPokemon2;
+    private Pokemon waterPokemon2;
 
 
     @Before
@@ -214,72 +214,94 @@ public class PokemonTest {
 
     @Test
     public void attack() throws Exception {
-        electricPokemon2.setHp(10);
-        fightingPokemon2.setHp(10);
-        firePokemon2.setHp(10);
-        grassPokemon2.setHp(10);
-        psychicPokemon2.setHp(20);
-        waterPokemon2.setHp(10);
+        electricPokemon2.setHp(40);
+        fightingPokemon2.setHp(40);
+        firePokemon2.setHp(40);
+        grassPokemon2.setHp(40);
+        psychicPokemon2.setHp(40);
+        waterPokemon2.setHp(40);
 
         trainer2.addCard(electricPokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         electricPokemon.bindEnergy(new ElectricEnergy());
         electricPokemon.attack(1, trainer2);
-        assertEquals(10, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         electricPokemon.bindEnergy(new ElectricEnergy());
         electricPokemon.attack(1, trainer2);
         assertEquals(new ElectricTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(30, trainer2.getActivePokemon().getHp());
+        electricPokemon.attack(1, trainer2);
+        electricPokemon.attack(1, trainer2);
+        electricPokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
 
         trainer2.addCard(fightingPokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         fightingPokemon.bindEnergy(new FightingEnergy());
         fightingPokemon.attack(1, trainer2);
-        assertEquals(10, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         fightingPokemon.bindEnergy(new FightingEnergy());
         fightingPokemon.attack(1, trainer2);
         assertEquals(new FightingTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(30, trainer2.getActivePokemon().getHp());
+        fightingPokemon.attack(1, trainer2);
+        fightingPokemon.attack(1, trainer2);
+        fightingPokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
 
         trainer2.addCard(firePokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         firePokemon.bindEnergy(new FireEnergy());
         firePokemon.attack(1, trainer2);
-        assertEquals(10, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         firePokemon.bindEnergy(new FireEnergy());
         firePokemon.attack(1, trainer2);
         assertEquals(new FireTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(30, trainer2.getActivePokemon().getHp());
+        firePokemon.attack(1, trainer2);
+        firePokemon.attack(1, trainer2);
+        firePokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
 
         trainer2.addCard(grassPokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         grassPokemon.bindEnergy(new GrassEnergy());
         grassPokemon.attack(1, trainer2);
-        assertEquals(10, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         grassPokemon.bindEnergy(new GrassEnergy());
         grassPokemon.attack(1, trainer2);
         assertEquals(new GrassTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(30, trainer2.getActivePokemon().getHp());
+        grassPokemon.attack(1, trainer2);
+        grassPokemon.attack(1, trainer2);
+        grassPokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
 
         trainer2.addCard(psychicPokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         psychicPokemon.bindEnergy(new PsychicEnergy());
         psychicPokemon.attack(1, trainer2);
-        assertEquals(20, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         psychicPokemon.bindEnergy(new PsychicEnergy());
         psychicPokemon.attack(1, trainer2);
         assertEquals(new PsychicTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(20, trainer2.getActivePokemon().getHp());
+        psychicPokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
 
         trainer2.addCard(waterPokemon2);
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
         waterPokemon.bindEnergy(new WaterEnergy());
         waterPokemon.attack(1, trainer2);
-        assertEquals(10, trainer2.getActivePokemon().getHp());
+        assertEquals(40, trainer2.getActivePokemon().getHp());
         waterPokemon.bindEnergy(new WaterEnergy());
         waterPokemon.attack(1, trainer2);
         assertEquals(new WaterTypePokemon(trainer2).getName(), trainer2.getActivePokemon().getName());
-        assertEquals(0, trainer2.getActivePokemon().getHp());
+        assertEquals(30, trainer2.getActivePokemon().getHp());
+        waterPokemon.attack(1, trainer2);
+        waterPokemon.attack(1, trainer2);
+        waterPokemon.attack(1, trainer2);
+        assertEquals(0, trainer2.benchSize());
     }
 
     @Test
@@ -470,9 +492,9 @@ public class PokemonTest {
         grassPokemon.setHp(1);
 
         trainer1.addCard(grassPokemon);
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(firePokemon);
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertEquals(grassPokemon.getId(), trainer1.getActivePokemon().getId());
 

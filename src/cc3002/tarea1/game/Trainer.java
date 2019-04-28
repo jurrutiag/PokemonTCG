@@ -45,6 +45,15 @@ public class Trainer {
     }
 
     /**
+     * Plays a card from the hand
+     * @param handIndex The hand index where the card to be played resides.
+     */
+    public void playCard(int handIndex) {
+        hand.get(handIndex).bePlayedBy(this);
+        hand.remove(handIndex);
+    }
+
+    /**
      * Swaps the active Pokemon for another one in the bench.
      * @param benchIndex The bench index where the Pokemon that will be put as active is.
      */
@@ -107,7 +116,7 @@ public class Trainer {
      * @return Returns the current active Pokemon of the bench, that is the first Pokemon in the bench
      */
     public Pokemon getActivePokemon() {
-        return (Pokemon) bench.get(0);
+        return bench.get(0);
     }
 
     /**
@@ -115,7 +124,9 @@ public class Trainer {
      * @param attackNum The index of the attack to be used, from 0 to 3.
      */
     public void activePokemonAttack(int attackNum) {
-        getActivePokemon().attack(attackNum, opponent);
+        if (opponent.benchSize() > 0) {
+            getActivePokemon().attack(attackNum, opponent);
+        }
     }
 
     /**
@@ -170,12 +181,11 @@ public class Trainer {
 
     /**
      * Moves a pokemon from the hand to the bench if the bench is not full, if it's full nothing is done.
-     * @param handIndex The index of the card in the hand.
+     * @param pokemon The the pokemon to be moved.
      */
-    public void addPokemonToBench(int handIndex) {
+    public void addPokemonToBench(Pokemon pokemon) {
         if(!checkBenchFull()) {
-            bench.add((Pokemon) hand.get(handIndex));
-            hand.remove(handIndex);
+            bench.add(pokemon);
             if (bench.get(0).getHp() == 0) {
                 swapNextNotDead();
             }

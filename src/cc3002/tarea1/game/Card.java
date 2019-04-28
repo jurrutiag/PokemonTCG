@@ -13,4 +13,10 @@ public interface Card {
      * @return Boolean value that represents if the card is selectable as active pokemon.
      */
     public boolean isActivelySelectable();
+
+    /**
+     * Plays the card selected.
+     * @param trainer The trainer that plays the card.
+     */
+    public void bePlayedBy(Trainer trainer);
 }

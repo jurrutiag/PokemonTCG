@@ -39,6 +39,14 @@ public abstract class Energy implements Card, IEnergy {
     }
 
     /**
+     * Makes the player play this energy card.
+     * @param trainer The trainer that plays the card.
+     */
+    public void bePlayedBy(Trainer trainer) {
+        trainer.addEnergy(this);
+    }
+
+    /**
      *
      * @return Returns the name of the energy.
      */

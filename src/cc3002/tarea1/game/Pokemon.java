@@ -82,6 +82,14 @@ public abstract class Pokemon implements Card {
     }
 
     /**
+     * Makes the player play this pokemon card.
+     * @param trainer The trainer that plays the card.
+     */
+    public void bePlayedBy(Trainer trainer) {
+        trainer.addPokemonToBench(this);
+    }
+
+    /**
      *
      * @return Returns the amount of abilities the Pokemon has.
      */
@@ -180,7 +188,7 @@ public abstract class Pokemon implements Card {
      * Method called when the Pokemon dies so the trainer swaps the active Pokemon.
      */
     public void dead() {
-        getTrainer().swapNextNotDead();
+        this.getTrainer().swapNextNotDead();
     }
 
     /**

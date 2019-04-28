@@ -9,6 +9,7 @@ import cc3002.tarea1.game.Pokemon;
 import cc3002.tarea1.game.Trainer;
 import cc3002.tarea1.game.energies.*;
 import cc3002.tarea1.game.pokemons.ElectricTypePokemon;
+import cc3002.tarea1.game.pokemons.FireTypePokemon;
 import cc3002.tarea1.game.pokemons.GrassTypePokemon;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,9 +50,9 @@ public class TrainerTest {
     @Test
     public void swapActivePokemon() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertEquals(new GrassTypePokemon(50, attacks, trainer1).getId(), trainer1.getActivePokemon().getId());
         trainer1.swapActivePokemon(1);
@@ -61,11 +62,11 @@ public class TrainerTest {
     @Test
     public void swapNextNotDead() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.getActivePokemon().receiveDamage(trainer1.getActivePokemon().getHp());
 
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertEquals(new GrassTypePokemon(50, attacks, trainer1).getId(), trainer1.getActivePokemon().getId());
 
@@ -81,9 +82,9 @@ public class TrainerTest {
     @Test
     public void setOpponent() throws Exception {
         trainer3.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer3.addPokemonToBench(0);
+        trainer3.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         trainer1.setOpponent(trainer3);
         trainer3.setOpponent(trainer1);
@@ -95,17 +96,17 @@ public class TrainerTest {
     @Test
     public void getActivePokemon() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         assertEquals(new GrassTypePokemon(50, attacks, trainer1).getId(), trainer1.getActivePokemon().getId());
     }
 
     @Test
     public void activePokemonAttack() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addEnergy(new EnergySet(2, 0, 0, 0, 0, 0));
         trainer2.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer2.addPokemonToBench(0);
+        trainer2.playCard(0);
 
         assertEquals(new GrassTypePokemon(50, attacks, trainer1).getHp(), trainer2.getActivePokemon().getHp());
 
@@ -123,7 +124,7 @@ public class TrainerTest {
     @Test
     public void getCardFromBench() throws Exception {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         assertEquals(new GrassTypePokemon(50, attacks, trainer1).getId(), trainer1.getCardFromBench(0).getId());
     }
 
@@ -132,20 +133,27 @@ public class TrainerTest {
         assertEquals(0, trainer1.handSize());
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         assertEquals(1, trainer1.handSize());
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         assertEquals(0, trainer1.handSize());
     }
 
     @Test
-    public void addPokemonToBench() throws Exception {
+    public void playCard() throws Exception {
         assertEquals(0, trainer1.benchSize());
         assertEquals(0, trainer1.handSize());
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
         assertEquals(1, trainer1.handSize());
         assertEquals(0, trainer1.benchSize());
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         assertEquals(0, trainer1.handSize());
         assertEquals(1, trainer1.benchSize());
+        trainer1.addCard(new ElectricEnergy());
+        assertEquals(1, trainer1.handSize());
+        assertEquals(1, trainer1.benchSize());
+        trainer1.playCard(0);
+        assertEquals(0, trainer1.handSize());
+        assertEquals(1, trainer1.benchSize());
+        assertEquals(1, trainer1.getActivePokemon().getEnergySet().energySetSize());
     }
 
     @Test
@@ -167,23 +175,23 @@ public class TrainerTest {
     public void benchNotFull() {
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertTrue(trainer1.benchSize() <= 5);
     }
@@ -191,22 +199,22 @@ public class TrainerTest {
     @Test
     public void benchFull() {
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertEquals(6, trainer1.benchSize());
 
         trainer1.addCard(new GrassTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
 
         assertEquals(6, trainer1.benchSize());
     }
@@ -214,7 +222,7 @@ public class TrainerTest {
     @Test
     public void addEnergy() {
         trainer1.addCard(new ElectricTypePokemon(50, attacks,trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.addEnergy(new ElectricEnergy());
 
         assertEquals(1, trainer1.getActivePokemon().getEnergySet().getEnergies(new ElectricEnergy()));
@@ -228,17 +236,42 @@ public class TrainerTest {
     @Test
     public void maxNumAttacks() throws Exception {
         trainer1.addCard(new ElectricTypePokemon(50, attacks, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         assertEquals(1, trainer1.maxNumAttacks());
 
         trainer1.addCard(new ElectricTypePokemon(50, attacks2, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.swapActivePokemon(1);
         assertEquals(2, trainer1.maxNumAttacks());
 
         trainer1.addCard(new ElectricTypePokemon(50, attacks3, trainer1));
-        trainer1.addPokemonToBench(0);
+        trainer1.playCard(0);
         trainer1.swapActivePokemon(2);
         assertEquals(3, trainer1.maxNumAttacks());
+    }
+
+    @Test
+    public void deadPokemonRemoved() throws Exception {
+        trainer1.addCard(new ElectricTypePokemon(50, attacks, trainer1));
+        trainer2.addCard(new FireTypePokemon(50, attacks, trainer2));
+
+        trainer1.playCard(0);
+        trainer2.playCard(0);
+
+        trainer1.addCard(new ElectricEnergy());
+        trainer1.addCard(new ElectricEnergy());
+        trainer1.playCard(0);
+        trainer1.playCard(0);
+
+        trainer1.setOpponent(trainer2);
+        trainer2.setOpponent(trainer1);
+
+        assertEquals(1, trainer2.benchSize());
+        trainer1.activePokemonAttack(1);
+        trainer1.activePokemonAttack(1);
+        trainer1.activePokemonAttack(1);
+        trainer1.activePokemonAttack(1);
+        trainer1.activePokemonAttack(1);
+        assertEquals(0, trainer2.benchSize());
     }
 }
