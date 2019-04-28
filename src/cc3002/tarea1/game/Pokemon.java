@@ -69,8 +69,7 @@ public abstract class Pokemon implements Card {
     }
 
     /**
-     *
-     * @return Returns the Pokemon name.
+     * {@inheritDoc}
      */
     public String getName() {
         return this.name;

@@ -47,8 +47,7 @@ public abstract class Energy implements Card, IEnergy {
     }
 
     /**
-     *
-     * @return Returns the name of the energy.
+     * {@inheritDoc}
      */
     public abstract String getName();
 

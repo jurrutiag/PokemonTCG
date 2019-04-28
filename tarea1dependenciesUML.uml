@@ -3,425 +3,427 @@
   <ID>JAVA</ID>
   <OriginalElement>cc3002.tarea1.game</OriginalElement>
   <nodes>
-    <node x="766.9456278577519" y="1052.0">cc3002.tarea1.game.types.FireType</node>
-    <node x="760.3442648298826" y="0.0">cc3002.tarea1.game.Energy</node>
-    <node x="853.120859194353" y="126.0">cc3002.tarea1.game.energies.ElectricEnergy</node>
-    <node x="1384.9456278577518" y="1052.0">cc3002.tarea1.game.types.GrassType</node>
-    <node x="903.9456278577519" y="1052.0">cc3002.tarea1.game.types.FightingType</node>
-    <node x="1223.9456278577518" y="1052.0">cc3002.tarea1.game.types.ElectricType</node>
-    <node x="1266.8831278577518" y="444.0">cc3002.tarea1.game.Trainer</node>
-    <node x="419.10833333333323" y="590.0">cc3002.tarea1.game.Attack</node>
-    <node x="468.4" y="444.0">cc3002.tarea1.game.Ability</node>
-    <node x="1070.9456278577518" y="1052.0">cc3002.tarea1.game.types.WaterType</node>
-    <node x="714.8731012795773" y="358.0">cc3002.tarea1.game.IEnergy</node>
-    <node x="356.5" y="126.0">cc3002.tarea1.game.energies.GrassEnergy</node>
-    <node x="275.70833333333337" y="816.0">cc3002.tarea1.game.Abilities.Attacks</node>
-    <node x="517.5" y="126.0">cc3002.tarea1.game.energies.FireEnergy</node>
-    <node x="1297.6755501443" y="816.0">cc3002.tarea1.game.Pokemon</node>
-    <node x="938.6486514238775" y="590.0">cc3002.tarea1.game.Card</node>
+    <node x="770.1082784601615" y="1052.0">cc3002.tarea1.game.types.FireType</node>
+    <node x="775.1635419383165" y="0.0">cc3002.tarea1.game.Energy</node>
+    <node x="176.5" y="126.0">cc3002.tarea1.game.energies.ElectricEnergy</node>
+    <node x="1388.1082784601615" y="1052.0">cc3002.tarea1.game.types.GrassType</node>
+    <node x="907.1082784601615" y="1052.0">cc3002.tarea1.game.types.FightingType</node>
+    <node x="1227.1082784601615" y="1052.0">cc3002.tarea1.game.types.ElectricType</node>
+    <node x="1270.0457784601615" y="444.0">cc3002.tarea1.game.Trainer</node>
+    <node x="420.6083333333331" y="590.0">cc3002.tarea1.game.Attack</node>
+    <node x="469.8999999999999" y="444.0">cc3002.tarea1.game.Ability</node>
+    <node x="1074.1082784601615" y="1052.0">cc3002.tarea1.game.types.WaterType</node>
+    <node x="716.0297277856014" y="358.0">cc3002.tarea1.game.IEnergy</node>
+    <node x="350.5" y="126.0">cc3002.tarea1.game.energies.GrassEnergy</node>
+    <node x="277.20833333333326" y="816.0">cc3002.tarea1.game.Abilities.Attacks</node>
+    <node x="881.2774857003772" y="126.0">cc3002.tarea1.game.energies.FireEnergy</node>
+    <node x="1302.1755501443001" y="816.0">cc3002.tarea1.game.Pokemon</node>
+    <node x="942.8052779299016" y="590.0">cc3002.tarea1.game.Card</node>
     <node x="10.5" y="126.0">cc3002.tarea1.game.energies.WaterEnergy</node>
-    <node x="1027.120859194353" y="126.0">cc3002.tarea1.game.energies.PsychicEnergy</node>
-    <node x="441.24999999999994" y="232.0">cc3002.tarea1.game.EnergySet</node>
-    <node x="1572.2145299813978" y="1052.0">cc3002.tarea1.game.types.PsychicType</node>
-    <node x="1132.1755501443" y="1168.0">cc3002.tarea1.game.pokemons</node>
-    <node x="176.5" y="126.0">cc3002.tarea1.game.energies.FightingEnergy</node>
+    <node x="1031.2774857003772" y="126.0">cc3002.tarea1.game.energies.PsychicEnergy</node>
+    <node x="442.7499999999999" y="232.0">cc3002.tarea1.game.EnergySet</node>
+    <node x="1575.0338070898315" y="1052.0">cc3002.tarea1.game.types.PsychicType</node>
+    <node x="1136.6755501443001" y="1168.0">cc3002.tarea1.game.pokemons</node>
+    <node x="511.4999999999999" y="126.0">cc3002.tarea1.game.energies.FightingEnergy</node>
   </nodes>
   <notes />
   <edges>
     <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.ElectricEnergy">
-      <point x="23.8125" y="-18.0" />
-      <point x="528.5625" y="192.0" />
-      <point x="930.120859194353" y="192.0" />
+      <point x="-23.8125" y="-18.0" />
+      <point x="482.4374999999999" y="192.0" />
+      <point x="253.5" y="192.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.ElectricEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
-      <point x="930.120859194353" y="106.0" />
-      <point x="813.3442648298826" y="106.0" />
-      <point x="0.0" y="18.0" />
+      <point x="253.5" y="86.0" />
+      <point x="799.2544510292256" y="86.0" />
+      <point x="-28.909090909090878" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.ElectricType" target="cc3002.tarea1.game.Trainer">
       <point x="47.0" y="-18.0" />
-      <point x="1341.4456278577518" y="1022.0" />
-      <point x="1500.9813421434662" y="1022.0" />
-      <point x="1500.9813421434662" y="530.0" />
-      <point x="1347.1331278577518" y="530.0" />
+      <point x="1344.6082784601615" y="1022.0" />
+      <point x="1504.143992745876" y="1022.0" />
+      <point x="1504.143992745876" y="530.0" />
+      <point x="1350.2957784601615" y="530.0" />
       <point x="26.75" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.Ability">
-      <point x="-46.125" y="-18.0" />
-      <point x="1313.0505501443" y="746.0" />
-      <point x="532.6083333333333" y="746.0" />
-      <point x="532.6083333333333" y="570.0" />
-      <point x="520.4" y="570.0" />
-      <point x="0.0" y="18.0" />
+      <point x="-35.875" y="-18.0" />
+      <point x="1327.8005501443001" y="736.0" />
+      <point x="544.3583333333332" y="736.0" />
+      <point x="544.3583333333332" y="570.0" />
+      <point x="556.5666666666666" y="570.0" />
+      <point x="34.66666666666663" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.PsychicType" target="cc3002.tarea1.game.Trainer">
       <point x="46.66666666666674" y="-18.0" />
-      <point x="1688.8811966480648" y="872.0" />
-      <point x="1606.1223810827728" y="872.0" />
-      <point x="1606.1223810827728" y="510.0" />
-      <point x="1362.418842143466" y="510.0" />
+      <point x="1691.7004737564985" y="872.0" />
+      <point x="1609.2850316851823" y="872.0" />
+      <point x="1609.2850316851823" y="510.0" />
+      <point x="1365.5814927458757" y="510.0" />
       <point x="42.03571428571422" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.FireType">
-      <point x="-37.55555555555566" y="-18.0" />
-      <point x="1179.1199945887442" y="1128.0" />
-      <point x="825.4456278577519" y="1128.0" />
+      <point x="-37.55555555555543" y="-18.0" />
+      <point x="1183.6199945887447" y="1128.0" />
+      <point x="828.6082784601615" y="1128.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.GrassType" target="cc3002.tarea1.game.Attack">
       <point x="-42.66666666666674" y="-18.0" />
-      <point x="1406.2789611910853" y="912.0" />
-      <point x="650.6153036387974" y="912.0" />
-      <point x="650.6153036387974" y="776.0" />
-      <point x="496.35833333333323" y="776.0" />
+      <point x="1409.4416117934948" y="912.0" />
+      <point x="651.7719301448215" y="912.0" />
+      <point x="651.7719301448215" y="776.0" />
+      <point x="497.8583333333331" y="776.0" />
       <point x="25.75" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.IEnergy">
-      <point x="42.33333333333337" y="18.0" />
-      <point x="547.0833333333333" y="298.0" />
-      <point x="756.1231012795773" y="298.0" />
-      <point x="-13.75" y="-18.0" />
+      <point x="56.44444444444446" y="18.0" />
+      <point x="562.6944444444443" y="288.0" />
+      <point x="784.7797277856014" y="288.0" />
+      <point x="13.75" y="-18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.FightingType">
       <point x="-18.77777777777783" y="-18.0" />
-      <point x="1197.897772366522" y="1118.0" />
-      <point x="977.4456278577519" y="1118.0" />
+      <point x="1202.3977723665223" y="1118.0" />
+      <point x="980.6082784601615" y="1118.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.IEnergy">
       <point x="5.125" y="-18.0" />
-      <point x="1364.3005501443" y="696.0" />
-      <point x="742.3731012795773" y="696.0" />
+      <point x="1368.8005501443001" y="696.0" />
+      <point x="743.5297277856014" y="696.0" />
       <point x="-27.5" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.Energy">
       <point x="55.5625" y="-18.0" />
-      <point x="560.3125" y="212.0" />
-      <point x="1190.620859194353" y="212.0" />
-      <point x="1190.620859194353" y="86.0" />
-      <point x="832.6169921026099" y="86.0" />
+      <point x="561.8124999999999" y="212.0" />
+      <point x="1194.7774857003772" y="212.0" />
+      <point x="1194.7774857003772" y="86.0" />
+      <point x="847.4362692110437" y="86.0" />
       <point x="19.272727272727252" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.Trainer">
-      <point x="25.625" y="-18.0" />
-      <point x="1384.8005501443" y="676.0" />
-      <point x="1299.1934072871572" y="676.0" />
-      <point x="1299.1934072871572" y="570.0" />
-      <point x="1301.275985000609" y="570.0" />
-      <point x="-19.10714285714289" y="18.0" />
+      <point x="46.125" y="-18.0" />
+      <point x="1409.8005501443001" y="656.0" />
+      <point x="1324.1934072871572" y="656.0" />
+      <point x="1324.1934072871572" y="570.0" />
+      <point x="1319.7243498887328" y="570.0" />
+      <point x="-3.821428571428669" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.WaterEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
       <point x="83.5" y="76.0" />
-      <point x="774.7988102844281" y="76.0" />
+      <point x="789.618087392862" y="76.0" />
       <point x="-38.545454545454504" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.WaterType" target="cc3002.tarea1.game.Trainer">
       <point x="44.33333333333326" y="-18.0" />
-      <point x="1181.7789611910853" y="1012.0" />
-      <point x="1449.5862644300144" y="1012.0" />
-      <point x="1449.5862644300144" y="540.0" />
-      <point x="1339.4902707148947" y="540.0" />
+      <point x="1184.9416117934948" y="1012.0" />
+      <point x="1454.0862644300146" y="1012.0" />
+      <point x="1454.0862644300146" y="540.0" />
+      <point x="1342.6529213173044" y="540.0" />
       <point x="19.10714285714289" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.PsychicType">
       <point x="56.33333333333326" y="-18.0" />
-      <point x="1273.0088834776334" y="1138.0" />
-      <point x="1642.2145299813978" y="1138.0" />
+      <point x="1277.5088834776334" y="1138.0" />
+      <point x="1645.0338070898315" y="1138.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.Attack">
-      <point x="-56.33333333333326" y="-18.0" />
-      <point x="1160.3422168109669" y="1138.0" />
-      <point x="445.2083333333333" y="1138.0" />
-      <point x="-25.75" y="18.0" />
+      <point x="-75.11111111111109" y="-18.0" />
+      <point x="1146.064439033189" y="1148.0" />
+      <point x="435.70833333333326" y="1148.0" />
+      <point x="-36.05000000000001" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.FireType" target="cc3002.tarea1.game.Trainer">
       <point x="0.0" y="-18.0" />
-      <point x="825.4456278577519" y="952.0" />
-      <point x="1041.1486514238775" y="952.0" />
-      <point x="1041.1486514238775" y="570.0" />
-      <point x="1293.6331278577518" y="570.0" />
+      <point x="828.6082784601615" y="952.0" />
+      <point x="1045.3052779299016" y="952.0" />
+      <point x="1045.3052779299016" y="570.0" />
+      <point x="1296.7957784601615" y="570.0" />
       <point x="-26.75" y="18.0" />
-    </edge>
-    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.FireEnergy">
-      <point x="7.9375" y="-18.0" />
-      <point x="512.6875" y="182.0" />
-      <point x="582.5" y="182.0" />
-      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Attack" target="cc3002.tarea1.game.Ability">
       <point x="25.75" y="-18.0" />
-      <point x="496.35833333333323" y="570.0" />
-      <point x="485.7333333333333" y="570.0" />
+      <point x="497.8583333333331" y="570.0" />
+      <point x="487.23333333333323" y="570.0" />
       <point x="-34.666666666666686" y="18.0" />
+    </edge>
+    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.FireEnergy">
+      <point x="23.8125" y="-18.0" />
+      <point x="530.0624999999999" y="192.0" />
+      <point x="946.2774857003772" y="192.0" />
+      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.WaterType">
       <point x="0.0" y="-18.0" />
-      <point x="1216.6755501443" y="1108.0" />
-      <point x="1137.4456278577518" y="1108.0" />
+      <point x="1221.1755501443001" y="1108.0" />
+      <point x="1140.6082784601615" y="1108.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Trainer" target="cc3002.tarea1.game.Card">
       <point x="-34.39285714285711" y="18.0" />
-      <point x="1285.9902707148947" y="560.0" />
-      <point x="1019.1486514238775" y="560.0" />
+      <point x="1289.1529213173044" y="560.0" />
+      <point x="1023.3052779299016" y="560.0" />
       <point x="34.5" y="-18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.WaterType" target="cc3002.tarea1.game.Attack">
       <point x="-44.33333333333326" y="-18.0" />
-      <point x="1093.1122945244188" y="932.0" />
-      <point x="483.73197030546413" y="932.0" />
-      <point x="483.73197030546413" y="796.0" />
-      <point x="475.7583333333332" y="796.0" />
+      <point x="1096.2749451268282" y="932.0" />
+      <point x="484.8885968114882" y="932.0" />
+      <point x="484.8885968114882" y="796.0" />
+      <point x="477.2583333333331" y="796.0" />
       <point x="5.149999999999977" y="18.0" />
-    </edge>
-    <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.Card">
-      <point x="15.375" y="-18.0" />
-      <point x="1374.5505501443" y="686.0" />
-      <point x="984.6486514238775" y="686.0" />
-      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Abilities.Attacks" target="cc3002.tarea1.game.Attack">
       <point x="49.333333333333314" y="-18.0" />
-      <point x="399.0416666666667" y="796.0" />
-      <point x="424.2583333333332" y="796.0" />
+      <point x="400.5416666666666" y="796.0" />
+      <point x="425.7583333333331" y="796.0" />
       <point x="-46.35000000000002" y="18.0" />
+    </edge>
+    <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.Card">
+      <point x="15.375" y="-18.0" />
+      <point x="1379.0505501443001" y="686.0" />
+      <point x="988.8052779299016" y="686.0" />
+      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.EnergySet">
       <point x="-15.375" y="-18.0" />
-      <point x="1343.8005501443" y="716.0" />
-      <point x="593.15" y="716.0" />
-      <point x="593.15" y="328.0" />
-      <point x="504.74999999999994" y="328.0" />
+      <point x="1348.3005501443001" y="716.0" />
+      <point x="594.6499999999999" y="716.0" />
+      <point x="594.6499999999999" y="328.0" />
+      <point x="506.2499999999999" y="328.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.FireType" target="cc3002.tarea1.game.Pokemon">
       <point x="39.0" y="-18.0" />
-      <point x="864.4456278577519" y="962.0" />
-      <point x="1307.9255501443" y="962.0" />
+      <point x="867.6082784601615" y="962.0" />
+      <point x="1312.4255501443001" y="962.0" />
       <point x="-51.25" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.WaterType" target="cc3002.tarea1.game.Pokemon">
       <point x="0.0" y="-18.0" />
-      <point x="1137.4456278577518" y="982.0" />
-      <point x="1348.9255501443" y="982.0" />
+      <point x="1140.6082784601615" y="982.0" />
+      <point x="1353.4255501443001" y="982.0" />
       <point x="-10.25" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.FightingType" target="cc3002.tarea1.game.Attack">
-      <point x="-49.000000000000114" y="-18.0" />
-      <point x="928.4456278577518" y="942.0" />
-      <point x="465.8083333333333" y="942.0" />
+      <point x="-48.999999999999886" y="-18.0" />
+      <point x="931.6082784601616" y="942.0" />
+      <point x="467.3083333333332" y="942.0" />
       <point x="-5.149999999999977" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Energy" target="cc3002.tarea1.game.IEnergy">
       <point x="28.909090909090878" y="18.0" />
-      <point x="842.2533557389736" y="76.0" />
-      <point x="1200.2572228307167" y="76.0" />
-      <point x="1200.2572228307167" y="338.0" />
-      <point x="811.1231012795773" y="338.0" />
+      <point x="857.0726328474074" y="76.0" />
+      <point x="1204.4138493367407" y="76.0" />
+      <point x="1204.4138493367407" y="338.0" />
+      <point x="812.2797277856014" y="338.0" />
       <point x="41.25" y="-18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.FireEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
-      <point x="582.5" y="106.0" />
-      <point x="803.7079011935191" y="106.0" />
-      <point x="-9.636363636363626" y="18.0" />
+      <point x="946.2774857003772" y="106.0" />
+      <point x="828.1635419383165" y="106.0" />
+      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.FightingEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
-      <point x="256.5" y="86.0" />
-      <point x="784.4351739207918" y="86.0" />
-      <point x="-28.909090909090878" y="18.0" />
+      <point x="591.4999999999999" y="106.0" />
+      <point x="818.5271783019529" y="106.0" />
+      <point x="-9.636363636363626" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.ElectricType" target="cc3002.tarea1.game.Attack">
       <point x="-47.0" y="-18.0" />
-      <point x="1247.4456278577518" y="922.0" />
-      <point x="566.0486369721308" y="922.0" />
-      <point x="566.0486369721308" y="786.0" />
-      <point x="486.0583333333332" y="786.0" />
+      <point x="1250.6082784601615" y="922.0" />
+      <point x="567.2052634781548" y="922.0" />
+      <point x="567.2052634781548" y="786.0" />
+      <point x="487.5583333333331" y="786.0" />
       <point x="15.449999999999989" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Card" target="cc3002.tarea1.game.Trainer">
       <point x="-11.5" y="-18.0" />
-      <point x="973.1486514238775" y="540.0" />
-      <point x="1270.7045564291805" y="540.0" />
+      <point x="977.3052779299016" y="540.0" />
+      <point x="1273.8672070315902" y="540.0" />
       <point x="-49.67857142857133" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.PsychicType" target="cc3002.tarea1.game.Pokemon">
       <point x="0.0" y="-18.0" />
-      <point x="1642.2145299813978" y="882.0" />
-      <point x="1410.4255501443" y="882.0" />
+      <point x="1645.0338070898315" y="882.0" />
+      <point x="1414.9255501443001" y="882.0" />
       <point x="51.25" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Trainer" target="cc3002.tarea1.game.Pokemon">
-      <point x="-11.46428571428578" y="18.0" />
-      <point x="1309.4434072871572" y="666.0" />
-      <point x="1395.0505501443" y="666.0" />
-      <point x="35.875" y="-18.0" />
+      <point x="3.821428571428669" y="18.0" />
+      <point x="1327.3672070315902" y="560.0" />
+      <point x="1334.4434072871572" y="560.0" />
+      <point x="1334.4434072871572" y="646.0" />
+      <point x="1420.0505501443001" y="646.0" />
+      <point x="56.37499999999994" y="-18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.ElectricType">
       <point x="18.77777777777783" y="-18.0" />
-      <point x="1235.4533279220777" y="1118.0" />
-      <point x="1294.4456278577518" y="1118.0" />
+      <point x="1239.953327922078" y="1118.0" />
+      <point x="1297.6082784601615" y="1118.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Energy" target="cc3002.tarea1.game.EnergySet">
       <point x="-48.181818181818244" y="18.0" />
-      <point x="765.1624466480644" y="66.0" />
+      <point x="779.9817237564982" y="66.0" />
       <point x="0.0" y="66.0" />
       <point x="0.0" y="212.0" />
-      <point x="449.18749999999994" y="212.0" />
+      <point x="450.6874999999999" y="212.0" />
       <point x="-55.5625" y="-18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.FightingEnergy">
-      <point x="-23.8125" y="-18.0" />
-      <point x="480.93749999999994" y="192.0" />
-      <point x="256.5" y="192.0" />
+      <point x="7.9375" y="-18.0" />
+      <point x="514.1874999999999" y="182.0" />
+      <point x="591.4999999999999" y="182.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Energy" target="cc3002.tarea1.game.Trainer">
       <point x="48.181818181818244" y="18.0" />
-      <point x="861.5260830117008" y="56.0" />
-      <point x="1347.1331278577518" y="56.0" />
+      <point x="876.3453601201347" y="56.0" />
+      <point x="1350.2957784601615" y="56.0" />
       <point x="26.75" y="-18.0" />
-    </edge>
-    <edge source="cc3002.tarea1.game.types.FightingType" target="cc3002.tarea1.game.Trainer">
-      <point x="48.999999999999886" y="-18.0" />
-      <point x="1026.4456278577518" y="1002.0" />
-      <point x="1441.9434072871572" y="1002.0" />
-      <point x="1441.9434072871572" y="550.0" />
-      <point x="1331.8474135720376" y="550.0" />
-      <point x="11.46428571428578" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Abilities.Attacks" target="cc3002.tarea1.game.EnergySet">
       <point x="-49.33333333333337" y="-18.0" />
-      <point x="300.375" y="796.0" />
-      <point x="338.70833333333337" y="796.0" />
-      <point x="338.70833333333337" y="318.0" />
-      <point x="448.3055555555555" y="318.0" />
+      <point x="301.8749999999999" y="796.0" />
+      <point x="340.20833333333326" y="796.0" />
+      <point x="340.20833333333326" y="318.0" />
+      <point x="449.80555555555543" y="318.0" />
       <point x="-56.44444444444446" y="18.0" />
+    </edge>
+    <edge source="cc3002.tarea1.game.types.FightingType" target="cc3002.tarea1.game.Trainer">
+      <point x="49.000000000000114" y="-18.0" />
+      <point x="1029.6082784601617" y="1002.0" />
+      <point x="1446.4434072871575" y="1002.0" />
+      <point x="1446.4434072871575" y="550.0" />
+      <point x="1335.0100641744473" y="550.0" />
+      <point x="11.46428571428578" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.PsychicType" target="cc3002.tarea1.game.Attack">
       <point x="-46.66666666666674" y="-18.0" />
-      <point x="1595.5478633147313" y="892.0" />
-      <point x="1237.3005501443001" y="892.0" />
-      <point x="1237.3005501443001" y="766.0" />
-      <point x="506.6583333333332" y="766.0" />
+      <point x="1598.367140423165" y="892.0" />
+      <point x="1241.8005501443001" y="892.0" />
+      <point x="1241.8005501443001" y="766.0" />
+      <point x="508.1583333333331" y="766.0" />
       <point x="36.049999999999955" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Pokemon" target="cc3002.tarea1.game.Attack">
       <point x="-56.375" y="-18.0" />
-      <point x="1302.8005501443" y="756.0" />
-      <point x="516.9583333333333" y="756.0" />
+      <point x="1307.3005501443001" y="756.0" />
+      <point x="518.4583333333331" y="756.0" />
       <point x="46.35000000000002" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.types.GrassType">
       <point x="37.55555555555566" y="-18.0" />
-      <point x="1254.2311056998556" y="1128.0" />
-      <point x="1448.9456278577518" y="1128.0" />
+      <point x="1258.7311056998558" y="1128.0" />
+      <point x="1452.1082784601615" y="1128.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Trainer" target="cc3002.tarea1.game.IEnergy">
       <point x="-26.75" y="-18.0" />
-      <point x="1293.6331278577518" y="419.0" />
-      <point x="797.3731012795773" y="419.0" />
+      <point x="1296.7957784601615" y="419.0" />
+      <point x="798.5297277856014" y="419.0" />
       <point x="27.5" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.GrassEnergy">
       <point x="-7.9375" y="-18.0" />
-      <point x="496.81249999999994" y="182.0" />
-      <point x="427.0" y="182.0" />
+      <point x="498.3124999999999" y="182.0" />
+      <point x="421.0" y="182.0" />
       <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Attack" target="cc3002.tarea1.game.EnergySet">
       <point x="-25.75" y="-18.0" />
-      <point x="444.85833333333323" y="338.0" />
-      <point x="476.5277777777777" y="338.0" />
+      <point x="446.3583333333331" y="338.0" />
+      <point x="478.02777777777766" y="338.0" />
       <point x="-28.22222222222223" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.PsychicEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
-      <point x="1103.620859194353" y="96.0" />
-      <point x="822.9806284662463" y="96.0" />
+      <point x="1107.7774857003772" y="96.0" />
+      <point x="837.7999055746801" y="96.0" />
       <point x="9.636363636363626" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.GrassType" target="cc3002.tarea1.game.Trainer">
       <point x="42.66666666666674" y="-18.0" />
-      <point x="1491.6122945244188" y="1032.0" />
-      <point x="1579.8861040482282" y="1032.0" />
-      <point x="1579.8861040482282" y="520.0" />
-      <point x="1354.775985000609" y="520.0" />
+      <point x="1494.7749451268282" y="1032.0" />
+      <point x="1583.0487546506379" y="1032.0" />
+      <point x="1583.0487546506379" y="520.0" />
+      <point x="1357.9386356030186" y="520.0" />
       <point x="34.39285714285711" y="18.0" />
-    </edge>
-    <edge source="cc3002.tarea1.game.types.ElectricType" target="cc3002.tarea1.game.Pokemon">
-      <point x="0.0" y="-18.0" />
-      <point x="1294.4456278577518" y="992.0" />
-      <point x="1369.4255501443" y="992.0" />
-      <point x="10.25" y="18.0" />
-    </edge>
-    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.WaterEnergy">
-      <point x="-39.6875" y="-18.0" />
-      <point x="465.06249999999994" y="202.0" />
-      <point x="83.5" y="202.0" />
-      <point x="0.0" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.energies.GrassEnergy" target="cc3002.tarea1.game.Energy">
       <point x="0.0" y="-18.0" />
-      <point x="427.0" y="96.0" />
-      <point x="794.0715375571554" y="96.0" />
+      <point x="421.0" y="96.0" />
+      <point x="808.8908146655892" y="96.0" />
       <point x="-19.272727272727252" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.Energy" target="cc3002.tarea1.game.Card">
       <point x="38.545454545454504" y="18.0" />
-      <point x="851.8897193753371" y="66.0" />
-      <point x="1217.2004046488985" y="66.0" />
-      <point x="1217.2004046488985" y="530.0" />
-      <point x="950.1486514238775" y="530.0" />
+      <point x="866.708996483771" y="66.0" />
+      <point x="1221.3570311549224" y="66.0" />
+      <point x="1221.3570311549224" y="530.0" />
+      <point x="954.3052779299016" y="530.0" />
       <point x="-34.5" y="-18.0" />
     </edge>
-    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.PsychicEnergy">
-      <point x="39.6875" y="-18.0" />
-      <point x="544.4375" y="202.0" />
-      <point x="1103.620859194353" y="202.0" />
+    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.WaterEnergy">
+      <point x="-39.6875" y="-18.0" />
+      <point x="466.5624999999999" y="202.0" />
+      <point x="83.5" y="202.0" />
       <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="cc3002.tarea1.game.types.ElectricType" target="cc3002.tarea1.game.Pokemon">
+      <point x="0.0" y="-18.0" />
+      <point x="1297.6082784601615" y="992.0" />
+      <point x="1373.9255501443001" y="992.0" />
+      <point x="10.25" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.GrassType" target="cc3002.tarea1.game.Pokemon">
       <point x="0.0" y="-18.0" />
-      <point x="1448.9456278577518" y="902.0" />
-      <point x="1389.9255501443" y="902.0" />
+      <point x="1452.1082784601615" y="902.0" />
+      <point x="1394.4255501443001" y="902.0" />
       <point x="30.75" y="18.0" />
     </edge>
+    <edge source="cc3002.tarea1.game.EnergySet" target="cc3002.tarea1.game.energies.PsychicEnergy">
+      <point x="39.6875" y="-18.0" />
+      <point x="545.9374999999999" y="202.0" />
+      <point x="1107.7774857003772" y="202.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
     <edge source="cc3002.tarea1.game.types.FightingType" target="cc3002.tarea1.game.Pokemon">
-      <point x="-1.1368683772161603E-13" y="-18.0" />
-      <point x="977.4456278577518" y="972.0" />
-      <point x="1328.4255501443" y="972.0" />
+      <point x="1.1368683772161603E-13" y="-18.0" />
+      <point x="980.6082784601616" y="972.0" />
+      <point x="1332.9255501443001" y="972.0" />
       <point x="-30.75" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.types.FireType" target="cc3002.tarea1.game.Attack">
       <point x="-39.0" y="-18.0" />
-      <point x="786.4456278577519" y="1032.0" />
-      <point x="455.5083333333333" y="1032.0" />
+      <point x="789.6082784601615" y="1032.0" />
+      <point x="457.0083333333332" y="1032.0" />
       <point x="-15.449999999999989" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.pokemons" target="cc3002.tarea1.game.Trainer">
       <point x="75.11111111111109" y="-18.0" />
-      <point x="1291.7866612554112" y="1148.0" />
-      <point x="1750.2383395052075" y="1148.0" />
-      <point x="1750.2383395052075" y="500.0" />
-      <point x="1370.0616992863231" y="500.0" />
+      <point x="1296.2866612554112" y="1148.0" />
+      <point x="1753.0576166136411" y="1148.0" />
+      <point x="1753.0576166136411" y="500.0" />
+      <point x="1373.2243498887328" y="500.0" />
       <point x="49.67857142857133" y="18.0" />
     </edge>
     <edge source="cc3002.tarea1.game.IEnergy" target="cc3002.tarea1.game.EnergySet">
       <point x="-41.25" y="-18.0" />
-      <point x="728.6231012795773" y="308.0" />
-      <point x="532.9722222222222" y="308.0" />
-      <point x="28.22222222222217" y="18.0" />
+      <point x="729.7797277856014" y="308.0" />
+      <point x="534.4722222222222" y="308.0" />
+      <point x="28.222222222222285" y="18.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6290849673202614" x="875.5" y="602.0" />
+  <settings layout="Hierarchic Group" zoom="0.6887254901960784" x="877.0" y="602.0" />
   <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>

@@ -15,6 +15,12 @@ public interface Card {
     public boolean isActivelySelectable();
 
     /**
+     *
+     * @return Returns the name of the card.
+     */
+    public String getName();
+
+    /**
      * Plays the card selected.
      * @param trainer The trainer that plays the card.
      */
