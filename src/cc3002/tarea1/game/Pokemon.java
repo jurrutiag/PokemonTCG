@@ -35,11 +35,14 @@ public abstract class Pokemon implements Card {
     /**
      * Creates a Pokemon with a certain amount of hp, a set of abilities and an assigned trainer.
      * @param hp Current health of the Pokemon.
-     * @param id
+     * @param id The Pokemon identifier.
      * @param abilities Set of abilities that the pokemon has with a maximum length of 4.
      * @param trainer Trainer responsible for the Pokemon.
      */
     public Pokemon(int hp, int id, String name, Ability[] abilities, Trainer trainer) {
+        if (hp == 0) {
+            hp = 1;
+        }
         this.hp = hp;
         this.id = id;
         this.name = name;
@@ -123,7 +126,7 @@ public abstract class Pokemon implements Card {
      * Calls the receive damage method for the Pokemon with twice the damage.
      * @param damage The damage that will be duplicated.
      */
-    public void receiveWeaknessDamage(int damage) {
+    protected void receiveWeaknessDamage(int damage) {
         this.receiveDamage(2 * damage);
     }
 
@@ -131,7 +134,7 @@ public abstract class Pokemon implements Card {
      * Calls the receive damage method for the Pokemon with 30 points less of damage.
      * @param damage The damage that will be reduced.
      */
-    public void receiveResistantDamage(int damage) {
+    protected void receiveResistantDamage(int damage) {
         this.receiveDamage(damage - 30);
     }
 
@@ -187,7 +190,7 @@ public abstract class Pokemon implements Card {
     /**
      * Method called when the Pokemon dies so the trainer swaps the active Pokemon.
      */
-    public void dead() {
+    private void dead() {
         this.getTrainer().swapNextNotDead();
     }
 

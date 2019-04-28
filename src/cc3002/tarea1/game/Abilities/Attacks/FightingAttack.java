@@ -3,6 +3,11 @@ package cc3002.tarea1.game.Abilities.Attacks;
 import cc3002.tarea1.game.EnergySet;
 import cc3002.tarea1.game.Attack;
 
+/**
+ * Fighting Attack, represents an attack that requires fighting energies, created for testing.
+ *
+ * @author Juan Urrutia
+ */
 public class FightingAttack implements Attack {
     @Override
     public int getDamage() {

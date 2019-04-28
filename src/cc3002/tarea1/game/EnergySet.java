@@ -33,7 +33,7 @@ public class EnergySet implements IEnergy{
      * @param water the ammount of water energies the set has.
      */
     public EnergySet(int electric, int fighting, int fire, int grass, int psychic, int water) {
-        energies = new HashMap<String, Integer>();
+        energies = new HashMap<>();
 
         energies.put(new ElectricEnergy().getName(), electric);
         energies.put(new FightingEnergy().getName(), fighting);
@@ -66,7 +66,7 @@ public class EnergySet implements IEnergy{
 
     /**
      * Removes an IEnergy from the current set.
-     * @param energy
+     * @param energy The energy to be removed.
      */
     public void removeEnergy(IEnergy energy) {
         energy.beRemovedFrom(this);

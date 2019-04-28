@@ -11,19 +11,19 @@ import static org.junit.Assert.assertTrue;
 
 public class AttackTest {
 
-    Attack electricAttack;
-    Attack fightingAttack;
-    Attack fireAttack;
-    Attack grassAttack;
-    Attack psychicAttack;
-    Attack waterAttack;
+    private Attack electricAttack;
+    private Attack fightingAttack;
+    private Attack fireAttack;
+    private Attack grassAttack;
+    private Attack psychicAttack;
+    private Attack waterAttack;
 
-    EnergySet electricCost;
-    EnergySet fightingCost;
-    EnergySet fireCost;
-    EnergySet grassCost;
-    EnergySet psychicCost;
-    EnergySet waterCost;
+    private EnergySet electricCost;
+    private EnergySet fightingCost;
+    private EnergySet fireCost;
+    private EnergySet grassCost;
+    private EnergySet psychicCost;
+    private EnergySet waterCost;
 
     @Before
     public void setUp() {

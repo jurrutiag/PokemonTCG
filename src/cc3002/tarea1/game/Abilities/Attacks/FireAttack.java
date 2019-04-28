@@ -3,6 +3,11 @@ package cc3002.tarea1.game.Abilities.Attacks;
 import cc3002.tarea1.game.EnergySet;
 import cc3002.tarea1.game.Attack;
 
+/**
+ * Fire Attack, represents an attack that requires fire energies, created for testing.
+ *
+ * @author Juan Urrutia
+ */
 public class FireAttack implements Attack {
     @Override
     public int getDamage() {

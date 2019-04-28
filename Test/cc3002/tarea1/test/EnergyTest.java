@@ -9,15 +9,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EnergyTest {
-    Energy electricEnergy;
-    Energy fightingEnergy;
-    Energy fireEnergy;
-    Energy grassEnergy;
-    Energy psychicEnergy;
-    Energy waterEnergy;
+    private Energy electricEnergy;
+    private Energy fightingEnergy;
+    private Energy fireEnergy;
+    private Energy grassEnergy;
+    private Energy psychicEnergy;
+    private Energy waterEnergy;
 
-    EnergySet energies;
-    EnergySet energies2;
+    private EnergySet energies;
 
     @Before
     public void setUp() {
@@ -70,7 +69,7 @@ public class EnergyTest {
     @Test
     public void includesEnergy() {
         energies = new EnergySet(2, 0, 0, 0, 0, 0);
-        energies2 = new EnergySet(1, 0, 0, 0, 0, 0);
+        EnergySet energies2 = new EnergySet(1, 0, 0, 0, 0, 0);
 
         assertTrue(energies.includesEnergies(energies2));
         assertFalse(energies2.includesEnergies(energies));

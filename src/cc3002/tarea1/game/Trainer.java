@@ -79,7 +79,7 @@ public class Trainer {
     /**
      * Removes the dead Pokemons from the bench.
      */
-    public void clearDead() {
+    private void clearDead() {
         for (int i = 0; i < bench.size(); i++) {
             if (bench.get(i).getHp() == 0) {
                 bench.remove(i);
@@ -175,7 +175,7 @@ public class Trainer {
      *
      * @return Returns true if the bench is full.
      */
-    public boolean checkBenchFull() {
+    private boolean checkBenchFull() {
         return !(bench.size() < 6);
     }
 
@@ -186,9 +186,6 @@ public class Trainer {
     public void addPokemonToBench(Pokemon pokemon) {
         if(!checkBenchFull()) {
             bench.add(pokemon);
-            if (bench.get(0).getHp() == 0) {
-                swapNextNotDead();
-            }
         }
     }
 }

@@ -14,29 +14,25 @@ import static org.junit.Assert.*;
 
 public class CardTest {
 
-    Trainer trainer1;
+    private Energy electricEnergy;
+    private Energy fightingEnergy;
+    private Energy fireEnergy;
+    private Energy grassEnergy;
+    private Energy psychicEnergy;
+    private Energy waterEnergy;
 
-    Attack[] attacks;
-
-    Energy electricEnergy;
-    Energy fightingEnergy;
-    Energy fireEnergy;
-    Energy grassEnergy;
-    Energy psychicEnergy;
-    Energy waterEnergy;
-
-    Pokemon electricPokemon;
-    Pokemon fightingPokemon;
-    Pokemon firePokemon;
-    Pokemon grassPokemon;
-    Pokemon psychicPokemon;
-    Pokemon waterPokemon;
+    private Pokemon electricPokemon;
+    private Pokemon fightingPokemon;
+    private Pokemon firePokemon;
+    private Pokemon grassPokemon;
+    private Pokemon psychicPokemon;
+    private Pokemon waterPokemon;
 
     @Before
     public void setUp() {
-        trainer1 = new Trainer();
+        Trainer trainer1 = new Trainer();
 
-        attacks = new Attack[] {new ElectricAttack()};
+        Attack[] attacks = new Attack[]{new ElectricAttack()};
 
         electricEnergy = new ElectricEnergy();
         fightingEnergy = new FightingEnergy();

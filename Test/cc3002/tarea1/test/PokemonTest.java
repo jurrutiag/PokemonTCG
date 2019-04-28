@@ -17,13 +17,6 @@ public class PokemonTest {
     private Trainer trainer1;
     private Trainer trainer2;
 
-    private Attack[] electricAttacks;
-    private Attack[] fightingAttacks;
-    private Attack[] fireAttacks;
-    private Attack[] grassAttacks;
-    private Attack[] psychicAttacks;
-    private Attack[] waterAttacks;
-
     private Attack[] attacks2;
     private Attack[] attacks3;
 
@@ -51,12 +44,12 @@ public class PokemonTest {
 
     @Before
     public void setUp() {
-        electricAttacks = new Attack[] {new ElectricAttack()};
-        fightingAttacks = new Attack[] {new FightingAttack()};
-        fireAttacks = new Attack[] {new FireAttack()};
-        grassAttacks = new Attack[] {new GrassAttack()};
-        psychicAttacks = new Attack[] {new PsychicAttack()};
-        waterAttacks = new Attack[] {new WaterAttack()};
+        Attack[] electricAttacks = new Attack[]{new ElectricAttack()};
+        Attack[] fightingAttacks = new Attack[]{new FightingAttack()};
+        Attack[] fireAttacks = new Attack[]{new FireAttack()};
+        Attack[] grassAttacks = new Attack[]{new GrassAttack()};
+        Attack[] psychicAttacks = new Attack[]{new PsychicAttack()};
+        Attack[] waterAttacks = new Attack[]{new WaterAttack()};
 
         attacks2 = new Attack[] {new ElectricAttack(), new FightingAttack()};
         attacks3 = new Attack[] {new ElectricAttack(), new FightingAttack(), new FireAttack()};

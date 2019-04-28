@@ -3,6 +3,12 @@ package cc3002.tarea1.game.Abilities.Attacks;
 import cc3002.tarea1.game.EnergySet;
 import cc3002.tarea1.game.Attack;
 
+
+/**
+ * Grass Attack, represents an attack that requires grass energies, created for testing.
+ *
+ * @author Juan Urrutia
+ */
 public class GrassAttack implements Attack {
     @Override
     public int getDamage() {

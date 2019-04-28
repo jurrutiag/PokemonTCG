@@ -3,6 +3,11 @@ package cc3002.tarea1.game.Abilities.Attacks;
 import cc3002.tarea1.game.Attack;
 import cc3002.tarea1.game.EnergySet;
 
+/**
+ * Water Attack, represents an attack that requires water energies, created for testing.
+ *
+ * @author Juan Urrutia
+ */
 public class WaterAttack implements Attack {
     @Override
     public int getDamage() {

@@ -19,13 +19,13 @@ import static org.junit.Assert.assertTrue;
 
 public class TrainerTest {
 
-    Trainer trainer1;
-    Trainer trainer2;
-    Trainer trainer3;
+    private Trainer trainer1;
+    private Trainer trainer2;
+    private Trainer trainer3;
 
-    Attack[] attacks;
-    Attack[] attacks2;
-    Attack[] attacks3;
+    private Attack[] attacks;
+    private Attack[] attacks2;
+    private Attack[] attacks3;
 
     @Before
     public void setUp() {
