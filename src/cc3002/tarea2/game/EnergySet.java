@@ -63,6 +63,8 @@ public class EnergySet {
         return energies.get(EnergyType.WATER);
     }
 
+
+
     public void setElectricEnergies(int value) {
         energies.replace(EnergyType.ELECTRIC, value);
     }
@@ -125,27 +127,28 @@ public class EnergySet {
     }
 
     public void addElectricEnergy() {
-        energies.replace(EnergyType.ELECTRIC, energies.get(EnergyType.ELECTRIC) + 1);
+        this.setElectricEnergies(this.getElectricEnergies() + 1);
     }
 
 
     public void addFightingEnergy() {
-        energies.replace(EnergyType.FIGHTING, energies.get(EnergyType.FIGHTING) + 1);
+        this.setFightingEnergies(this.getFightingEnergies() + 1);
     }
 
     public void addFireEnergy() {
-        energies.replace(EnergyType.FIRE, energies.get(EnergyType.FIRE) + 1);
+        this.setFireEnergies(this.getFireEnergies() + 1);
     }
 
     public void addGrassEnergy() {
-        energies.replace(EnergyType.GRASS, energies.get(EnergyType.GRASS) + 1);
+        this.setGrassEnergies(this.getGrassEnergies() + 1);
     }
 
     public void addPsychicEnergy() {
-        energies.replace(EnergyType.PSYCHIC, energies.get(EnergyType.PSYCHIC) + 1);
+        this.setPsychicEnergies(this.getPsychicEnergies() + 1);
     }
 
     public void addWaterEnergy() {
-        energies.replace(EnergyType.WATER, energies.get(EnergyType.WATER) + 1);
+        this.setWaterEnergies(this.getWaterEnergies() + 1);
     }
+
 }

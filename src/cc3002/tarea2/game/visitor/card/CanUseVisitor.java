@@ -1,11 +1,11 @@
 package cc3002.tarea2.game.visitor.card;
 
-import cc3002.tarea2.game.cards.IEnergyCard;
-import cc3002.tarea2.game.cards.IPokemonCard;
-import cc3002.tarea2.game.cards.ITrainerCard;
-import cc3002.tarea2.game.visitor.Visitor;
+import cc3002.tarea2.game.cards.energies.IEnergyCard;
+import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
+import cc3002.tarea2.game.cards.trainer.ITrainerCard;
+import cc3002.tarea2.game.visitor.AbstractCardVisitor;
 
-public class CanUseVisitor implements Visitor {
+public class CanUseVisitor extends AbstractCardVisitor {
 
     private int energyCardsUsed;
     private boolean canUseCard;

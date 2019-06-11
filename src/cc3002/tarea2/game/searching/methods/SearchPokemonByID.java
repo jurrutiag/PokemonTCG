@@ -1,6 +1,6 @@
 package cc3002.tarea2.game.searching.methods;
 
-import cc3002.tarea2.game.cards.IPokemonCard;
+import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.searching.ISearchCardMethod;
 
 public class SearchPokemonByID implements ISearchCardMethod<IPokemonCard> {

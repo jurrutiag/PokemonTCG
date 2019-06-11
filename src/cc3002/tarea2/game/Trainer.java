@@ -1,19 +1,18 @@
 package cc3002.tarea2.game;
 
-import cc3002.tarea2.game.cards.IEnergyCard;
-import cc3002.tarea2.game.cards.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.phases.BasicPhase;
-import cc3002.tarea2.game.cards.pokemon.phases.EvolvedPhase;
+import cc3002.tarea2.game.cards.ICard;
+import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.events.ActivePokemonDiedEvent;
+import cc3002.tarea2.game.events.IEvent;
 import cc3002.tarea2.game.searching.ISearchCardMethod;
-import cc3002.tarea2.game.searching.methods.SearchPokemonByID;
+import cc3002.tarea2.game.visitor.card.PlayVisitor;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 
 /**
- * Class that represents a TrainerCard, the player of the game.
+ * Class that represents a AbstractTrainerCard, the player of the game.
  *
  * @author Juan Urrutia
  */
@@ -22,21 +21,21 @@ public class Trainer extends Observable {
     /**
      * Array of cards that represents the hand of the trainer, it has no limits in size.
      */
-    private ArrayList<Card> hand;
+    private ArrayList<ICard> hand;
 
     /**
      * Array of Pokemons that represent the bench of the trainer, it has a limit of 6 Pokemons
-     * including the active PokemonCard, which is represented as the first element of the array.
+     * including the active AbstractPokemonCard, which is represented as the first element of the array.
      */
     private ArrayList<IPokemonCard> bench;
 
     /**
      * Pile where all discarded cards go.
      */
-    private ArrayList<Card> discardPile;
+    private ArrayList<ICard> discardPile;
 
     /**
-     * The opponent of the actual TrainerCard in the game.
+     * The opponent of the actual AbstractTrainerCard in the game.
      */
     private Trainer opponent;
 
@@ -48,24 +47,34 @@ public class Trainer extends Observable {
     /**
      * Index of the pokemon in the bench that will receive the effect of some played card.
      */
-    private int pokemonSelectedForCardIndex;
+    private int benchPokemonSelected;
+
+    private int handCardSelected;
+
+    private int abilityIndex;
 
 
     //TODO implement prize cards.
     /**
-     * Creates a TrainerCard with an empty hand and an empty bench.
+     * Creates a AbstractTrainerCard with an empty hand and an empty bench.
      */
     public Trainer() {
 
         hand = new ArrayList<>();
         bench = new ArrayList<>();
-        deck = new Deck(60);
+        deck = new Deck(60, this);
         discardPile = new ArrayList<>();
-        pokemonSelectedForCardIndex = 0;
-
+        benchPokemonSelected = 0;
+        handCardSelected = 0;
+        abilityIndex = 0;
     }
 
-    public void discard(Card card) {
+    public void notifyEvent(IEvent event) {
+        setChanged();
+        notifyObservers(event);
+    }
+
+    public void discard(ICard card) {
         discardPile.add(card);
     }
 
@@ -74,7 +83,7 @@ public class Trainer extends Observable {
      */
     public void drawCard() {
         if (!deck.isEmpty()) {
-            hand.add(this.deck.drawCard());
+            this.addCard(this.deck.drawCard());
         }
     }
 
@@ -90,25 +99,33 @@ public class Trainer extends Observable {
      * Selects a pokemon for a card to be played on
      * @param index the index on the bench of the pokemon to be selected.
      */
-    public void selectPokemonForCard(int index) {
-        pokemonSelectedForCardIndex = index;
+    public void selectBenchPokemon(int index) {
+        if (index < benchSize()) {
+            benchPokemonSelected = index;
+        }
     }
 
-    /**
-     * Plays a card from the hand and removes it from the hand if it was played successfully
-     * @param handIndex The hand index where the card to be played resides.
-     */
-    public void playCard(int handIndex) {
-        if (hand.get(handIndex).bePlayedBy(this)) {
-            hand.remove(handIndex);
-            setChanged();
-            notifyObservers(hand.get(handIndex));
+    public void selectHandCard(int index) {
+        if (index < handSize()) {
+            handCardSelected = index;
         }
     }
 
     /**
-     * Swaps the active PokemonCard for another one in the bench.
-     * @param benchIndex The bench index where the PokemonCard that will be put as active is.
+     * Plays a card from the hand and removes it from the hand if it was played successfully
+     */
+    public void playCard() {
+        PlayVisitor playVisitor = new PlayVisitor(this);
+        hand.get(handCardSelected).accept(playVisitor);
+
+        if (playVisitor.wasPlayedCorrectly()) {
+            hand.remove(handCardSelected);
+        }
+    }
+
+    /**
+     * Swaps the active AbstractPokemonCard for another one in the bench.
+     * @param benchIndex The bench index where the AbstractPokemonCard that will be put as active is.
      */
     public void swapActivePokemon(int benchIndex) {
         if (bench.size() > benchIndex) {
@@ -142,30 +159,35 @@ public class Trainer extends Observable {
 
     /**
      *
-     * @return Returns the current active PokemonCard of the bench, that is the first PokemonCard in the bench
+     * @return Returns the current active AbstractPokemonCard of the bench, that is the first AbstractPokemonCard in the bench
      */
     public IPokemonCard getActivePokemon() {
         return bench.get(0);
     }
 
+    public void selectAbility(int index) {
+        if (index < 4) {
+            abilityIndex = index;
+        }
+    }
+
     /**
-     * Selects an ability for the active pokemon to use.
-     * @param index The index of the ability to use, represents the position of the ability in the abilities array of the active pokemon.
+     * Uses an active pokemon ability.
      */
-    public void useAbility(int index) {
-        getActivePokemon().useAbility(index);
+    public void useAbility() {
+        getActivePokemon().useAbility(abilityIndex);
     }
 
     /**
      * @return Returns the hand.
      */
-    public ArrayList<Card> getHand() {
+    public ArrayList<ICard> getHand() {
         return hand;
     }
 
     /**
-     * Returns a PokemonCard from the bench.
-     * @return Returns the selected PokemonCard.
+     * Returns a AbstractPokemonCard from the bench.
+     * @return Returns the selected AbstractPokemonCard.
      */
     public ArrayList<IPokemonCard> getBench() {
         return bench;
@@ -173,7 +195,7 @@ public class Trainer extends Observable {
 
     /**
      *
-     * @return Returns the amount of abilities that the active PokemonCard has.
+     * @return Returns the amount of abilities that the active AbstractPokemonCard has.
      */
     public int maxNumAttacks() {
         return getActivePokemon().getAbilitiesAmount();
@@ -181,21 +203,12 @@ public class Trainer extends Observable {
 
     /**
      * Adds a card to the hand.
-     * @param card The Card to be added.
+     * @param card The ICard to be added.
      */
-    public void addCard(Card card) {
+    public void addCard(ICard card) {
         hand.add(card);
     }
 
-    /**
-     * Binds an energy to the active PokemonCard.
-     * @param energy The energy to be bind.
-     */
-    public void addEnergy(IEnergyCard energy) {
-        if (pokemonSelectedForCardIndex < benchSize()) {
-            energy.bePlayedBy(this);
-        }
-    }
 
     /**
      *
@@ -218,33 +231,21 @@ public class Trainer extends Observable {
     }
 
     public IPokemonCard getSelectedPokemon() {
-        return bench.get(pokemonSelectedForCardIndex);
+        return bench.get(benchPokemonSelected);
+    }
+
+    public ICard getSelectedCard() {
+        return hand.get(handCardSelected);
     }
 
     public void pokemonDied(IPokemonCard pokemonCard) {
         if (pokemonCard == this.getActivePokemon()) {
-            setChanged();
-            notifyObservers(new ActivePokemonDiedEvent(pokemonCard));
+            this.notifyEvent(new ActivePokemonDiedEvent(pokemonCard));
         }
         discard(pokemonCard);
         bench.remove(pokemonCard);
     }
 
-    public boolean playBasePokemon(BasicPhase basicPhase) {
-        return this.addPokemonToBench(basicPhase.getPokemon());
-    }
-
-    public boolean playPhasePokemon(EvolvedPhase evolvedPhase) {
-        ArrayList<IPokemonCard> preevolutions = search(new SearchPokemonByID(evolvedPhase.getPreevolutionId()), this.bench);
-        if (!preevolutions.isEmpty()) {
-            EnergySet preevolutionEnergySet = bench.get(bench.indexOf(preevolutions.get(0))).getEnergySet();
-            bench.remove(preevolutions.get(0));
-            evolvedPhase.getPokemon().setEnergies(preevolutionEnergySet);
-            bench.add(evolvedPhase.getPokemon());
-            return true;
-        }
-        return false;
-    }
 
     public <T> ArrayList<T> search(ISearchCardMethod<T> searchMethod, ArrayList<T> searchPlace) {
         ArrayList<T> result = new ArrayList<>();
@@ -268,9 +269,9 @@ public class Trainer extends Observable {
 //
 //    //TODO: remove code duplication of search on trainer
 //
-//    public ArrayList<Card> searchHand(ISearchCardMethod searchMethod) {
-//        ArrayList<Card> result = new ArrayList<>();
-//        for (Card card : this.hand) {
+//    public ArrayList<ICard> searchHand(ISearchCardMethod searchMethod) {
+//        ArrayList<ICard> result = new ArrayList<>();
+//        for (ICard card : this.hand) {
 //            if (searchMethod.match(card)) {
 //                result.add(card);
 //            }

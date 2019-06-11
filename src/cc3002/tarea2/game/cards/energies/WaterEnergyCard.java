@@ -1,19 +1,21 @@
 package cc3002.tarea2.game.cards.energies;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.EnergyCard;
+import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
  * Class representing a water energy for the Pokemons to be binded allowing them to cast abilities.
  *
  * @author Juan Urrutia
  */
-public class WaterEnergyCard extends EnergyCard {
+public class WaterEnergyCard extends AbstractEnergyCard {
 
-    @Override
-    public boolean bePlayedBy(Trainer trainer) {
-        trainer.getSelectedPokemon().addWaterEnergy();
-        return true;
+
+    public WaterEnergyCard(Trainer trainer) {
+        super(trainer);
+    }
+
+    public WaterEnergyCard() {
     }
 
     /**
@@ -22,5 +24,11 @@ public class WaterEnergyCard extends EnergyCard {
     @Override
     public String getName() {
         return "WaterEnergyCard";
+    }
+
+    @Override
+    public void accept(ICardVisitor visitor) {
+        super.accept(visitor);
+        visitor.visitWaterEnergyCard(this);
     }
 }

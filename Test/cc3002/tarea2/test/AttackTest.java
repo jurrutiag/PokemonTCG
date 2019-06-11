@@ -1,8 +1,8 @@
 package cc3002.tarea2.test;
 
-import cc3002.tarea2.game.Abilities.Attacks.*;
-import cc3002.tarea2.game.Abilities.Attack;
+import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.EnergySet;
+import cc3002.tarea2.game.ability.attack.implemented_attacks.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,12 +11,12 @@ import static org.junit.Assert.assertTrue;
 
 public class AttackTest {
 
-    private Attack electricAttack;
-    private Attack fightingAttack;
-    private Attack fireAttack;
-    private Attack grassAttack;
-    private Attack psychicAttack;
-    private Attack waterAttack;
+    private IAttack electricAttack;
+    private IAttack fightingAttack;
+    private IAttack fireAttack;
+    private IAttack grassAttack;
+    private IAttack psychicAttack;
+    private IAttack waterAttack;
 
     private EnergySet electricCost;
     private EnergySet fightingCost;
@@ -60,12 +60,12 @@ public class AttackTest {
 
     @Test
     public void getDescription() {
-        assertEquals("Attack of electricity", electricAttack.getDescription());
+        assertEquals("IAttack of electricity", electricAttack.getDescription());
         assertEquals("Physical attack", fightingAttack.getDescription());
-        assertEquals("Attack of fire", fireAttack.getDescription());
-        assertEquals("Attack of grass", grassAttack.getDescription());
-        assertEquals("Attack of psyche", psychicAttack.getDescription());
-        assertEquals("Attack of water", waterAttack.getDescription());
+        assertEquals("IAttack of fire", fireAttack.getDescription());
+        assertEquals("IAttack of grass", grassAttack.getDescription());
+        assertEquals("IAttack of psyche", psychicAttack.getDescription());
+        assertEquals("IAttack of water", waterAttack.getDescription());
     }
 
     @Test

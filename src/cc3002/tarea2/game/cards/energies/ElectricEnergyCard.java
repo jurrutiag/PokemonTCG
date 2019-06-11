@@ -1,19 +1,20 @@
 package cc3002.tarea2.game.cards.energies;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.EnergyCard;
+import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
  * Class representing an electric energy for the Pokemons to be binded allowing them to cast abilities.
  *
  * @author Juan Urrutia
  */
-public class ElectricEnergyCard extends EnergyCard {
+public class ElectricEnergyCard extends AbstractEnergyCard {
 
-    @Override
-    public boolean bePlayedBy(Trainer trainer) {
-        trainer.getSelectedPokemon().addElectricEnergy();
-        return true;
+    public ElectricEnergyCard(Trainer trainer) {
+        super(trainer);
+    }
+
+    public ElectricEnergyCard() {
     }
 
     /**
@@ -24,5 +25,10 @@ public class ElectricEnergyCard extends EnergyCard {
         return "ElectricEnergyCard";
     }
 
+    @Override
+    public void accept(ICardVisitor visitor) {
+        super.accept(visitor);
+        visitor.visitElectricEnergyCard(this);
+    }
 
 }

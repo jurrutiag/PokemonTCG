@@ -1,19 +1,20 @@
 package cc3002.tarea2.game.cards.energies;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.EnergyCard;
+import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
  * Class representing a psychic energy for the Pokemons to be binded allowing them to cast abilities.
  *
  * @author Juan Urrutia
  */
-public class PsychicEnergyCard extends EnergyCard {
+public class PsychicEnergyCard extends AbstractEnergyCard {
 
-    @Override
-    public boolean bePlayedBy(Trainer trainer) {
-        trainer.getSelectedPokemon().addPsychicEnergy();
-        return true;
+    public PsychicEnergyCard(Trainer trainer) {
+        super(trainer);
+    }
+
+    public PsychicEnergyCard() {
     }
 
     /**
@@ -22,5 +23,11 @@ public class PsychicEnergyCard extends EnergyCard {
     @Override
     public String getName() {
         return "PsychicEnergyCard";
+    }
+
+    @Override
+    public void accept(ICardVisitor visitor) {
+        super.accept(visitor);
+        visitor.visitPsychicEnergyCard(this);
     }
 }

@@ -1,19 +1,20 @@
 package cc3002.tarea2.game.cards.energies;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.EnergyCard;
+import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
  * Class representing a fighting energy for the Pokemons to be binded allowing them to cast abilities.
  *
  * @author Juan Urrutia
  */
-public class FightingEnergyCard extends EnergyCard {
+public class FightingEnergyCard extends AbstractEnergyCard {
 
-    @Override
-    public boolean bePlayedBy(Trainer trainer) {
-        trainer.getSelectedPokemon().addFightingEnergy();
-        return true;
+    public FightingEnergyCard(Trainer trainer) {
+        super(trainer);
+    }
+
+    public FightingEnergyCard() {
     }
 
     /**
@@ -22,5 +23,11 @@ public class FightingEnergyCard extends EnergyCard {
     @Override
     public String getName() {
         return "FightingEnergyCard";
+    }
+
+    @Override
+    public void accept(ICardVisitor visitor) {
+        super.accept(visitor);
+        visitor.visitFightingEnergyCard(this);
     }
 }

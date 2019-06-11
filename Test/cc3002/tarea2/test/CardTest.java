@@ -1,12 +1,12 @@
 package cc3002.tarea2.test;
 
-import cc3002.tarea2.game.Abilities.Attack;
-import cc3002.tarea2.game.cards.EnergyCard;
-import cc3002.tarea2.game.cards.PokemonCard;
+import cc3002.tarea2.game.ability.attack.IAttack;
+import cc3002.tarea2.game.cards.energies.AbstractEnergyCard;
+import cc3002.tarea2.game.cards.pokemon.AbstractPokemonCard;
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.Abilities.Attacks.ElectricAttack;
+import cc3002.tarea2.game.ability.attack.implemented_attacks.ElectricAttack;
 import cc3002.tarea2.game.cards.energies.*;
-import cc3002.tarea2.game.cards.pokemon.pokemons.*;
+import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,32 +14,32 @@ import static org.junit.Assert.*;
 
 public class CardTest {
 
-    private EnergyCard electricEnergyCard;
-    private EnergyCard fightingEnergyCard;
-    private EnergyCard fireEnergyCard;
-    private EnergyCard grassEnergyCard;
-    private EnergyCard psychicEnergyCard;
-    private EnergyCard waterEnergyCard;
+    private AbstractEnergyCard electricEnergyCard;
+    private AbstractEnergyCard fightingEnergyCard;
+    private AbstractEnergyCard fireEnergyCard;
+    private AbstractEnergyCard grassEnergyCard;
+    private AbstractEnergyCard psychicEnergyCard;
+    private AbstractEnergyCard waterEnergyCard;
 
-    private PokemonCard electricPokemonCard;
-    private PokemonCard fightingPokemonCard;
-    private PokemonCard firePokemonCard;
-    private PokemonCard grassPokemonCard;
-    private PokemonCard psychicPokemonCard;
-    private PokemonCard waterPokemonCard;
+    private AbstractPokemonCard electricPokemonCard;
+    private AbstractPokemonCard fightingPokemonCard;
+    private AbstractPokemonCard firePokemonCard;
+    private AbstractPokemonCard grassPokemonCard;
+    private AbstractPokemonCard psychicPokemonCard;
+    private AbstractPokemonCard waterPokemonCard;
 
     @Before
     public void setUp() {
         Trainer trainer1 = new Trainer();
 
-        Attack[] attacks = new Attack[]{new ElectricAttack()};
+        IAttack[] attacks = new IAttack[]{new ElectricAttack()};
 
-        electricEnergyCard = new ElectricEnergyCard();
-        fightingEnergyCard = new FightingEnergyCard();
-        fireEnergyCard = new FireEnergyCard();
-        grassEnergyCard = new GrassEnergyCard();
-        psychicEnergyCard = new PsychicEnergyCard();
-        waterEnergyCard = new WaterEnergyCard();
+        electricEnergyCard = new ElectricEnergyCard(trainer1);
+        fightingEnergyCard = new FightingEnergyCard(trainer1);
+        fireEnergyCard = new FireEnergyCard(trainer1);
+        grassEnergyCard = new GrassEnergyCard(trainer1);
+        psychicEnergyCard = new PsychicEnergyCard(trainer1);
+        waterEnergyCard = new WaterEnergyCard(trainer1);
 
         electricPokemonCard = new ElectricTypePokemonCard(50, attacks, trainer1);
         fightingPokemonCard = new FightingTypePokemonCard(50, attacks, trainer1);

@@ -1,28 +1,23 @@
 package cc3002.tarea2.game.controller;
 
-import cc3002.tarea2.game.Card;
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.IEnergyCard;
-import cc3002.tarea2.game.cards.IPokemonCard;
-import cc3002.tarea2.game.cards.ITrainerCard;
-import cc3002.tarea2.game.cards.trainer.object.ExpShareObject;
-import cc3002.tarea2.game.events.ActivePokemonDiedEvent;
-import cc3002.tarea2.game.events.AttackEvent;
+import cc3002.tarea2.game.cards.ICard;
+import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
+import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
+import cc3002.tarea2.game.events.*;
 import cc3002.tarea2.game.searching.methods.SearchObjectOwner;
-import cc3002.tarea2.game.visitor.Visitable;
+import cc3002.tarea2.game.visitor.IEventVisitable;
+import cc3002.tarea2.game.visitor.IEventVisitor;
 import cc3002.tarea2.game.visitor.card.CanUseVisitor;
-import cc3002.tarea2.game.visitor.turn.EventVisitor;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GameController implements Observer, EventVisitor {
+public class GameController implements Observer, IEventVisitor {
 
     private Trainer[] trainers;
     private int turn;
-    private StringBuilder str;
 
     private CanUseVisitor canUseVisitor;
 
@@ -32,9 +27,16 @@ public class GameController implements Observer, EventVisitor {
             trainer.addObserver(this);
         }
         this.turn = turn;
-        this.str = new StringBuilder();
 
         canUseVisitor = new CanUseVisitor();
+    }
+
+    public Trainer getTrainerPlaying() {
+        return trainers[turn];
+    }
+
+    public Trainer getOpponent() {
+        return trainers[(turn == 0 ? 1 : 0)];
     }
 
     public CanUseVisitor getCanUseVisitor() {
@@ -42,76 +44,61 @@ public class GameController implements Observer, EventVisitor {
     }
 
     public void drawCard() {
-        trainers[turn].drawCard();
-    }
-
-    public void resetStringBuilder() {
-        this.str = new StringBuilder();
-    }
-
-    public void showString() {
-        System.out.println(this.str.toString());
-    }
-
-    private void appendCards(List<? extends Card> cards) {
-        String isUsable;
-        for (int i = 0; i < cards.size(); i++) {
-            cards.get(i).accept(canUseVisitor);
-            isUsable = canUseVisitor.canUseCard() ? "" : "(Can't be used)";
-            str.append(i);
-            str.append(" - ");
-            str.append(cards.get(i).toString());
-            str.append(isUsable);
-            str.append("\n");
-        }
+        this.getTrainerPlaying().drawCard();
     }
 
     public void playCard(int cardIndex) {
-        trainers[turn].getHand().get(cardIndex).accept(canUseVisitor);
+        this.getTrainerPlaying().getHand().get(cardIndex).accept(canUseVisitor);
         if (canUseVisitor.canUseCard()) {
-            trainers[turn].playCard(cardIndex);
+            this.getTrainerPlaying().playCard();
         }
     }
 
-    public void viewHand() {
-        str.append("Your Bench: \n");
-        appendCards(trainers[turn].getHand());
-        str.append("Your opponent's bench: \n");
-        appendCards(trainers[turn == 0 ? 1 : 0].getHand());
+    public ArrayList<ICard> getPlayerHand() {
+        return this.getTrainerPlaying().getHand();
     }
 
-    public void useActivePokemonAbility(int abilityIndex) {
-        trainers[turn].getActivePokemon().useAbility(abilityIndex);
+    public ArrayList<IPokemonCard> viewPlayerBench() {
+        return this.getTrainerPlaying().getBench();
+    }
+
+    public ArrayList<IPokemonCard> viewOpponentBench() {
+        return this.getOpponent().getBench();
+    }
+
+    public void selectActivePokemonAbility(int abilityIndex) {
+        this.getTrainerPlaying().selectAbility(abilityIndex);
+    }
+
+    public void useActivePokemonAbility() {
+        this.getTrainerPlaying().useAbility();
     }
 
 
-    public void endTurn() {
+    private void endTurn() {
         this.turn = (turn == 0 ? 1 : 0);
-    }
-
-    public void viewBenchPokemons() {
-        appendCards(trainers[turn].getBench());
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof Visitable) {
-            ((Visitable) arg).accept(this);
+        if (arg instanceof IEventVisitable) {
+            ((IEventVisitable) arg).accept(this);
         }
     }
 
-    @Override
-    public void visitPokemonCard(IPokemonCard pokemonCard) {
-
-    }
 
     @Override
-    public void visitEnergyCard(IEnergyCard energyCard) {
+    public void visitEnergyCardPlayedEvent(EnergyCardPlayedEvent energyCardPlayedEvent) {
         getCanUseVisitor().energyCardUsed();
     }
 
     @Override
-    public void visitTrainerCard(ITrainerCard trainerCard) {
+    public void visitPokemonCardPlayedEvent(PokemonCardPlayedEvent pokemonCardPlayedEvent) {
+
+    }
+
+    @Override
+    public void visitTrainerCardPlayedEvent(TrainerCardPlayedEvent trainerCardPlayedEvent) {
 
     }
 
@@ -122,14 +109,14 @@ public class GameController implements Observer, EventVisitor {
 
     @Override
     public void visitActivePokemonDiedEvent(ActivePokemonDiedEvent activePokemonDiedEvent) {
-        this.executeExpShareEffect();
+        this.executeExpShareEffect(activePokemonDiedEvent.getActivePokemon());
     }
 
     //TODO: revisar expShare
-    private void executeExpShareEffect() {
-        ArrayList<IPokemonCard> expShareOwners = trainers[turn].search(new SearchObjectOwner(new ExpShareObject()), trainers[turn].getBench());
+    private void executeExpShareEffect(IPokemonCard activePokemon) {
+        ArrayList<IPokemonCard> expShareOwners = this.getTrainerPlaying().search(new SearchObjectOwner(new ExpShareObject()), trainers[turn].getBench());
         for (IPokemonCard pokemon : expShareOwners) {
-            if (pokemon.getEnergySet().getElectricEnergies() > 0) {
+            if (activePokemon.getEnergySet().getElectricEnergies() > 0) {
                 pokemon.addElectricEnergy();
             }
         }

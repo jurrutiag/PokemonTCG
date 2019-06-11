@@ -1,7 +1,7 @@
 package cc3002.tarea2.test;
 
-import cc3002.tarea2.game.cards.EnergyCard;
 import cc3002.tarea2.game.EnergySet;
+import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.cards.energies.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,23 +9,25 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EnergyCardTest {
-    private EnergyCard electricEnergyCard;
-    private EnergyCard fightingEnergyCard;
-    private EnergyCard fireEnergyCard;
-    private EnergyCard grassEnergyCard;
-    private EnergyCard psychicEnergyCard;
-    private EnergyCard waterEnergyCard;
+    private AbstractEnergyCard electricEnergyCard;
+    private AbstractEnergyCard fightingEnergyCard;
+    private AbstractEnergyCard fireEnergyCard;
+    private AbstractEnergyCard grassEnergyCard;
+    private AbstractEnergyCard psychicEnergyCard;
+    private AbstractEnergyCard waterEnergyCard;
 
     private EnergySet energies;
 
+    private Trainer trainer1;
+
     @Before
     public void setUp() {
-        electricEnergyCard = new ElectricEnergyCard();
-        fightingEnergyCard = new FightingEnergyCard();
-        fireEnergyCard = new FireEnergyCard();
-        grassEnergyCard = new GrassEnergyCard();
-        psychicEnergyCard = new PsychicEnergyCard();
-        waterEnergyCard = new WaterEnergyCard();
+        electricEnergyCard = new ElectricEnergyCard(trainer1);
+        fightingEnergyCard = new FightingEnergyCard(trainer1);
+        fireEnergyCard = new FireEnergyCard(trainer1);
+        grassEnergyCard = new GrassEnergyCard(trainer1);
+        psychicEnergyCard = new PsychicEnergyCard(trainer1);
+        waterEnergyCard = new WaterEnergyCard(trainer1);
 
         energies = new EnergySet();
     }
