@@ -10,6 +10,7 @@ import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhasePokemon;
 import cc3002.tarea2.game.cards.trainer.object.IInstantObject;
 import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
+import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 import cc3002.tarea2.game.events.EnergyCardPlayedEvent;
@@ -93,6 +94,11 @@ public class PlayVisitor extends AbstractCardVisitor {
     public void visitInstantObjectCard(IInstantObject objectCard) {
         objectCard.executeEffect();
         trainer.discard(objectCard);
+    }
+
+    @Override
+    public void visitObjectCard(IObjectCard objectCard) {
+        objectCard.setPokemon(trainer.getSelectedPokemon());
     }
 
     @Override

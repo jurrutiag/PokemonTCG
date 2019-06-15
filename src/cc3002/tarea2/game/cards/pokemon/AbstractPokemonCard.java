@@ -106,7 +106,8 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      */
     @Override
     public void setHp(int hp) {
-        this.hp = hp < 0 ? 0 : hp;
+        this.hp = hp < 0 ? 0 : (this.hp > this.maxHp ? this.maxHp : hp);
+
     }
 
 //    /**
