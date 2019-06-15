@@ -1,16 +1,23 @@
 package cc3002.tarea2.test;
 
-import cc3002.tarea2.game.ability.attack.IAttack;
-import cc3002.tarea2.game.ability.attack.implemented_attacks.*;
-import cc3002.tarea2.game.cards.energies.AbstractEnergyCard;
-import cc3002.tarea2.game.cards.pokemon.AbstractPokemonCard;
 import cc3002.tarea2.game.Trainer;
+import cc3002.tarea2.game.ability.IAbility;
+import cc3002.tarea2.game.ability.attack.IAttack;
+import cc3002.tarea2.game.ability.attack.implemented_attacks.ElectricShock;
+import cc3002.tarea2.game.ability.attack.implemented_attacks.testing_attacks.*;
 import cc3002.tarea2.game.cards.energies.*;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.*;
+import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
+import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.*;
+import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class PokemonCardTest {
 
@@ -20,46 +27,54 @@ public class PokemonCardTest {
     private IAttack[] attacks2;
     private IAttack[] attacks3;
 
-    private AbstractEnergyCard electricEnergyCard;
-    private AbstractEnergyCard fightingEnergyCard;
-    private AbstractEnergyCard fireEnergyCard;
-    private AbstractEnergyCard grassEnergyCard;
-    private AbstractEnergyCard psychicEnergyCard;
-    private AbstractEnergyCard waterEnergyCard;
+    private IAttack[] electricAttacks;
+    private IAttack[] fightingAttacks;
+    private IAttack[] fireAttacks;
+    private IAttack[] grassAttacks;
+    private IAttack[] psychicAttacks;
+    private IAttack[] waterAttacks;
 
-    private AbstractPokemonCard electricPokemonCard;
-    private AbstractPokemonCard fightingPokemonCard;
-    private AbstractPokemonCard firePokemonCard;
-    private AbstractPokemonCard grassPokemonCard;
-    private AbstractPokemonCard psychicPokemonCard;
-    private AbstractPokemonCard waterPokemonCard;
 
-    private AbstractPokemonCard electricPokemonCard2;
-    private AbstractPokemonCard fightingPokemonCard2;
-    private AbstractPokemonCard firePokemonCard2;
-    private AbstractPokemonCard grassPokemonCard2;
-    private AbstractPokemonCard psychicPokemonCard2;
-    private AbstractPokemonCard waterPokemonCard2;
+    private IEnergyCard electricEnergyCard;
+    private IEnergyCard fightingEnergyCard;
+    private IEnergyCard fireEnergyCard;
+    private IEnergyCard grassEnergyCard;
+    private IEnergyCard psychicEnergyCard;
+    private IEnergyCard waterEnergyCard;
+
+    private IPokemonCard electricPokemonCard;
+    private IPokemonCard fightingPokemonCard;
+    private IPokemonCard firePokemonCard;
+    private IPokemonCard grassPokemonCard;
+    private IPokemonCard psychicPokemonCard;
+    private IPokemonCard waterPokemonCard;
+
+    private IPokemonCard electricPokemonCard2;
+    private IPokemonCard fightingPokemonCard2;
+    private IPokemonCard firePokemonCard2;
+    private IPokemonCard grassPokemonCard2;
+    private IPokemonCard psychicPokemonCard2;
+    private IPokemonCard waterPokemonCard2;
 
 
     @Before
     public void setUp() {
-        IAttack[] electricAttacks = new IAttack[]{new ElectricAttack()};
-        IAttack[] fightingAttacks = new IAttack[]{new FightingAttack()};
-        IAttack[] fireAttacks = new IAttack[]{new FireAttack()};
-        IAttack[] grassAttacks = new IAttack[]{new GrassAttack()};
-        IAttack[] psychicAttacks = new IAttack[]{new PsychicAttack()};
-        IAttack[] waterAttacks = new IAttack[]{new WaterAttack()};
+        electricAttacks = new IAttack[]{new ElectricAttack()};
+        fightingAttacks = new IAttack[]{new FightingAttack()};
+        fireAttacks = new IAttack[]{new FireAttack()};
+        grassAttacks = new IAttack[]{new GrassAttack()};
+        psychicAttacks = new IAttack[]{new PsychicAttack()};
+        waterAttacks = new IAttack[]{new WaterAttack()};
 
         attacks2 = new IAttack[] {new ElectricAttack(), new FightingAttack()};
         attacks3 = new IAttack[] {new ElectricAttack(), new FightingAttack(), new FireAttack()};
 
-        electricEnergyCard = new ElectricEnergyCard(trainer1);
-        fightingEnergyCard = new FightingEnergyCard(trainer1);
-        fireEnergyCard = new FireEnergyCard(trainer1);
-        grassEnergyCard = new GrassEnergyCard(trainer1);
-        psychicEnergyCard = new PsychicEnergyCard(trainer1);
-        waterEnergyCard = new WaterEnergyCard(trainer1);
+        electricEnergyCard = new ElectricEnergyCard();
+        fightingEnergyCard = new FightingEnergyCard();
+        fireEnergyCard = new FireEnergyCard();
+        grassEnergyCard = new GrassEnergyCard();
+        psychicEnergyCard = new PsychicEnergyCard();
+        waterEnergyCard = new WaterEnergyCard();
 
         trainer1 = new Trainer();
         trainer2 = new Trainer();
@@ -209,6 +224,7 @@ public class PokemonCardTest {
         electricPokemonCard.useAbility(0);
         assertEquals(new ElectricTypePokemonCard(trainer2).getName(), trainer2.getActivePokemon().getName());
         assertEquals(30, trainer2.getActivePokemon().getHp());
+        assertEquals(2, trainer2.getActivePokemon().getDamageCounters());
         electricPokemonCard.useAbility(0);
         electricPokemonCard.useAbility(0);
         electricPokemonCard.useAbility(0);
@@ -275,12 +291,28 @@ public class PokemonCardTest {
 
     @Test
     public void getId() throws Exception {
-        assertEquals(1, electricPokemonCard.getId());
-        assertEquals(2, fightingPokemonCard.getId());
-        assertEquals(3, firePokemonCard.getId());
-        assertEquals(4, grassPokemonCard.getId());
-        assertEquals(5, psychicPokemonCard.getId());
-        assertEquals(6, waterPokemonCard.getId());
+        assertEquals(100, electricPokemonCard.getId());
+        assertEquals(200, fightingPokemonCard.getId());
+        assertEquals(300, firePokemonCard.getId());
+        assertEquals(400, grassPokemonCard.getId());
+        assertEquals(500, psychicPokemonCard.getId());
+        assertEquals(600, waterPokemonCard.getId());
+    }
+
+    @Test
+    public void getAbilities() {
+        assertEquals(new ArrayList<IAbility>(Arrays.asList(electricAttacks)), electricPokemonCard.getAbilities());
+        assertEquals(electricAttacks[0], electricPokemonCard.getAbilities().get(0));
+    }
+
+    @Test
+    public void testObjectsFull() {
+        assertTrue(electricPokemonCard.getAssociatedObjects().isEmpty());
+        electricPokemonCard.associateObject(new ExpShareObject());
+        assertFalse(electricPokemonCard.getAssociatedObjects().isEmpty());
+        electricPokemonCard.associateObject(new ExpShareObject());
+        assertEquals(1, electricPokemonCard.getAssociatedObjects().size());
+        assertTrue(electricPokemonCard.objectsFull());
     }
 
     @Test
@@ -516,11 +548,17 @@ public class PokemonCardTest {
     @Test
     public void getName() {
         assertEquals("ElectricTypePokemonCard", electricPokemonCard.getName());
-        assertEquals("FightingTypePokemonCard", fightingPokemonCard.getName());
-        assertEquals("FireTypePokemonCard", firePokemonCard.getName());
-        assertEquals("GrassTypePokemonCard", grassPokemonCard.getName());
-        assertEquals("PsychicTypePokemonCard", psychicPokemonCard.getName());
-        assertEquals("WaterTypePokemonCard", waterPokemonCard.getName());
+        assertEquals("FightingPhase2PokemonCard", fightingPokemonCard.getName());
+        assertEquals("FirePhase2PokemonCard", firePokemonCard.getName());
+        assertEquals("GrassPhase2PokemonCard", grassPokemonCard.getName());
+        assertEquals("PsychicPhase2PokemonCard", psychicPokemonCard.getName());
+        assertEquals("WaterPhase2PokemonCard", waterPokemonCard.getName());
+    }
+
+    @Test
+    public void abilitySize() {
+        IPokemonCard pokemon = new ElectricTypePokemonCard(100, new IAbility[] {new ElectricAttack(), new ElectricShock(), new FireAttack(), new GrassAttack(), new PsychicAttack()}, trainer1);
+        assertEquals(4, pokemon.getAbilitiesAmount());
     }
 
 }

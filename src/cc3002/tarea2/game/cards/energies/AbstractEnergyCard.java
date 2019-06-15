@@ -1,6 +1,5 @@
 package cc3002.tarea2.game.cards.energies;
 
-import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.cards.AbstractCard;
 import cc3002.tarea2.game.visitor.ICardVisitor;
 
@@ -10,13 +9,6 @@ import cc3002.tarea2.game.visitor.ICardVisitor;
  * @author Juan Urrutia
  */
 public abstract class AbstractEnergyCard extends AbstractCard implements IEnergyCard {
-
-    public AbstractEnergyCard(Trainer trainer) {
-        super(trainer);
-    }
-
-    public AbstractEnergyCard() {
-    }
 
     /**
      * {@inheritDoc}
@@ -31,11 +23,6 @@ public abstract class AbstractEnergyCard extends AbstractCard implements IEnergy
      * {@inheritDoc}
      */
     public abstract String getName();
-
-    @Override
-    public String toString() {
-        return "AbstractEnergyCard: " + this.getName();
-    }
 
     @Override
     public void accept(ICardVisitor visitor) {

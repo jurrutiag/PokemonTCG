@@ -1,6 +1,5 @@
 package cc3002.tarea2.game.cards.energies;
 
-import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
@@ -10,13 +9,6 @@ import cc3002.tarea2.game.visitor.ICardVisitor;
  */
 public class FireEnergyCard extends AbstractEnergyCard {
 
-
-    public FireEnergyCard(Trainer trainer) {
-        super(trainer);
-    }
-
-    public FireEnergyCard() {
-    }
 
     /**
      * {@inheritDoc}

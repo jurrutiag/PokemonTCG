@@ -102,29 +102,6 @@ public class EnergySet {
         return isIncluded;
     }
 
-    /**
-     * Adds an EnergySet to the current set.
-     * @param energySet The EnergySet to be added.
-     */
-    public void addTo(EnergySet energySet) {
-        for (EnergyType type : EnergyType.values()) {
-            energySet.energies.put(type, energySet.energies.get(type) + this.energies.get(type));
-        }
-    }
-
-    /**
-     * Removes an EnergySet from another, that is, subtraction of sets
-     * @param energySet The set from which this set will be removed.
-     */
-    public void beRemovedFrom(EnergySet energySet) {
-        for (EnergyType type : EnergyType.values()) {
-            if (energySet.energies.get(type) - this.energies.get(type) >= 0) {
-                energySet.energies.put(type, energySet.energies.get(type) - this.energies.get(type));
-            } else {
-                energySet.energies.put(type, 0);
-            }
-        }
-    }
 
     public void addElectricEnergy() {
         this.setElectricEnergies(this.getElectricEnergies() + 1);
@@ -149,6 +126,27 @@ public class EnergySet {
 
     public void addWaterEnergy() {
         this.setWaterEnergies(this.getWaterEnergies() + 1);
+    }
+
+    public int getTotalEnergies() {
+        int total = 0;
+        for (EnergyType energyType : energies.keySet()) {
+            total += energies.get(energyType);
+        }
+        return total;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof EnergySet) {
+            for (EnergyType energyType : energies.keySet()) {
+                if (((EnergySet) obj).energies.get(energyType) != this.energies.get(energyType)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 }

@@ -1,7 +1,7 @@
 package cc3002.tarea2.game.ability.attack;
 
-import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.EnergySet;
+import cc3002.tarea2.game.ability.IAbility;
 
 /**
  * IAttack interface gives all attack commond methods.
@@ -16,11 +16,9 @@ public interface IAttack extends IAbility {
      */
     public int getDamage();
 
-    /**
-     *
-     * @return Returns the description of the attack.
-     */
-    public String getDescription();
+    public void setDamage(int damage);
+
+
 
     /**
      *

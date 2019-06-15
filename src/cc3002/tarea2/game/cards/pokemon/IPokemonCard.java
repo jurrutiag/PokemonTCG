@@ -1,10 +1,11 @@
 package cc3002.tarea2.game.cards.pokemon;
 
-import cc3002.tarea2.game.*;
+import cc3002.tarea2.game.EnergySet;
+import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.cards.ICard;
-import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
+import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public interface IPokemonCard extends ICard {
     @Override
     String getName();
 
-    public IAbility[] getAbilities();
+    public ArrayList<IAbility> getAbilities();
 
     /**
      *
@@ -42,6 +43,7 @@ public interface IPokemonCard extends ICard {
      */
     void setHp(int hp);
 
+    public int getDamageCounters();
 
     /**
      *
@@ -143,6 +145,7 @@ public interface IPokemonCard extends ICard {
      */
     boolean checkEnergies(IAttack attack);
 
+    public int getMaxHp();
 
 
     /**
@@ -165,10 +168,13 @@ public interface IPokemonCard extends ICard {
 
     boolean objectsFull();
 
-    boolean associateObject(IObjectCard objectCard);
+    boolean associateObject(INonInstantObject objectCard);
 
     void setEnergies(EnergySet preevolutionEnergySet);
 
-    ArrayList<IObjectCard> getAssociatedObjects();
+    ArrayList<INonInstantObject> getAssociatedObjects();
 
+    void executeObjectEffect();
+
+    IAbility getAbility(int abilityIndex);
 }

@@ -1,10 +1,12 @@
 package cc3002.tarea2.game;
 
+import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.cards.ICard;
+import cc3002.tarea2.game.cards.NullCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.events.ActivePokemonDiedEvent;
-import cc3002.tarea2.game.events.IEvent;
 import cc3002.tarea2.game.searching.ISearchCardMethod;
+import cc3002.tarea2.game.visitor.IEventVisitable;
 import cc3002.tarea2.game.visitor.card.PlayVisitor;
 
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class Trainer extends Observable {
      */
     private ArrayList<ICard> discardPile;
 
+    private ArrayList<ICard> prizeCards;
+
     /**
      * The opponent of the actual AbstractTrainerCard in the game.
      */
@@ -54,12 +58,11 @@ public class Trainer extends Observable {
     private int abilityIndex;
 
 
-    //TODO implement prize cards.
     /**
      * Creates a AbstractTrainerCard with an empty hand and an empty bench.
      */
     public Trainer() {
-
+        prizeCards = new ArrayList<>();
         hand = new ArrayList<>();
         bench = new ArrayList<>();
         deck = new Deck(60, this);
@@ -69,22 +72,51 @@ public class Trainer extends Observable {
         abilityIndex = 0;
     }
 
-    public void notifyEvent(IEvent event) {
+    public void notifyEvent(IEventVisitable event) {
         setChanged();
         notifyObservers(event);
     }
 
     public void discard(ICard card) {
-        discardPile.add(card);
+        card.getDiscarded(this);
+    }
+
+    public void discardSelectedFromHand() {
+        this.discard(this.getSelectedCard());
+        this.hand.remove(this.getSelectedCard());
+    }
+
+    public ArrayList<ICard> getDiscardPile() {
+        return this.discardPile;
+    }
+
+    public void drawPrizeCard() {
+        if (this.prizeCards.size() < 6) {
+            prizeCards.add(this.deck.drawTopCards(1).get(0));
+        }
+    }
+
+    public ArrayList<ICard> getPrizeCards() {
+        return this.prizeCards;
     }
 
     /**
      * Draws a card from the deck and inserts it in the hand.
      */
     public void drawCard() {
-        if (!deck.isEmpty()) {
-            this.addCard(this.deck.drawCard());
-        }
+        this.drawTopCards(1);
+    }
+
+    public void drawTopCards(int i) {
+        hand.addAll(this.deck.drawTopCards(i));
+    }
+
+    public void addCardToDeck(ICard card) {
+        this.deck.addTopCard(card);
+    }
+
+    public int deckSize() {
+        return this.deck.getSize();
     }
 
     /**
@@ -116,6 +148,7 @@ public class Trainer extends Observable {
      */
     public void playCard() {
         PlayVisitor playVisitor = new PlayVisitor(this);
+
         hand.get(handCardSelected).accept(playVisitor);
 
         if (playVisitor.wasPlayedCorrectly()) {
@@ -125,11 +158,10 @@ public class Trainer extends Observable {
 
     /**
      * Swaps the active AbstractPokemonCard for another one in the bench.
-     * @param benchIndex The bench index where the AbstractPokemonCard that will be put as active is.
      */
-    public void swapActivePokemon(int benchIndex) {
-        if (bench.size() > benchIndex) {
-            Collections.swap(bench, 0, benchIndex);
+    public void swapActivePokemon() {
+        if (bench.size() > this.benchPokemonSelected) {
+            Collections.swap(bench, 0, this.benchPokemonSelected);
         }
     }
 
@@ -155,6 +187,10 @@ public class Trainer extends Observable {
      */
     public int handSize() {
         return hand.size();
+    }
+
+    public Deck getDeck() {
+        return this.deck;
     }
 
     /**
@@ -206,6 +242,7 @@ public class Trainer extends Observable {
      * @param card The ICard to be added.
      */
     public void addCard(ICard card) {
+        card.setTrainer(this);
         hand.add(card);
     }
 
@@ -235,12 +272,15 @@ public class Trainer extends Observable {
     }
 
     public ICard getSelectedCard() {
-        return hand.get(handCardSelected);
+        if (hand.size() > handCardSelected) {
+            return hand.get(handCardSelected);
+        }
+        return new NullCard();
     }
 
     public void pokemonDied(IPokemonCard pokemonCard) {
         if (pokemonCard == this.getActivePokemon()) {
-            this.notifyEvent(new ActivePokemonDiedEvent(pokemonCard));
+            this.notifyEvent(new ActivePokemonDiedEvent());
         }
         discard(pokemonCard);
         bench.remove(pokemonCard);
@@ -255,6 +295,22 @@ public class Trainer extends Observable {
             }
         }
         return result;
+    }
+
+    public ICard getLastDiscardedCard() {
+        return this.discardPile.get(this.discardPile.size() - 1);
+    }
+
+    public void drawBottomCards(int i) {
+        this.hand.addAll(this.deck.drawBottomCards(i));
+    }
+
+    public IAbility getSelectedAbility() {
+        return getActivePokemon().getAbility(this.abilityIndex);
+    }
+
+    public void clearBench() {
+        this.bench = new ArrayList<>();
     }
 
 //    public ArrayList<IPokemonCard> searchBench(ISearchCardMethod searchMethod) {

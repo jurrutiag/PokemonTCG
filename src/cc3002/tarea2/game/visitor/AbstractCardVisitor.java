@@ -2,14 +2,15 @@ package cc3002.tarea2.game.visitor;
 
 import cc3002.tarea2.game.cards.energies.*;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.types.*;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase1Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;
 import cc3002.tarea2.game.cards.trainer.ITrainerCard;
+import cc3002.tarea2.game.cards.trainer.object.IInstantObject;
+import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
 import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
-import cc3002.tarea2.game.events.ActivePokemonDiedEvent;
-import cc3002.tarea2.game.events.AttackEvent;
+import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
+import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 
 public abstract class AbstractCardVisitor implements ICardVisitor {
     @Override
@@ -18,19 +19,6 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
     public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) {}
     @Override
     public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) {}
-
-    @Override
-    public void visitElectricPokemon(IElectricPokemon electricPokemon) {}
-    @Override
-    public void visitFightingPokemon(IFightingPokemon fightingPokemon) {}
-    @Override
-    public void visitFirePokemon(IFirePokemon firePokemon) {}
-    @Override
-    public void visitGrassPokemon(IGrassPokemon grassPokemon) {}
-    @Override
-    public void visitPsychicPokemon(IPsychicPokemon psychicPokemon) {}
-    @Override
-    public void visitWaterPokemon(IWaterPokemon waterPokemon) {}
 
     @Override
     public void visitElectricEnergyCard(ElectricEnergyCard electricEnergyCard) {}
@@ -54,9 +42,15 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
 
     @Override
     public void visitObjectCard(IObjectCard objectCard) {}
+    @Override
+    public void visitSupportCard(ISupportCard supportCard) {}
+    @Override
+    public void visitStadiumCard(IStadiumCard stadiumCard) {}
 
     @Override
-    public void visitActivePokemonDiedEvent(ActivePokemonDiedEvent activePokemonDiedEvent) {}
+    public void visitInstantObjectCard(IInstantObject abstractInstantObject) {}
+
     @Override
-    public void visitAttackEvent(AttackEvent attackEvent) {}
+    public void visitNonInstantObjectCard(INonInstantObject abstractNonInstantObject) {}
+
 }

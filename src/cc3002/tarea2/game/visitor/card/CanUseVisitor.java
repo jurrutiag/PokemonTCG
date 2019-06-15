@@ -15,10 +15,6 @@ public class CanUseVisitor extends AbstractCardVisitor {
         this.canUseCard = true;
     }
 
-    public int getEnergyCardsUsed() {
-        return energyCardsUsed;
-    }
-
     public void energyCardUsed() {
         energyCardsUsed++;
     }

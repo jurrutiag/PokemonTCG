@@ -8,11 +8,12 @@ import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase1Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhasePokemon;
-import cc3002.tarea2.game.cards.trainer.ITrainerCard;
-import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
+import cc3002.tarea2.game.cards.trainer.object.IInstantObject;
+import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
+import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
+import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 import cc3002.tarea2.game.events.EnergyCardPlayedEvent;
-import cc3002.tarea2.game.events.PokemonCardPlayedEvent;
-import cc3002.tarea2.game.events.TrainerCardPlayedEvent;
+import cc3002.tarea2.game.events.StadiumCardPlayedEvent;
 import cc3002.tarea2.game.searching.methods.SearchPokemonByID;
 import cc3002.tarea2.game.visitor.AbstractCardVisitor;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class PlayVisitor extends AbstractCardVisitor {
 
-    private boolean playedCorrectly = false;
+    private boolean playedCorrectly = true;
     private Trainer trainer;
 
     public PlayVisitor(Trainer trainer) {
@@ -30,32 +31,26 @@ public class PlayVisitor extends AbstractCardVisitor {
     @Override
     public void visitElectricEnergyCard(ElectricEnergyCard electricEnergyCard) {
         trainer.getSelectedPokemon().addElectricEnergy();
-        playedCorrectly = true;
     }
     @Override
     public void visitFightingEnergyCard(FightingEnergyCard fightingEnergyCard) {
         trainer.getSelectedPokemon().addFightingEnergy();
-        playedCorrectly = true;
     }
     @Override
     public void visitFireEnergyCard(FireEnergyCard fireEnergyCard) {
         trainer.getSelectedPokemon().addFireEnergy();
-        playedCorrectly = true;
     }
     @Override
     public void visitGrassEnergyCard(GrassEnergyCard grassEnergyCard) {
         trainer.getSelectedPokemon().addGrassEnergy();
-        playedCorrectly = true;
     }
     @Override
     public void visitPsychicEnergyCard(PsychicEnergyCard psychicEnergyCard) {
         trainer.getSelectedPokemon().addPsychicEnergy();
-        playedCorrectly = true;
     }
     @Override
     public void visitWaterEnergyCard(WaterEnergyCard waterEnergyCard) {
         trainer.getSelectedPokemon().addWaterEnergy();
-        playedCorrectly = true;
     }
 
     @Override
@@ -67,6 +62,8 @@ public class PlayVisitor extends AbstractCardVisitor {
         ArrayList<IPokemonCard> preevolutions = this.trainer.search(new SearchPokemonByID(phasePokemon.getPreevolutionId()), this.trainer.getBench());
         if (!preevolutions.isEmpty()) {
             EnergySet preevolutionEnergySet = preevolutions.get(0).getEnergySet();
+            preevolutions.get(0).setEnergies(new EnergySet());
+            this.trainer.discard(preevolutions.get(0));
             this.trainer.getBench().remove(preevolutions.get(0));
             phasePokemon.setEnergies(preevolutionEnergySet);
             this.trainer.getBench().add(phasePokemon);
@@ -87,23 +84,35 @@ public class PlayVisitor extends AbstractCardVisitor {
     }
 
     @Override
-    public void visitObjectCard(IObjectCard objectCard) {
+    public void visitNonInstantObjectCard(INonInstantObject objectCard) {
         playedCorrectly = this.trainer.getSelectedPokemon().associateObject(objectCard);
     }
 
+    //TODO: discard instant obj
     @Override
-    public void visitPokemonCard(IPokemonCard pokemonCard) {
-        this.trainer.notifyEvent(new PokemonCardPlayedEvent(pokemonCard));
+    public void visitInstantObjectCard(IInstantObject objectCard) {
+        objectCard.executeEffect();
+        trainer.discard(objectCard);
     }
 
     @Override
     public void visitEnergyCard(IEnergyCard energyCard) {
-        this.trainer.notifyEvent(new EnergyCardPlayedEvent(energyCard));
+        if (this.trainer.getBench().size() > 0) {
+            this.trainer.notifyEvent(new EnergyCardPlayedEvent());
+        } else {
+            playedCorrectly = false;
+        }
     }
 
     @Override
-    public void visitTrainerCard(ITrainerCard trainerCard) {
-        this.trainer.notifyEvent(new TrainerCardPlayedEvent(trainerCard));
+    public void visitSupportCard(ISupportCard supportCard) {
+        supportCard.executeEffect();
+        trainer.discard(supportCard);
+    }
+
+    @Override
+    public void visitStadiumCard(IStadiumCard stadiumCard) {
+        trainer.notifyEvent(new StadiumCardPlayedEvent(stadiumCard));
     }
 
     public boolean wasPlayedCorrectly() {

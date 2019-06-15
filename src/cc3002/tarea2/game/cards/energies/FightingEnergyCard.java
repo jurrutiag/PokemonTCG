@@ -1,6 +1,5 @@
 package cc3002.tarea2.game.cards.energies;
 
-import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.visitor.ICardVisitor;
 
 /**
@@ -9,13 +8,6 @@ import cc3002.tarea2.game.visitor.ICardVisitor;
  * @author Juan Urrutia
  */
 public class FightingEnergyCard extends AbstractEnergyCard {
-
-    public FightingEnergyCard(Trainer trainer) {
-        super(trainer);
-    }
-
-    public FightingEnergyCard() {
-    }
 
     /**
      * {@inheritDoc}
