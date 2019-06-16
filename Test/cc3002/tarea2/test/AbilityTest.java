@@ -2,16 +2,18 @@ package cc3002.tarea2.test;
 
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
+import cc3002.tarea2.game.ability.implemented_abilities.Heal;
 import cc3002.tarea2.game.ability.implemented_abilities.InstantAbility;
 import cc3002.tarea2.game.ability.implemented_abilities.WingBuzz;
 import cc3002.tarea2.game.cards.energies.ElectricEnergyCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FightingTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class AbilityTest {
 
@@ -72,5 +74,17 @@ public class AbilityTest {
         trainer1.selectAbility(0);
         trainer1.useAbility();
 
+    }
+
+    @Test
+    public void testHeal() {
+        trainer1.addCard(new ElectricTypePokemonCard(100, new IAbility[] {new Heal()}, trainer1));
+        trainer1.selectHandCard(0);
+        trainer1.playCard();
+        trainer1.getActivePokemon().receiveDamage(50);
+        assertEquals(50, trainer1.getActivePokemon().getHp());
+        trainer1.selectAbility(0);
+        trainer1.useAbility();
+        assertTrue(trainer1.getActivePokemon().getHp() == 60 || trainer1.getActivePokemon().getHp() == 50);
     }
 }

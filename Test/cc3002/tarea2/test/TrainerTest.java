@@ -9,11 +9,11 @@ import cc3002.tarea2.game.ability.attack.implemented_attacks.testing_attacks.Str
 import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.energies.*;
 import cc3002.tarea2.game.cards.pokemon.AbstractPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FireTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.GrassTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.phase1.ElectricPhase1PokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.phase2.ElectricPhase2PokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FireTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.GrassTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase1.ElectricPhase1PokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase2.ElectricPhase2PokemonCard;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase1Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;

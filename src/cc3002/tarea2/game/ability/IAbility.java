@@ -1,7 +1,7 @@
 package cc3002.tarea2.game.ability;
 
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.visitor.IAbilityVisitable;
+import cc3002.tarea2.game.visitor.ability.IAbilityVisitable;
 import cc3002.tarea2.game.visitor.IEventVisitable;
 
 /**
@@ -22,7 +22,15 @@ public interface IAbility extends IAbilityVisitable {
      */
     public String getDescription();
 
+    /**
+     *
+     * @return Returns the event that will be broadcast.
+     */
     IEventVisitable getEvent();
 
+    /**
+     * Executes the ability effect.
+     * @param pokemonCard the pokemon that executes the effect.
+     */
     public void executeEffect(IPokemonCard pokemonCard);
 }

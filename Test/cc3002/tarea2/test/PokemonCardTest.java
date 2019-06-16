@@ -7,7 +7,7 @@ import cc3002.tarea2.game.ability.attack.implemented_attacks.ElectricShock;
 import cc3002.tarea2.game.ability.attack.implemented_attacks.testing_attacks.*;
 import cc3002.tarea2.game.cards.energies.*;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.*;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import org.junit.Before;
 import org.junit.Test;

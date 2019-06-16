@@ -1,4 +1,4 @@
-package cc3002.tarea2.game.cards.pokemon.implemented_pokemons.phase1;
+package cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase1;
 
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
@@ -7,7 +7,7 @@ import cc3002.tarea2.game.cards.pokemon.types.phases.phase1.FirePhase1Pokemon;
 
 
 /**
- * Fire Type pokemon class created for testing, represents a fire pokemon.
+ * Class that represents a phase 1 fire pokemon.
  *
  * @author Juan Urrutia
  */

@@ -3,21 +3,25 @@ package cc3002.tarea2.test;
 import cc3002.tarea2.game.EnergySet;
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FightingTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.WaterTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.WaterTypePokemonCard;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.PotionObject;
+import cc3002.tarea2.game.cards.trainer.stadium.implemented_stadium.LuckyStadium;
+import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorCozmoDiscovery;
+import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorJuniper;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-public class ObjectTest {
+public class TrainerCardTest {
 
     private ExpShareObject expShareObject;
     private PotionObject potionObject;
+    private LuckyStadium luckyStadium;
 
     private Trainer trainer1;
     private Trainer trainer2;
@@ -30,6 +34,7 @@ public class ObjectTest {
     public void setUp() {
         expShareObject = new ExpShareObject();
         potionObject = new PotionObject();
+        luckyStadium = new LuckyStadium();
 
         electricPokemon = new ElectricTypePokemonCard(100, new IAbility[] {}, trainer1);
         waterPokemon = new WaterTypePokemonCard(trainer1);
@@ -83,6 +88,30 @@ public class ObjectTest {
         assertEquals(2, trainer1.getDiscardPile().size());
 
         assertEquals(90, trainer1.getActivePokemon().getHp());
+    }
+
+    @Test
+    public void testLuckyStadium() {
+        luckyStadium.executeEffect(trainer1);
+        // Better test on controller test.
+        assertTrue(trainer1.handSize() == 1 || trainer1.handSize() == 0);
+    }
+
+    @Test
+    public void testProfCozmoDiscovery() {
+        trainer1.addCard(new ProfessorCozmoDiscovery());
+        assertEquals(1, trainer1.handSize());
+        trainer1.playCard();
+
+        assertTrue(trainer1.handSize() == 3 || trainer1.handSize() == 2);
+    }
+
+    @Test
+    public void testProfJuniper() {
+        trainer1.addCard(new ProfessorJuniper());
+        assertEquals(1, trainer1.handSize());
+        trainer1.playCard();
+        assertEquals(7, trainer1.handSize());
     }
 
 }

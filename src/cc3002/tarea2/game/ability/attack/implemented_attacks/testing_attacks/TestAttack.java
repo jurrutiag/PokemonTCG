@@ -4,7 +4,7 @@ import cc3002.tarea2.game.EnergySet;
 import cc3002.tarea2.game.ability.attack.AbstractAttack;
 
 /**
- * TestAttack represents an attack made for testing double dispatch on implemented_pokemons.
+ * TestAttack represents an attack made for testing double dispatch on testing_pokemons.
  *
  * @author Juan Urrutia
  */

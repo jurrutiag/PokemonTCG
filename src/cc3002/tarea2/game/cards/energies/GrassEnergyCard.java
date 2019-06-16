@@ -1,6 +1,6 @@
 package cc3002.tarea2.game.cards.energies;
 
-import cc3002.tarea2.game.visitor.ICardVisitor;
+import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
  * Class representing a grass energy for the Pokemons to be binded allowing them to cast abilities.
@@ -19,6 +19,9 @@ public class GrassEnergyCard extends AbstractEnergyCard {
         return "GrassEnergyCard";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void accept(ICardVisitor visitor) {
         super.accept(visitor);

@@ -4,8 +4,8 @@ import cc3002.tarea2.game.EnergySet;
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.energies.*;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FightingTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
 import org.junit.Before;
 import org.junit.Test;
 

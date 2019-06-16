@@ -2,7 +2,16 @@ package cc3002.tarea2.game.cards.trainer.support.implemented_support;
 
 import cc3002.tarea2.game.cards.trainer.support.AbstractSupportCard;
 
+/**
+ * Professor Cozmo Discovery support card.
+ *
+ * @author Juan Urrutia
+ */
 public class ProfessorCozmoDiscovery extends AbstractSupportCard {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void executeEffect() {
         double coin = Math.random();
@@ -13,11 +22,17 @@ public class ProfessorCozmoDiscovery extends AbstractSupportCard {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() {
         return "Throw a coin, if it lands heads, draw the 3 bottom cards of your deck, if it lands tails, draw the 2 first.";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return "Professor Cozmo's Discovery";

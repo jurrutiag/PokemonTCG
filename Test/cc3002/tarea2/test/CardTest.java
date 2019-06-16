@@ -7,7 +7,7 @@ import cc3002.tarea2.game.cards.pokemon.AbstractPokemonCard;
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.attack.implemented_attacks.testing_attacks.ElectricAttack;
 import cc3002.tarea2.game.cards.energies.*;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.*;
 import org.junit.Before;
 import org.junit.Test;
 

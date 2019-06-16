@@ -8,8 +8,8 @@ import cc3002.tarea2.game.ability.attack.implemented_attacks.ElectricShock;
 import cc3002.tarea2.game.ability.attack.implemented_attacks.testing_attacks.*;
 import cc3002.tarea2.game.cards.energies.ElectricEnergyCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FightingTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
 import org.junit.Before;
 import org.junit.Test;
 

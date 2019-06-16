@@ -1,4 +1,4 @@
-package cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic;
+package cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic;
 
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;

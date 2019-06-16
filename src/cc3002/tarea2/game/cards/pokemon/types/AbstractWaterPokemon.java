@@ -34,7 +34,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receiveGrassAttack(IAttack attack) {
@@ -43,7 +42,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receiveFireAttack(IAttack attack) {
@@ -52,7 +50,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receiveWaterAttack(IAttack attack) {
@@ -61,7 +58,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receiveElectricAttack(IAttack attack) {
@@ -70,7 +66,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receiveFightingAttack(IAttack attack) {
@@ -79,7 +74,6 @@ public abstract class AbstractWaterPokemon extends AbstractPokemonCard implement
 
     /**
      * {@inheritDoc}
-     * @param attack
      */
     @Override
     public void receivePsychicAttack(IAttack attack) {

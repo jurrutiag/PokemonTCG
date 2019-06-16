@@ -36,6 +36,9 @@ public class Trainer extends Observable {
      */
     private ArrayList<ICard> discardPile;
 
+    /**
+     * The trainer's prize cards
+     */
     private ArrayList<ICard> prizeCards;
 
     /**
@@ -53,8 +56,14 @@ public class Trainer extends Observable {
      */
     private int benchPokemonSelected;
 
+    /**
+     * Index of the card that is selected in the hand.
+     */
     private int handCardSelected;
 
+    /**
+     * Selected index of active pokemon ability.
+     */
     private int abilityIndex;
 
 
@@ -72,30 +81,52 @@ public class Trainer extends Observable {
         abilityIndex = 0;
     }
 
+    /**
+     * Notifies the trainer's observers of an event.
+     * @param event the event to be notified.
+     */
     public void notifyEvent(IEventVisitable event) {
         setChanged();
         notifyObservers(event);
     }
 
+    /**
+     * Sends a card to the discard pile (doesn't removes it from anywhere)
+     * @param card the card to be discarded.
+     */
     public void discard(ICard card) {
         card.getDiscarded(this);
     }
 
+    /**
+     * Discards the selected card from the hand. It also removes it.
+     */
     public void discardSelectedFromHand() {
         this.discard(this.getSelectedCard());
         this.hand.remove(this.getSelectedCard());
     }
 
+    /**
+     *
+     * @return Returns the discard pile.
+     */
     public ArrayList<ICard> getDiscardPile() {
         return this.discardPile;
     }
 
+    /**
+     * Draws a new prize card.
+     */
     public void drawPrizeCard() {
         if (this.prizeCards.size() < 6) {
             prizeCards.add(this.deck.drawTopCards(1).get(0));
         }
     }
 
+    /**
+     *
+     * @return Returns the prize cards.
+     */
     public ArrayList<ICard> getPrizeCards() {
         return this.prizeCards;
     }
@@ -107,14 +138,26 @@ public class Trainer extends Observable {
         this.drawTopCards(1);
     }
 
+    /**
+     * Draws the first i top cards.
+     * @param i the number of cards to be drawn.
+     */
     public void drawTopCards(int i) {
         hand.addAll(this.deck.drawTopCards(i));
     }
 
+    /**
+     * Adds a card to the deck.
+     * @param card The card to be added.
+     */
     public void addCardToDeck(ICard card) {
         this.deck.addTopCard(card);
     }
 
+    /**
+     *
+     * @return Returns the deck's actual size.
+     */
     public int deckSize() {
         return this.deck.getSize();
     }
@@ -137,6 +180,10 @@ public class Trainer extends Observable {
         }
     }
 
+    /**
+     * Selects a card from the hand.
+     * @param index The index of the card to be selected.
+     */
     public void selectHandCard(int index) {
         if (index < handSize()) {
             handCardSelected = index;
@@ -149,10 +196,12 @@ public class Trainer extends Observable {
     public void playCard() {
         PlayVisitor playVisitor = new PlayVisitor(this);
 
-        hand.get(handCardSelected).accept(playVisitor);
+        ICard playCard = hand.get(handCardSelected);
+
+        playCard.accept(playVisitor);
 
         if (playVisitor.wasPlayedCorrectly()) {
-            hand.remove(handCardSelected);
+            hand.remove(playCard);
         }
     }
 
@@ -189,6 +238,10 @@ public class Trainer extends Observable {
         return hand.size();
     }
 
+    /**
+     *
+     * @return Returns the deck.
+     */
     public Deck getDeck() {
         return this.deck;
     }
@@ -201,6 +254,10 @@ public class Trainer extends Observable {
         return bench.get(0);
     }
 
+    /**
+     * Selects one of four abilities.
+     * @param index the index of the ability.
+     */
     public void selectAbility(int index) {
         if (index < 4) {
             abilityIndex = index;
@@ -267,10 +324,18 @@ public class Trainer extends Observable {
         return false;
     }
 
+    /**
+     *
+     * @return Returns the selected bench pokemon
+     */
     public IPokemonCard getSelectedPokemon() {
         return bench.get(benchPokemonSelected);
     }
 
+    /**
+     *
+     * @return Returns the selected hand card.
+     */
     public ICard getSelectedCard() {
         if (hand.size() > handCardSelected) {
             return hand.get(handCardSelected);
@@ -278,6 +343,10 @@ public class Trainer extends Observable {
         return new NullCard();
     }
 
+    /**
+     * Notifies and discard a pokemon if it dies.
+     * @param pokemonCard the pokemon that died.
+     */
     public void pokemonDied(IPokemonCard pokemonCard) {
         if (pokemonCard == this.getActivePokemon()) {
             this.notifyEvent(new ActivePokemonDiedEvent());
@@ -287,6 +356,13 @@ public class Trainer extends Observable {
     }
 
 
+    /**
+     * Method for searching in an ArrayList.
+     * @param searchMethod the search method.
+     * @param searchPlace the ArrayList to search.
+     * @param <T> Generic used to avoid duplication of code for ICard and IPokemonCard (hand and bench)
+     * @return Returns an ArrayList with all the <T> objects that fulfill the requirements.
+     */
     public <T> ArrayList<T> search(ISearchCardMethod<T> searchMethod, ArrayList<T> searchPlace) {
         ArrayList<T> result = new ArrayList<>();
         for (T element : searchPlace) {
@@ -297,42 +373,35 @@ public class Trainer extends Observable {
         return result;
     }
 
+    /**
+     *
+     * @return Returns the last discarded card.
+     */
     public ICard getLastDiscardedCard() {
         return this.discardPile.get(this.discardPile.size() - 1);
     }
 
+    /**
+     * Draws i cards from the bottom of the deck.
+     * @param i the number of cards to be drawn.
+     */
     public void drawBottomCards(int i) {
         this.hand.addAll(this.deck.drawBottomCards(i));
     }
 
+    /**
+     *
+     * @return Returns the selected ability.
+     */
     public IAbility getSelectedAbility() {
         return getActivePokemon().getAbility(this.abilityIndex);
     }
 
+    /**
+     * Removes all pokemons from the bench.
+     */
     public void clearBench() {
         this.bench = new ArrayList<>();
     }
-
-//    public ArrayList<IPokemonCard> searchBench(ISearchCardMethod searchMethod) {
-//        ArrayList<IPokemonCard> result = new ArrayList<>();
-//        for (IPokemonCard pokemon : this.bench) {
-//            if (searchMethod.match(pokemon)) {
-//                result.add(pokemon);
-//            }
-//        }
-//        return result;
-//    }
-//
-//    //TODO: remove code duplication of search on trainer
-//
-//    public ArrayList<ICard> searchHand(ISearchCardMethod searchMethod) {
-//        ArrayList<ICard> result = new ArrayList<>();
-//        for (ICard card : this.hand) {
-//            if (searchMethod.match(card)) {
-//                result.add(card);
-//            }
-//        }
-//        return result;
-//    }
 
 }

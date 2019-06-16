@@ -6,7 +6,7 @@ import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.cards.AbstractCard;
 import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
-import cc3002.tarea2.game.visitor.ICardVisitor;
+import cc3002.tarea2.game.visitor.card.ICardVisitor;
 import cc3002.tarea2.game.visitor.ability.PerformAbilityVisitor;
 
 import java.util.ArrayList;
@@ -18,36 +18,44 @@ import java.util.ArrayList;
  */
 public abstract class AbstractPokemonCard extends AbstractCard implements IPokemonCard {
 
+    /**
+     * Pokemon's max hp
+     */
     private int maxHp;
+
     /**
      * Ammount of health a AbstractPokemonCard currently has, zero hp means the AbstractPokemonCard is dead.
      */
     private int hp;
+
     /**
      * AbstractPokemonCard unique identificator.
      */
     private int id;
+
     /**
      * AbstractPokemonCard name, can be repeated on Pokemons with different ids.
      */
     private String name;
+
     /**
      * An array with the abilities the AbstractPokemonCard has.
      */
-    //TODO: largo 4 abilities
     private ArrayList<IAbility> abilities = new ArrayList<>();
+
     /**
      * An energy set that contains the energies assigned to the AbstractPokemonCard.
      */
     private EnergySet energies;
 
+    /**
+     * the objects that the pokemon can hold (maximum one).
+     */
     private ArrayList<INonInstantObject> objectCards;
 
 
-    //TODO: Make evolutions
-
     /**
-     * Creates a AbstractPokemonCard with a certain amount of hp, a set of abilities and an assigned trainer.
+     * Creates an AbstractPokemonCard with a certain amount of hp, a set of abilities and an assigned trainer.
      * @param maxHp Current health of the AbstractPokemonCard.
      * @param id The AbstractPokemonCard identifier.
      * @param abilities Set of abilities that the pokemon has with a maximum length of 4.
@@ -67,6 +75,9 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
         energies = new EnergySet();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArrayList<IAbility> getAbilities() {
         return this.abilities;
@@ -80,6 +91,9 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
         return this.hp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMaxHp() {
         return this.maxHp;
@@ -110,24 +124,30 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
 
     }
 
-//    /**
-//     * {@inheritDoc}
-//     * @param trainer
-//     */
-//    @Override
-//    public boolean bePlayedBy(AbstractTrainerCard trainer) {
-//        return trainer.addPokemonToBench(this);
-//    }
-
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setAbilities(IAbility[] abilities) {
         for (int i = 0; i < 4 && i < abilities.length; i ++) {
             this.abilities.add(abilities[i]);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getDamageCounters() {
         return (this.maxHp - this.hp) / 10;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeDamageCounters(int i) {
+        this.setHp(this.hp + i * 10);
     }
 
     /**
@@ -160,7 +180,10 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
         }
     }
 
-    public void died() {
+    /**
+     * Sends a message to the trainer that this pokemon died.
+     */
+    private void died() {
         this.getTrainer().pokemonDied(this);
     }
 
@@ -216,41 +239,65 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addElectricEnergy() {
         energies.addElectricEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addFightingEnergy() {
         energies.addFightingEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addFireEnergy() {
         energies.addFireEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addGrassEnergy() {
         energies.addGrassEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPsychicEnergy() {
         energies.addPsychicEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addWaterEnergy() {
         energies.addWaterEnergy();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean objectsFull() {
         return objectCards.size() >= 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean associateObject(INonInstantObject objectCard) {
         if (!objectsFull()) {
@@ -261,26 +308,41 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void accept(ICardVisitor visitor) {
         visitor.visitPokemonCard(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setEnergies(EnergySet energySet) {
         this.energies = energySet;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArrayList<INonInstantObject> getAssociatedObjects() {
         return this.objectCards;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void executeObjectEffect() {
         this.getAssociatedObjects().get(0).executeEffect();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IAbility getAbility(int index) {
         return this.getAbilities().get(index);

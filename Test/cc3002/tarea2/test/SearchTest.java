@@ -1,7 +1,7 @@
 package cc3002.tarea2.test;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.*;
 import cc3002.tarea2.game.searching.methods.SearchPokemonByID;
 import org.junit.Before;
 import org.junit.Test;

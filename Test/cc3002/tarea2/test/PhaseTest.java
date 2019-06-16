@@ -1,9 +1,9 @@
 package cc3002.tarea2.test;
 
 import cc3002.tarea2.game.Trainer;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.*;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.phase1.*;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.phase2.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase1.*;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase2.*;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase1Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;

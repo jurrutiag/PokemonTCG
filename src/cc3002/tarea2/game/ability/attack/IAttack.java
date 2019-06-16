@@ -16,6 +16,10 @@ public interface IAttack extends IAbility {
      */
     public int getDamage();
 
+    /**
+     * Sets the damage of the attack
+     * @param damage the damage to set.
+     */
     public void setDamage(int damage);
 
 

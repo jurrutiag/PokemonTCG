@@ -8,9 +8,9 @@ import cc3002.tarea2.game.ability.implemented_abilities.InstantAbility;
 import cc3002.tarea2.game.ability.implemented_abilities.WingBuzz;
 import cc3002.tarea2.game.cards.energies.ElectricEnergyCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.FightingTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.implemented_pokemons.basic.WaterTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
+import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.WaterTypePokemonCard;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.stadium.implemented_stadium.LuckyStadium;
@@ -63,11 +63,6 @@ public class GameControllerTest {
         assertEquals(trainer1, controller.getOpponent());
         controller.nextTurn();
         assertEquals(trainer2, controller.getOpponent());
-    }
-
-    @Test
-    public void getCanUseVisitor() {
-
     }
 
     @Test
