@@ -10,14 +10,6 @@ import cc3002.tarea2.game.visitor.card.ICardVisitor;
  */
 public abstract class AbstractEnergyCard extends AbstractCard implements IEnergyCard {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isActivelySelectable() {
-        return false;
-    }
-
 
     /**
      * {@inheritDoc}

@@ -19,7 +19,6 @@ public class EnergySet {
      * Creates an energy set with predefined zero values.
      */
     public EnergySet() {
-        //TODO review the possibility of changing EnergySet implementation.
         energies = new EnumMap<>(EnergyType.class);
 
         for (EnergyType type : EnergyType.values()) {

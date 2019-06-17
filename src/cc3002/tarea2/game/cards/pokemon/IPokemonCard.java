@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * @author Juan Urrutia
  */
 public interface IPokemonCard extends ICard {
-    //TODO: public on all methods
 
     /**
      *
@@ -59,11 +58,6 @@ public interface IPokemonCard extends ICard {
      */
     int getAbilitiesAmount();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    boolean isActivelySelectable();
 
     /**
      * Deals damage to the AbstractPokemonCard that receives the message.

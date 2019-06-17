@@ -162,14 +162,6 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      * {@inheritDoc}
      */
     @Override
-    public boolean isActivelySelectable() {
-        return this.hp != 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void receiveDamage(int damage) {
         if (damage > 0) {
             hp -= damage;

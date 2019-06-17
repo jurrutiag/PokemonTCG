@@ -9,13 +9,6 @@ import cc3002.tarea2.game.visitor.card.ICardVisitable;
  * @author Juan Urrutia
  */
 public interface ICard extends ICardVisitable {
-    /**
-     * Checks if the card can be used as an active pokemon, in this case,
-     * the card is an AbstractEnergyCard so the answer is always no.
-     *
-     * @return Boolean value that represents if the card is selectable as active pokemon.
-     */
-    public boolean isActivelySelectable();
 
     /**
      *
@@ -35,12 +28,6 @@ public interface ICard extends ICardVisitable {
      */
     public Trainer getTrainer();
 
-    //TODO: revisar esto
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString();
 
     /**
      * Gets this card discarded by a trainer.

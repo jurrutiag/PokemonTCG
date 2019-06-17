@@ -53,23 +53,6 @@ public class CardTest {
     }
 
     @Test
-    public void isActivelySelectable() {
-        assertFalse(electricEnergyCard.isActivelySelectable());
-        assertFalse(fightingEnergyCard.isActivelySelectable());
-        assertFalse(fireEnergyCard.isActivelySelectable());
-        assertFalse(grassEnergyCard.isActivelySelectable());
-        assertFalse(psychicEnergyCard.isActivelySelectable());
-        assertFalse(waterEnergyCard.isActivelySelectable());
-
-        assertTrue(electricPokemonCard.isActivelySelectable());
-        assertTrue(fightingPokemonCard.isActivelySelectable());
-        assertTrue(firePokemonCard.isActivelySelectable());
-        assertTrue(grassPokemonCard.isActivelySelectable());
-        assertTrue(psychicPokemonCard.isActivelySelectable());
-        assertTrue(waterPokemonCard.isActivelySelectable());
-    }
-
-    @Test
     public void discarded() {
         trainer1.addCard(electricEnergyCard);
         trainer1.addCard(fightingEnergyCard);

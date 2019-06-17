@@ -42,8 +42,6 @@ public class TrainerTest {
 
     private ICard electricPokemon;
 
-    //TODO: tests for discarded cards.
-
     @Before
     public void setUp() {
         trainer1 = new Trainer();
@@ -107,7 +105,6 @@ public class TrainerTest {
         assertEquals(new GrassTypePokemonCard(50, attacks, trainer1).getId(), trainer1.getActivePokemon().getId());
     }
 
-    //TODO make tests for abilities too.
     @Test
     public void useAbility() throws Exception {
         trainer1.addCard(new GrassTypePokemonCard(50, attacks, trainer1));

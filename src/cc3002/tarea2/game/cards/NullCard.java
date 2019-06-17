@@ -14,14 +14,6 @@ public class NullCard extends AbstractCard {
      * {@inheritDoc}
      */
     @Override
-    public boolean isActivelySelectable() {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getName() {
         return "";
     }
