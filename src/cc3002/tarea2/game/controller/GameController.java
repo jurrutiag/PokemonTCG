@@ -118,6 +118,13 @@ public class GameController implements Observer, IEventVisitor {
     }
 
     /**
+     * Discards the selected card from the trainer playing.
+     */
+    public void discardSelected() {
+        this.getTrainerPlaying().discardSelectedFromHand();
+    }
+
+    /**
      *
      * @return Returns the player's hand.
      */
@@ -225,6 +232,11 @@ public class GameController implements Observer, IEventVisitor {
     @Override
     public void visitStadiumCardPlayed(StadiumCardPlayedEvent stadiumCardPlayed) {
         this.stadiumCard = stadiumCardPlayed.getStadiumCard();
+    }
+
+    @Override
+    public void visitSupportCardPlayed(SupportCardPlayedEvent supportCardPlayedEvent) {
+        this.getCanUseVisitor().supportCardUsed();
     }
 
     /**

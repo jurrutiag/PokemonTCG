@@ -15,6 +15,7 @@ import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 import cc3002.tarea2.game.events.EnergyCardPlayedEvent;
 import cc3002.tarea2.game.events.StadiumCardPlayedEvent;
+import cc3002.tarea2.game.events.SupportCardPlayedEvent;
 import cc3002.tarea2.game.searching.methods.SearchPokemonByID;
 
 import java.util.ArrayList;
@@ -179,6 +180,7 @@ public class PlayVisitor extends AbstractCardVisitor {
     public void visitSupportCard(ISupportCard supportCard) {
         supportCard.executeEffect();
         trainer.discard(supportCard);
+        trainer.notifyEvent(new SupportCardPlayedEvent());
     }
 
     /**

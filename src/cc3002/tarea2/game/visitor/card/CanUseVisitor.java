@@ -3,6 +3,7 @@ package cc3002.tarea2.game.visitor.card;
 import cc3002.tarea2.game.cards.energies.IEnergyCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.cards.trainer.ITrainerCard;
+import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 
 /**
  * Class that checks if a card can be used using visitor pattern.
@@ -15,6 +16,11 @@ public class CanUseVisitor extends AbstractCardVisitor {
      * The energy cards used on a turn.
      */
     private int energyCardsUsed;
+
+    /**
+     * The support cards used on a turn.
+     */
+    private int supportCardsUsed;
 
     /**
      * The variable that says if the card can be used.
@@ -34,6 +40,13 @@ public class CanUseVisitor extends AbstractCardVisitor {
      */
     public void energyCardUsed() {
         energyCardsUsed++;
+    }
+
+    /**
+     * Increments the amount of support cards used.
+     */
+    public void supportCardUsed() {
+        supportCardsUsed++;
     }
 
     /**
@@ -67,6 +80,14 @@ public class CanUseVisitor extends AbstractCardVisitor {
     @Override
     public void visitTrainerCard(ITrainerCard trainerCard) {
         this.canUseCard = true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitSupportCard(ISupportCard supportCard) {
+        this.canUseCard = supportCardsUsed == 0;
     }
 
 }

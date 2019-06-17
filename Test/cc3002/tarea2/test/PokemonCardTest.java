@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class PokemonCardTest {
 
@@ -308,10 +307,14 @@ public class PokemonCardTest {
     @Test
     public void testObjectsFull() {
         assertTrue(electricPokemonCard.getAssociatedObjects().isEmpty());
-        electricPokemonCard.associateObject(new ExpShareObject());
+        ExpShareObject expShareObject = new ExpShareObject();
+        ExpShareObject expShareObject2 = new ExpShareObject();
+        electricPokemonCard.associateObject(expShareObject);
         assertFalse(electricPokemonCard.getAssociatedObjects().isEmpty());
-        electricPokemonCard.associateObject(new ExpShareObject());
+        electricPokemonCard.associateObject(expShareObject2);
         assertEquals(1, electricPokemonCard.getAssociatedObjects().size());
+        assertEquals(expShareObject, electricPokemonCard.getAssociatedObjects().get(0));
+        assertNotSame(expShareObject2, electricPokemonCard.getAssociatedObjects().get(0));
         assertTrue(electricPokemonCard.objectsFull());
     }
 

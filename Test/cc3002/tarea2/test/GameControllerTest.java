@@ -14,6 +14,7 @@ import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.WaterTypePokemonC
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.stadium.implemented_stadium.LuckyStadium;
+import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorJuniper;
 import cc3002.tarea2.game.controller.GameController;
 import org.junit.Before;
 import org.junit.Test;
@@ -228,6 +229,24 @@ public class GameControllerTest {
 
         assertEquals(waterPokemon, controller.getTrainerPlaying().getActivePokemon());
         assertEquals(otroSet, controller.getTrainerPlaying().getActivePokemon().getEnergySet());
+    }
+
+    @Test
+    public void testSupportPlayedOnce() {
+        controller.getTrainerPlaying().addCard(new ProfessorJuniper());
+        controller.selectCard(0);
+        controller.playCard();
+        assertEquals(7, controller.getTrainerPlaying().handSize());
+        controller.selectCard(0);
+        controller.discardSelected();
+        controller.selectCard(0);
+        controller.discardSelected();
+        assertEquals(5, controller.getTrainerPlaying().handSize());
+        controller.getTrainerPlaying().addCard(new ProfessorJuniper());
+        assertEquals(6, controller.getTrainerPlaying().handSize());
+        controller.selectCard(5);
+        controller.playCard();
+        assertEquals(6, controller.getTrainerPlaying().handSize());
     }
 
 }

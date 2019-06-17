@@ -8,6 +8,7 @@ import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokem
 import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.WaterTypePokemonCard;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
 import cc3002.tarea2.game.cards.trainer.object.implemented_objects.PotionObject;
+import cc3002.tarea2.game.cards.trainer.stadium.NullStadiumCard;
 import cc3002.tarea2.game.cards.trainer.stadium.implemented_stadium.LuckyStadium;
 import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorCozmoDiscovery;
 import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorJuniper;
@@ -91,10 +92,19 @@ public class TrainerCardTest {
     }
 
     @Test
+    public void nullStadium() {
+        assertEquals("", new NullStadiumCard().getDescription());
+        assertEquals("", new NullStadiumCard().getName());
+    }
+
+    @Test
     public void testLuckyStadium() {
         luckyStadium.executeEffect(trainer1);
         // Better test on controller test.
         assertTrue(trainer1.handSize() == 1 || trainer1.handSize() == 0);
+
+        assertEquals("Once a turn, the player can throw a coin, if heads, the player draws one card.", new LuckyStadium().getDescription());
+        assertEquals("Lucky Stadium", new LuckyStadium().getName());
     }
 
     @Test
@@ -104,6 +114,9 @@ public class TrainerCardTest {
         trainer1.playCard();
 
         assertTrue(trainer1.handSize() == 3 || trainer1.handSize() == 2);
+
+        assertEquals("Throw a coin, if it lands heads, draw the 3 bottom cards of your deck, if it lands tails, draw the 2 first.", new ProfessorCozmoDiscovery().getDescription());
+        assertEquals("Professor Cozmo's Discovery", new ProfessorCozmoDiscovery().getName());
     }
 
     @Test
@@ -112,6 +125,9 @@ public class TrainerCardTest {
         assertEquals(1, trainer1.handSize());
         trainer1.playCard();
         assertEquals(7, trainer1.handSize());
+
+        assertEquals("Discard your hand and draw 7 cards.", new ProfessorJuniper().getDescription());
+        assertEquals("Professor Juniper", new ProfessorJuniper().getName());
     }
 
 }

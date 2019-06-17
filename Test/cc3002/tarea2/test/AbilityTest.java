@@ -74,6 +74,8 @@ public class AbilityTest {
         trainer1.selectAbility(0);
         trainer1.useAbility();
 
+        assertEquals("An instant ability", new InstantAbility().getDescription());
+        assertEquals("Instant Ability", new InstantAbility().getName());
     }
 
     @Test
@@ -86,5 +88,8 @@ public class AbilityTest {
         trainer1.selectAbility(0);
         trainer1.useAbility();
         assertTrue(trainer1.getActivePokemon().getHp() == 60 || trainer1.getActivePokemon().getHp() == 50);
+
+        assertEquals("Once per turn, you can throw a coin, if it lands heads you can remove one damage counter from one of your pokemons.", new Heal().getDescription());
+        assertEquals("Heal", new Heal().getName());
     }
 }

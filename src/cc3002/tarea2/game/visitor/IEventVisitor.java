@@ -45,4 +45,9 @@ public interface IEventVisitor {
      */
     public void visitStadiumCardPlayed(StadiumCardPlayedEvent stadiumCardPlayed);
 
+    /**
+     * Visits a support card played event.
+     * @param supportCardPlayedEvent the event to visit.
+     */
+    public void visitSupportCardPlayed(SupportCardPlayedEvent supportCardPlayedEvent);
 }

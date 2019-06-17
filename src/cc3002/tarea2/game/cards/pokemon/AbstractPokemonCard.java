@@ -62,7 +62,7 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      * @param trainer AbstractTrainerCard responsible for the AbstractPokemonCard.
      */
     public AbstractPokemonCard(int maxHp, int id, String name, IAbility[] abilities, Trainer trainer) {
-        if (hp == 0) {
+        if (maxHp == 0) {
             hp = 1;
         }
         this.hp = maxHp;
