@@ -44,16 +44,23 @@ There are also what is called trainer cards. 3 types of cards that can be played
 3. Support cards
 ```
 
-Object cards can be played by the trainer on any pokemon and they can have an instant effect or be binded to the pokemon. If an object card is binded to the pokemon, then there can be no other object card binded after the first. The tests for object cards are on the class TrainerCardTest of the package cc3002.tarea2.test, in this class, only effects were tested. There are two object cards implemented: Exp. Share and Potion. The tests regarding turns and overall functionality of objects are in the GameControllerTest class.
+Object cards can be played by the trainer on any pokemon and they can have an instant effect or be binded to the pokemon. If an object card is binded to the pokemon, then there can be no other object card binded after the first.
 
-Stadium cards have an effect on the game. They affect every card on the game and there can be only one played at a time. The tests for stadium cards are on TrainerCardTest also, and there is only Lucky Stadium card implemented. There is also testing on functionality with turns on the GameControllerTest class.
+Stadium cards have an effect on the game. They affect every card on the game and there can be only one played at a time. 
 
-Support cards are instant effect cards, they are played and discarded. Support cards testing is in the TrainerCardTest. The implemented support cards are Professor Cozmo Discovery and Professor Juniper. The functionality regarding turns is tested on the GameControllerTest.
+Support cards are instant effect cards, they are played and discarded. Support cards testing is in the TrainerCardTest. 
 
 The controller is the entity that has the logic of turns and rules regarding turns in the game. The controller was implemented as an observer visitor, who receives events (notifications) from the trainer and using visitor pattern executes different actions. The testing regarding controller is in the GameControllerTest class.
 
-Finally, the pokemon abilities implemented were Heal and Wing Buzz, both tested on the AbilityTest class and on GameControllerTest tested the functionality. The implemented attack was Electric Shock, tested on AttackTest class.
+Implemented abilities and trainer cards are the following:
 
+Pokemon abilities implemented were Heal and Wing Buzz, both tested on the AbilityTest class and on GameControllerTest tested the functionality. The implemented attack was Electric Shock, tested on AttackTest class.
+
+The tests for object cards are on the class TrainerCardTest of the package cc3002.tarea2.test, in this class, only effects were tested. There are two object cards implemented: Exp. Share and Potion. The tests regarding turns and overall functionality of objects are in the GameControllerTest class.
+
+The tests for stadium cards are on TrainerCardTest also, and there is only Lucky Stadium card implemented. There is also testing on functionality with turns on the GameControllerTest class.
+
+The implemented support cards are Professor Cozmo Discovery and Professor Juniper both tested in TrainerCardTest class. The functionality regarding turns is tested on the GameControllerTest.
 
 ## Getting Started
 
