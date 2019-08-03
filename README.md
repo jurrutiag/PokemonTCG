@@ -64,7 +64,7 @@ The implemented support cards are Professor Cozmo Discovery and Professor Junipe
 
 ## Getting Started
 
-Download the project files and build the whole project on java.
+Download the project files and build the whole project on java and build the artifacts, then run the jar file on the out/artifacts/cc3002_tarea2_jar directory.
 
 
 ## Running the tests
