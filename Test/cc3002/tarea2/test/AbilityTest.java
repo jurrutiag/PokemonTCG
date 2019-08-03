@@ -37,7 +37,7 @@ public class AbilityTest {
     }
 
     @Test
-    public void testWingBuzz() {
+    public void testWingBuzz() throws Exception {
         assertEquals("Once per turn, if this pokemon is active, you can discard one card from your hand, if you do, discard the top card of your opponent's deck", new WingBuzz().getDescription());
         assertEquals("Wing Buzz", new WingBuzz().getName());
 
@@ -61,7 +61,7 @@ public class AbilityTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void testInstant() {
+    public void testInstant() throws Exception {
         IAbility instantAbility = new InstantAbility();
         instantAbility.getEvent();
         trainer1.addCard(new ElectricTypePokemonCard(100, new IAbility[] {instantAbility}, trainer1));
@@ -79,7 +79,7 @@ public class AbilityTest {
     }
 
     @Test
-    public void testHeal() {
+    public void testHeal() throws Exception {
         trainer1.addCard(new ElectricTypePokemonCard(100, new IAbility[] {new Heal()}, trainer1));
         trainer1.selectHandCard(0);
         trainer1.playCard();

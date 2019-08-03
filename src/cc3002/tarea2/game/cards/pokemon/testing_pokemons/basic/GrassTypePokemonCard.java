@@ -18,6 +18,6 @@ public class GrassTypePokemonCard extends GrassBasePokemon {
     }
 
     public GrassTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "GrassPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "GrassBasePokemonCard", abilities, trainer);
     }
 }

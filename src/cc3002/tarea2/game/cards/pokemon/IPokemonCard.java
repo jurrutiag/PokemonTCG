@@ -6,6 +6,7 @@ import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
 
 import java.util.ArrayList;
 
@@ -158,7 +159,7 @@ public interface IPokemonCard extends ICard {
      * Uses the selected ability.
      * @param index The index of the ability to use.
      */
-    void useAbility(int index);
+    void useAbility(int index) throws NotEnoughEnergiesForAbilityException;
 
     /**
      * Adds an electric energy to the set.

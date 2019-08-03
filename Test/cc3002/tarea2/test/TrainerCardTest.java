@@ -47,7 +47,7 @@ public class TrainerCardTest {
     }
 
     @Test
-    public void testExpShare() {
+    public void testExpShare() throws Exception {
         trainer1.addCard(electricPokemon);
         trainer1.playCard();
         trainer1.addCard(waterPokemon);
@@ -66,7 +66,7 @@ public class TrainerCardTest {
     }
 
     @Test
-    public void testPotion() {
+    public void testPotion() throws Exception {
         trainer1.addCard(electricPokemon);
         trainer1.playCard();
         trainer1.getActivePokemon().receiveDamage(20);
@@ -92,13 +92,13 @@ public class TrainerCardTest {
     }
 
     @Test
-    public void nullStadium() {
+    public void nullStadium() throws Exception {
         assertEquals("", new NullStadiumCard().getDescription());
         assertEquals("", new NullStadiumCard().getName());
     }
 
     @Test
-    public void testLuckyStadium() {
+    public void testLuckyStadium() throws Exception {
         luckyStadium.executeEffect(trainer1);
         // Better test on controller test.
         assertTrue(trainer1.handSize() == 1 || trainer1.handSize() == 0);
@@ -108,26 +108,26 @@ public class TrainerCardTest {
     }
 
     @Test
-    public void testProfCozmoDiscovery() {
-        trainer1.addCard(new ProfessorCozmoDiscovery());
+    public void testProfCozmoDiscovery() throws Exception {
+        trainer1.addCard(new ProfessorCozmoDiscovery(trainer1));
         assertEquals(1, trainer1.handSize());
         trainer1.playCard();
 
         assertTrue(trainer1.handSize() == 3 || trainer1.handSize() == 2);
 
-        assertEquals("Throw a coin, if it lands heads, draw the 3 bottom cards of your deck, if it lands tails, draw the 2 first.", new ProfessorCozmoDiscovery().getDescription());
-        assertEquals("Professor Cozmo's Discovery", new ProfessorCozmoDiscovery().getName());
+        assertEquals("Throw a coin, if it lands heads, draw the 3 bottom cards of your deck, if it lands tails, draw the 2 first.", new ProfessorCozmoDiscovery(trainer1).getDescription());
+        assertEquals("Professor Cozmo's Discovery", new ProfessorCozmoDiscovery(trainer1).getName());
     }
 
     @Test
-    public void testProfJuniper() {
-        trainer1.addCard(new ProfessorJuniper());
+    public void testProfJuniper() throws Exception {
+        trainer1.addCard(new ProfessorJuniper(trainer1));
         assertEquals(1, trainer1.handSize());
         trainer1.playCard();
         assertEquals(7, trainer1.handSize());
 
-        assertEquals("Discard your hand and draw 7 cards.", new ProfessorJuniper().getDescription());
-        assertEquals("Professor Juniper", new ProfessorJuniper().getName());
+        assertEquals("Discard your hand and draw 7 cards.", new ProfessorJuniper(trainer1).getDescription());
+        assertEquals("Professor Juniper", new ProfessorJuniper(trainer1).getName());
     }
 
 }

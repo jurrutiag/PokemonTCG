@@ -1,5 +1,6 @@
 package cc3002.tarea2.game.cards;
 
+import cc3002.tarea2.game.ISelectableWithInfo;
 import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.visitor.card.ICardVisitable;
 
@@ -8,7 +9,7 @@ import cc3002.tarea2.game.visitor.card.ICardVisitable;
  *
  * @author Juan Urrutia
  */
-public interface ICard extends ICardVisitable {
+public interface ICard extends ICardVisitable, ISelectableWithInfo {
 
     /**
      *

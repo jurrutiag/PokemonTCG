@@ -15,7 +15,7 @@ public class FightingPhase1PokemonCard extends FightingPhase1Pokemon {
     public FightingPhase1PokemonCard(Trainer trainer) {this(10, 201, new IAttack[] {}, trainer);}
 
     public FightingPhase1PokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "FightingPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "FightingPhase1PokemonCard", abilities, trainer);
     }
 
     @Override

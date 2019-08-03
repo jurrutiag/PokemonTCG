@@ -1,6 +1,7 @@
 package cc3002.tarea2.game.cards;
 
 import cc3002.tarea2.game.Trainer;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
@@ -30,6 +31,6 @@ public class NullCard extends AbstractCard {
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
     }
 }

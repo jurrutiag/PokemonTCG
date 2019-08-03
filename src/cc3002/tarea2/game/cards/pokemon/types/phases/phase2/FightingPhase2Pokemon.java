@@ -4,6 +4,7 @@ import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.cards.pokemon.types.AbstractFightingPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
@@ -30,7 +31,7 @@ public abstract class FightingPhase2Pokemon extends AbstractFightingPokemon impl
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
         super.accept(visitor);
         visitor.visitPhase2Pokemon(this);
     }

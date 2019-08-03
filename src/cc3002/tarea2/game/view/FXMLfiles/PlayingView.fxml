@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
+      <bottom>
+        <AnchorPane fx:id="buttonPane" disable="false" focusTraversable="false" mouseTransparent="false" prefHeight="46.0" prefWidth="600.0" visible="true">
+          <children>
+            <Button fx:id="selectAbilityButton" disable="false" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectAbilityButton" prefWidth="121.0" text="Select Ability" visible="false" />
+            <Button fx:id="selectCardButton" disable="false" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectCardButton" prefWidth="121.0" text="Select Card" visible="false" />
+            <Button fx:id="infoButton" disable="false" layoutX="306.0" layoutY="10.0" mnemonicParsing="false" onAction="#infoButton" prefWidth="121.0" text="Info" visible="false" />
+            <Button fx:id="passButton" disable="false" layoutX="440.0" layoutY="10.0" mnemonicParsing="false" onAction="#passButton" prefWidth="121.0" text="Pass" visible="false" />
+            <Button id="drawCardsButton" fx:id="singleButton" layoutX="202.0" layoutY="10.0" mnemonicParsing="false" onAction="#singleButtonClick" prefWidth="197.0" text="Draw initial 7 Cards" />
+            <Button fx:id="cancelButton" cancelButton="false" disable="false" layoutX="490.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelButtonClick" text="Cancel" visible="false" />
+          </children>
+        </AnchorPane>
+      </bottom>
+      <center>
+        <ListView fx:id="mainView" editable="true" maxWidth="-1.0" prefHeight="192.0" prefWidth="518.0" />
+      </center>
+      <left>
+        <Pane prefHeight="192.0" prefWidth="40.0" />
+      </left>
+      <right>
+        <Pane prefHeight="306.0" prefWidth="40.0" />
+      </right>
+      <top>
+        <AnchorPane minHeight="46.0" prefHeight="46.0" prefWidth="600.0">
+          <children>
+            <Button layoutX="40.0" layoutY="10.0" mnemonicParsing="false" onAction="#toMenu" text="Exit to Menu" />
+            <CheckBox fx:id="showDrawCheckBox" layoutX="166.0" layoutY="13.0" mnemonicParsing="false" onAction="#toggleShowDraw" selected="true" text="Show drawn cards" />
+          </children>
+        </AnchorPane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

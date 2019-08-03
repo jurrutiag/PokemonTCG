@@ -34,7 +34,7 @@ public class DeckTest {
     }
 
     @Test
-    public void drawTopCard() {
+    public void drawTopCard() throws Exception {
         assertTrue(this.emptyStartDeck.drawTopCards(1).isEmpty());
         this.card60Deck.drawTopCards(1).get(0);
         assertEquals(59, this.card60Deck.getSize());
@@ -56,7 +56,7 @@ public class DeckTest {
     }
 
     @Test
-    public void drawBottomCard() {
+    public void drawBottomCard() throws Exception {
         assertTrue(this.emptyStartDeck.drawBottomCards(1).isEmpty());
         this.card60Deck.drawBottomCards(1);
         assertEquals(59, this.card60Deck.getSize());
@@ -78,7 +78,7 @@ public class DeckTest {
     }
 
     @Test
-    public void addCard() {
+    public void addCard() throws Exception {
         assertEquals(60, this.card60Deck.getSize());
         this.card60Deck.addTopCard(electricPokemon);
         assertEquals(61, this.card60Deck.getSize());
@@ -87,7 +87,7 @@ public class DeckTest {
     }
 
     @Test
-    public void shuffleCards() {
+    public void shuffleCards() throws Exception {
         assertEquals(0, this.emptyStartDeck.getSize());
 
         this.emptyStartDeck.addTopCard(electricPokemon);
@@ -98,7 +98,7 @@ public class DeckTest {
     }
 
     @Test
-    public void isEmpty() {
+    public void isEmpty() throws Exception {
         assertTrue(this.emptyStartDeck.isEmpty());
         assertFalse(this.card60Deck.isEmpty());
     }

@@ -16,6 +16,7 @@ import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
 import cc3002.tarea2.game.events.EnergyCardPlayedEvent;
 import cc3002.tarea2.game.events.StadiumCardPlayedEvent;
 import cc3002.tarea2.game.events.SupportCardPlayedEvent;
+import cc3002.tarea2.game.exceptions.PokemonWithoutPreevolutionPlayedException;
 import cc3002.tarea2.game.searching.methods.SearchPokemonByID;
 
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class PlayVisitor extends AbstractCardVisitor {
      * Visits a general phase pokemon, to avoid duplication between phase 1 and 2.
      * @param phasePokemon The phase pokemon to be visited.
      */
-    private void visitPhasePokemon(IPhasePokemon phasePokemon) {
+    private void visitPhasePokemon(IPhasePokemon phasePokemon) throws PokemonWithoutPreevolutionPlayedException {
         ArrayList<IPokemonCard> preevolutions = this.trainer.search(new SearchPokemonByID(phasePokemon.getPreevolutionId()), this.trainer.getBench());
         if (!preevolutions.isEmpty()) {
             EnergySet preevolutionEnergySet = preevolutions.get(0).getEnergySet();
@@ -118,13 +119,14 @@ public class PlayVisitor extends AbstractCardVisitor {
             return;
         }
         playedCorrectly = false;
+        throw new PokemonWithoutPreevolutionPlayedException();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) {
+    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) throws PokemonWithoutPreevolutionPlayedException {
         this.visitPhasePokemon(phase1Pokemon);
     }
 
@@ -132,7 +134,7 @@ public class PlayVisitor extends AbstractCardVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) {
+    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) throws PokemonWithoutPreevolutionPlayedException {
         this.visitPhasePokemon(phase2Pokemon);
     }
 

@@ -7,6 +7,7 @@ import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase2.*;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase1Pokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IPhase2Pokemon;
+import cc3002.tarea2.game.exceptions.PokemonWithoutPreevolutionPlayedException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -71,30 +72,30 @@ public class PhaseTest {
     }
 
     @Test
-    public void testEvolution() {
+    public void testEvolution() throws Exception {
         trainer1.addCard(electricPhase1Pokemon);
         trainer1.addCard(electricPhase2PokemonCard);
         trainer1.addCard(electricBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(electricBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(electricPhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(electricPhase2PokemonCard, trainer1.getBench().get(0));
 
@@ -105,24 +106,24 @@ public class PhaseTest {
         trainer1.addCard(fightingBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(fightingBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(fightingPhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(fightingPhase2PokemonCard, trainer1.getBench().get(0));
 
@@ -133,24 +134,24 @@ public class PhaseTest {
         trainer1.addCard(fireBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(fireBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(firePhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(firePhase2PokemonCard, trainer1.getBench().get(0));
 
@@ -161,24 +162,24 @@ public class PhaseTest {
         trainer1.addCard(grassBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(grassBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(grassPhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(grassPhase2PokemonCard, trainer1.getBench().get(0));
 
@@ -189,24 +190,24 @@ public class PhaseTest {
         trainer1.addCard(psychicBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(psychicBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(psychicPhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(psychicPhase2PokemonCard, trainer1.getBench().get(0));
 
@@ -217,31 +218,31 @@ public class PhaseTest {
         trainer1.addCard(waterBasicPokemon);
 
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(0, trainer1.getBench().size());
         trainer1.selectHandCard(2);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         trainer1.selectHandCard(1);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(waterBasicPokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(waterPhase1Pokemon, trainer1.getBench().get(0));
         trainer1.selectHandCard(0);
-        trainer1.playCard();
+        try {trainer1.playCard();} catch (PokemonWithoutPreevolutionPlayedException e) {}
         assertEquals(1, trainer1.getBench().size());
         assertEquals(waterPhase2PokemonCard, trainer1.getBench().get(0));
 
     }
 
     @Test
-    public void testEnergyPassing() {
+    public void testEnergyPassing() throws Exception {
         basicPokemon.addElectricEnergy();
         basicPokemon.addFightingEnergy();
 

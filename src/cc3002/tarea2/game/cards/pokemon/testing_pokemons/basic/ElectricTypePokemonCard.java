@@ -17,7 +17,7 @@ public class ElectricTypePokemonCard extends ElectricBasePokemon {
         this(hp, 100, abilities, trainer);
     }
     public ElectricTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "ElectricTypePokemonCard", abilities, trainer);
+        super(hp, id, "ElectricBasePokemonCard", abilities, trainer);
     }
 
 }

@@ -4,6 +4,7 @@ import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.events.AttackEvent;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
 
 /**
  * Class that performs abilities of a pokemon using visitor pattern.
@@ -29,11 +30,13 @@ public class PerformAbilityVisitor extends AbstractAbilityVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visitAttack(IAttack attack) {
+    public void visitAttack(IAttack attack) throws NotEnoughEnergiesForAbilityException {
         if (pokemon.getTrainer().getOpponent().benchSize() > 0 && pokemon.checkEnergies(attack)) {
+            pokemon.getTrainer().notifyEvent(new AttackEvent());
             attack.executeEffect(pokemon);
             pokemon.attack(attack);
-            pokemon.getTrainer().notifyEvent(new AttackEvent());
+        } else {
+            throw new NotEnoughEnergiesForAbilityException();
         }
     }
 
@@ -42,8 +45,8 @@ public class PerformAbilityVisitor extends AbstractAbilityVisitor {
      */
     @Override
     public void visitAbility(IAbility ability) {
-        ability.executeEffect(pokemon);
         pokemon.getTrainer().notifyEvent(ability.getEvent());
+        ability.executeEffect(pokemon);
     }
 
 }

@@ -78,7 +78,7 @@ public class AttackTest {
     }
 
     @Test
-    public void getDamage() {
+    public void getDamage() throws Exception {
         assertEquals(10, electricAttack.getDamage());
         assertEquals(10, fightingAttack.getDamage());
         assertEquals(10, fireAttack.getDamage());
@@ -88,7 +88,7 @@ public class AttackTest {
     }
 
     @Test
-    public void getDescription() {
+    public void getDescription() throws Exception {
         assertEquals("IAttack of electricity", electricAttack.getDescription());
         assertEquals("Physical attack", fightingAttack.getDescription());
         assertEquals("IAttack of fire", fireAttack.getDescription());
@@ -101,7 +101,7 @@ public class AttackTest {
     }
 
     @Test
-    public void getCost() {
+    public void getCost() throws Exception {
         assertTrue(electricAttack.getCost().includesEnergies(electricCost) && electricCost.includesEnergies(electricAttack.getCost()));
         assertTrue(fightingAttack.getCost().includesEnergies(fightingCost) && fightingCost.includesEnergies(fightingAttack.getCost()));
         assertTrue(fireAttack.getCost().includesEnergies(fireCost) && fireCost.includesEnergies(fireAttack.getCost()));
@@ -113,7 +113,7 @@ public class AttackTest {
     }
 
     @Test
-    public void getName() {
+    public void getName() throws Exception {
         assertEquals("ElectricAttack", electricAttack.getName());
         assertEquals("FightingAttack", fightingAttack.getName());
         assertEquals("FireAttack", fireAttack.getName());
@@ -126,7 +126,7 @@ public class AttackTest {
     }
 
     @Test
-    public void electricShockTest() {
+    public void electricShockTest() throws Exception {
         trainer1.setOpponent(trainer2);
         trainer2.setOpponent(trainer1);
 
@@ -152,7 +152,7 @@ public class AttackTest {
     }
 
     @Test
-    public void testSetAttack() {
+    public void testSetAttack() throws Exception {
         trainer1.setOpponent(trainer2);
         trainer2.setOpponent(trainer1);
 

@@ -1,5 +1,6 @@
 package cc3002.tarea2.game.visitor.card;
 
+import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.energies.*;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
@@ -11,6 +12,9 @@ import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
 import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
+import cc3002.tarea2.game.exceptions.EnergyCardAlreadyUsedException;
+import cc3002.tarea2.game.exceptions.PokemonWithoutPreevolutionPlayedException;
+import cc3002.tarea2.game.exceptions.SupportCardAlreadyUsedException;
 
 /**
  * Interface for classes that can visit card visitables.
@@ -28,13 +32,13 @@ public interface ICardVisitor {
      * Visits a phase 1 Pokemon.
      * @param phase1Pokemon The pokemon to be visited.
      */
-    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon);
+    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) throws PokemonWithoutPreevolutionPlayedException;
 
     /**
      * Visits a phase 2 Pokemon.
      * @param phase2Pokemon The pokemon to be visited.
      */
-    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon);
+    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) throws PokemonWithoutPreevolutionPlayedException;
 
     /**
      * Visits an electric energy card.
@@ -82,7 +86,7 @@ public interface ICardVisitor {
      * Visits a general energy card.
      * @param energyCard The card to be visited.
      */
-    public void visitEnergyCard(IEnergyCard energyCard);
+    public void visitEnergyCard(IEnergyCard energyCard) throws EnergyCardAlreadyUsedException;
 
     /**
      * Visits a general trainer card.
@@ -101,7 +105,7 @@ public interface ICardVisitor {
      * Visits a general support card.
      * @param supportCard The card to be visited.
      */
-    public void visitSupportCard(ISupportCard supportCard);
+    public void visitSupportCard(ISupportCard supportCard) throws SupportCardAlreadyUsedException;
 
     /**
      * Visits a general stadium card.
@@ -120,4 +124,6 @@ public interface ICardVisitor {
      * @param abstractNonInstantObject The object to be visited.
      */
     public void visitNonInstantObjectCard(INonInstantObject abstractNonInstantObject);
+
+    public void visitCard(ICard card);
 }

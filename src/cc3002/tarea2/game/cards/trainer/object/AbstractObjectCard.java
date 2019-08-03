@@ -2,6 +2,7 @@ package cc3002.tarea2.game.cards.trainer.object;
 
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.cards.trainer.AbstractTrainerCard;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
@@ -44,7 +45,8 @@ public abstract class AbstractObjectCard extends AbstractTrainerCard implements 
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
+        super.accept(visitor);
         visitor.visitObjectCard(this);
     }
 

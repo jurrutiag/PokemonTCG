@@ -53,7 +53,7 @@ public class CardTest {
     }
 
     @Test
-    public void discarded() {
+    public void discarded() throws Exception {
         trainer1.addCard(electricEnergyCard);
         trainer1.addCard(fightingEnergyCard);
         trainer1.addCard(electricPokemonCard);

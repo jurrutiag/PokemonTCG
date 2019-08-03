@@ -8,6 +8,7 @@ import cc3002.tarea2.game.visitor.IEventVisitor;
 public class SupportCardPlayedEvent extends AbstractEvent {
     /**
      * {@inheritDoc}
+     * @param eventVisitor
      */
     @Override
     public void accept(IEventVisitor eventVisitor) {

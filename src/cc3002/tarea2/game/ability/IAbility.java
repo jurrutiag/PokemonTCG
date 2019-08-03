@@ -1,5 +1,6 @@
 package cc3002.tarea2.game.ability;
 
+import cc3002.tarea2.game.ISelectableWithInfo;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.visitor.ability.IAbilityVisitable;
 import cc3002.tarea2.game.visitor.IEventVisitable;
@@ -9,7 +10,7 @@ import cc3002.tarea2.game.visitor.IEventVisitable;
  *
  * @author Juan Urrutia
  */
-public interface IAbility extends IAbilityVisitable {
+public interface IAbility extends IAbilityVisitable, ISelectableWithInfo {
     /**
      *
      * @return Returns the name of the ability.

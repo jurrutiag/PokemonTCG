@@ -299,13 +299,13 @@ public class PokemonCardTest {
     }
 
     @Test
-    public void getAbilities() {
+    public void getAbilities() throws Exception {
         assertEquals(new ArrayList<IAbility>(Arrays.asList(electricAttacks)), electricPokemonCard.getAbilities());
         assertEquals(electricAttacks[0], electricPokemonCard.getAbilities().get(0));
     }
 
     @Test
-    public void testObjectsFull() {
+    public void testObjectsFull() throws Exception {
         assertTrue(electricPokemonCard.getAssociatedObjects().isEmpty());
         ExpShareObject expShareObject = new ExpShareObject();
         ExpShareObject expShareObject2 = new ExpShareObject();
@@ -525,7 +525,7 @@ public class PokemonCardTest {
     }
 
     @Test
-    public void bindEnergy() {
+    public void bindEnergy() throws Exception {
         assertEquals(0, electricPokemonCard.getEnergySet().getElectricEnergies());
         assertEquals(0, electricPokemonCard.getEnergySet().getFightingEnergies());
         assertEquals(0, electricPokemonCard.getEnergySet().getFireEnergies());
@@ -549,17 +549,17 @@ public class PokemonCardTest {
     }
 
     @Test
-    public void getName() {
-        assertEquals("ElectricTypePokemonCard", electricPokemonCard.getName());
-        assertEquals("FightingPhase2PokemonCard", fightingPokemonCard.getName());
-        assertEquals("FirePhase2PokemonCard", firePokemonCard.getName());
-        assertEquals("GrassPhase2PokemonCard", grassPokemonCard.getName());
-        assertEquals("PsychicPhase2PokemonCard", psychicPokemonCard.getName());
-        assertEquals("WaterPhase2PokemonCard", waterPokemonCard.getName());
+    public void getName() throws Exception {
+        assertEquals("ElectricBasePokemonCard", electricPokemonCard.getName());
+        assertEquals("FightingBasePokemonCard", fightingPokemonCard.getName());
+        assertEquals("FireBasePokemonCard", firePokemonCard.getName());
+        assertEquals("GrassBasePokemonCard", grassPokemonCard.getName());
+        assertEquals("PsychicBasePokemonCard", psychicPokemonCard.getName());
+        assertEquals("WaterBasePokemonCard", waterPokemonCard.getName());
     }
 
     @Test
-    public void abilitySize() {
+    public void abilitySize() throws Exception {
         IPokemonCard pokemon = new ElectricTypePokemonCard(100, new IAbility[] {new ElectricAttack(), new ElectricShock(), new FireAttack(), new GrassAttack(), new PsychicAttack()}, trainer1);
         assertEquals(4, pokemon.getAbilitiesAmount());
     }

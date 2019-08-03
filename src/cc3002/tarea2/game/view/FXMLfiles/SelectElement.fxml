@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane onMouseClicked="#clickedMouse" prefHeight="389.0" prefWidth="385.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox prefHeight="389.0" prefWidth="385.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Label fx:id="label" alignment="CENTER" prefHeight="64.0" prefWidth="385.0" text="Select active pokemon from your hand:" wrapText="true">
+          <font>
+            <Font size="16.0" />
+          </font>
+        </Label>
+        <Pane prefHeight="256.0" prefWidth="385.0">
+          <children>
+            <ListView fx:id="moreInfoView" disable="true" layoutX="0.0" layoutY="0.0" prefHeight="256.0" prefWidth="385.0" />
+            <ListView id="pokemonSelection" fx:id="selectionView" layoutX="0.0" layoutY="0.0" onMouseClicked="#selectedListElement" prefHeight="256.0" prefWidth="385.0" />
+          </children>
+        </Pane>
+        <Pane prefHeight="69.0" prefWidth="385.0">
+          <children>
+            <Button fx:id="moreInfoButton" cancelButton="false" defaultButton="false" disable="true" layoutX="81.0" layoutY="30.0" mnemonicParsing="false" onAction="#moreElementInfo" prefWidth="97.0" text="More Info" underline="false" />
+            <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="LEFT" disable="false" layoutX="14.0" layoutY="6.0" prefWidth="357.0" text="" textFill="RED" />
+            <Button layoutX="208.0" layoutY="30.0" mnemonicParsing="false" onAction="#okAction" prefWidth="97.0" text="Select" />
+          </children>
+        </Pane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

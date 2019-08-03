@@ -16,7 +16,7 @@ public class WaterPhase1PokemonCard extends WaterPhase1Pokemon {
     public WaterPhase1PokemonCard(Trainer trainer) {this(10, 601, new IAttack[] {}, trainer);}
 
     public WaterPhase1PokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "WaterPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "WaterPhase1PokemonCard", abilities, trainer);
     }
 
     @Override

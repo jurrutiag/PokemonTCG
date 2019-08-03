@@ -6,8 +6,12 @@ import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
 import cc3002.tarea2.game.cards.AbstractCard;
 import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
-import cc3002.tarea2.game.visitor.card.ICardVisitor;
+import cc3002.tarea2.game.events.DamageReceivedEvent;
+import cc3002.tarea2.game.events.PokemonDiedEvent;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.ability.PerformAbilityVisitor;
+import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 import java.util.ArrayList;
 
@@ -120,7 +124,7 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      */
     @Override
     public void setHp(int hp) {
-        this.hp = hp < 0 ? 0 : (this.hp > this.maxHp ? this.maxHp : hp);
+        this.hp = hp < 0 ? 0 : (hp > this.maxHp ? this.maxHp : hp);
 
     }
 
@@ -165,6 +169,7 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
     public void receiveDamage(int damage) {
         if (damage > 0) {
             hp -= damage;
+            getTrainer().notifyEvent(new DamageReceivedEvent(damage, this));
         }
         if (hp <= 0) {
             hp = 0;
@@ -176,6 +181,7 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      * Sends a message to the trainer that this pokemon died.
      */
     private void died() {
+        this.getTrainer().notifyEvent(new PokemonDiedEvent(this));
         this.getTrainer().pokemonDied(this);
     }
 
@@ -224,7 +230,7 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      * {@inheritDoc}
      */
     @Override
-    public void useAbility(int index) {
+    public void useAbility(int index) throws NotEnoughEnergiesForAbilityException {
         if (index < abilities.size()) {
             //abilities[index].isUsedBy(this);
             abilities.get(index).accept(new PerformAbilityVisitor(this));
@@ -304,7 +310,8 @@ public abstract class AbstractPokemonCard extends AbstractCard implements IPokem
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
+        super.accept(visitor);
         visitor.visitPokemonCard(this);
     }
 

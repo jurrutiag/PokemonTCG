@@ -4,6 +4,7 @@ import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.cards.pokemon.types.AbstractGrassPokemon;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
@@ -28,7 +29,7 @@ public abstract class GrassBasePokemon extends AbstractGrassPokemon implements I
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
         super.accept(visitor);
         visitor.visitBasicPokemon(this);
     }

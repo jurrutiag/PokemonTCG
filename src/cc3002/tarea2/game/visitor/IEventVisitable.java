@@ -1,5 +1,7 @@
 package cc3002.tarea2.game.visitor;
 
+import cc3002.tarea2.game.Trainer;
+
 /**
  * Interface for classes that can be visited by event visitors.
  *
@@ -11,4 +13,8 @@ public interface IEventVisitable {
      * @param eventVisitor The visitor to be accepted.
      */
     public void accept(IEventVisitor eventVisitor);
+
+    public void setTrainer(Trainer trainer);
+
+    public Trainer getTrainer();
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="164.0" prefWidth="377.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Label fx:id="label" alignment="CENTER" layoutX="51.0" layoutY="33.0" prefHeight="49.0" prefWidth="275.0" text="Ingrese nombre de jugador 1" wrapText="true">
+      <font>
+        <Font size="16.0" />
+      </font>
+    </Label>
+    <TextField fx:id="text" layoutX="89.0" layoutY="82.0" prefWidth="200.0" />
+    <Button cancelButton="false" defaultButton="true" layoutX="149.0" layoutY="123.0" mnemonicParsing="false" onAction="#okAction" text="Ingresar" underline="false" />
+  </children>
+</AnchorPane>

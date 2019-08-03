@@ -20,6 +20,6 @@ public class FireTypePokemonCard extends FireBasePokemon {
     }
 
     public FireTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "FirePhase2PokemonCard", abilities, trainer);
+        super(hp, id, "FireBasePokemonCard", abilities, trainer);
     }
 }

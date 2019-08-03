@@ -20,7 +20,7 @@ public class SearchTest {
     }
 
     @Test
-    public void searchPokemonById() {
+    public void searchPokemonById() throws Exception {
         trainer1.addCard(new ElectricTypePokemonCard(trainer1));
         trainer1.playCard();
         trainer1.addCard(new FightingTypePokemonCard(trainer1));

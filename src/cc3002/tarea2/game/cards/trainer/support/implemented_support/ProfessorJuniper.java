@@ -1,5 +1,6 @@
 package cc3002.tarea2.game.cards.trainer.support.implemented_support;
 
+import cc3002.tarea2.game.Trainer;
 import cc3002.tarea2.game.cards.trainer.support.AbstractSupportCard;
 
 /**
@@ -8,6 +9,11 @@ import cc3002.tarea2.game.cards.trainer.support.AbstractSupportCard;
  * @author Juan Urrutia
  */
 public class ProfessorJuniper extends AbstractSupportCard {
+
+
+    public ProfessorJuniper(Trainer trainer) {
+        this.setTrainer(trainer);
+    }
 
     /**
      * {@inheritDoc}

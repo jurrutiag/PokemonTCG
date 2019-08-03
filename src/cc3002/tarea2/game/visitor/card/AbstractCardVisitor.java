@@ -1,5 +1,6 @@
 package cc3002.tarea2.game.visitor.card;
 
+import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.energies.*;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.cards.pokemon.types.phases.IBasicPokemon;
@@ -11,6 +12,9 @@ import cc3002.tarea2.game.cards.trainer.object.INonInstantObject;
 import cc3002.tarea2.game.cards.trainer.object.IObjectCard;
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
+import cc3002.tarea2.game.exceptions.EnergyCardAlreadyUsedException;
+import cc3002.tarea2.game.exceptions.PokemonWithoutPreevolutionPlayedException;
+import cc3002.tarea2.game.exceptions.SupportCardAlreadyUsedException;
 
 /**
  * Class implementing an abstract card visitor using template pattern.
@@ -29,13 +33,13 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) {}
+    public void visitPhase1Pokemon(IPhase1Pokemon phase1Pokemon) throws PokemonWithoutPreevolutionPlayedException {}
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) {}
+    public void visitPhase2Pokemon(IPhase2Pokemon phase2Pokemon) throws PokemonWithoutPreevolutionPlayedException {}
 
     /**
      * {@inheritDoc}
@@ -83,7 +87,7 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visitEnergyCard(IEnergyCard energyCard) {}
+    public void visitEnergyCard(IEnergyCard energyCard) throws EnergyCardAlreadyUsedException {}
 
     /**
      * {@inheritDoc}
@@ -101,7 +105,7 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
      * {@inheritDoc}
      */
     @Override
-    public void visitSupportCard(ISupportCard supportCard) {}
+    public void visitSupportCard(ISupportCard supportCard) throws SupportCardAlreadyUsedException {}
 
     /**
      * {@inheritDoc}
@@ -120,5 +124,8 @@ public abstract class AbstractCardVisitor implements ICardVisitor {
      */
     @Override
     public void visitNonInstantObjectCard(INonInstantObject abstractNonInstantObject) {}
+
+    @Override
+    public void visitCard(ICard card) {}
 
 }

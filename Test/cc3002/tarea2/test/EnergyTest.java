@@ -48,7 +48,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void addEnergy() {
+    public void addEnergy() throws Exception {
         assertEquals(0, energies1.getElectricEnergies());
         assertEquals(0, energies1.getPsychicEnergies());
         assertEquals(0, energies1.getFireEnergies());
@@ -84,7 +84,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void includesEnergy() {
+    public void includesEnergy() throws Exception {
         energies1 = new EnergySet();
         energies1.setElectricEnergies(2);
         EnergySet energies2 = new EnergySet();
@@ -162,7 +162,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void getName() {
+    public void getName() throws Exception {
         assertEquals("ElectricEnergyCard", electricEnergyCard.getName());
         assertEquals("FightingEnergyCard", fightingEnergyCard.getName());
         assertEquals("FireEnergyCard", fireEnergyCard.getName());
@@ -172,7 +172,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void energySetSize() {
+    public void energySetSize() throws Exception {
         assertEquals(0, energies1.energySetSize());
         energies1.addWaterEnergy();
         assertEquals(1, energies1.energySetSize());
@@ -190,7 +190,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void equals() {
+    public void equals() throws Exception {
         assertEquals(energies1, energies2);
         energies1.addElectricEnergy();
         energies2.addElectricEnergy();
@@ -215,7 +215,7 @@ public class EnergyTest {
     }
 
     @Test
-    public void bindEnergyToOther() {
+    public void bindEnergyToOther() throws Exception {
         trainer1.addCard(electricEnergyCard);
         trainer1.addCard(electricPokemon);
         trainer1.addCard(fightingPokemon);

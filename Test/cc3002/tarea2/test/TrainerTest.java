@@ -227,7 +227,7 @@ public class TrainerTest {
     }
 
     @Test
-    public void handSize() {
+    public void handSize() throws Exception {
         assertEquals(0, trainer1.handSize());
         trainer1.addCard(new GrassTypePokemonCard(50, attacks, trainer1));
         assertEquals(1, trainer1.handSize());
@@ -242,7 +242,7 @@ public class TrainerTest {
     }
 
     @Test
-    public void benchNotFull() {
+    public void benchNotFull() throws Exception {
         assertTrue(trainer1.benchSize() <= 5);
         trainer1.addCard(new GrassTypePokemonCard(50, attacks, trainer1));
         trainer1.playCard();
@@ -267,7 +267,7 @@ public class TrainerTest {
     }
 
     @Test
-    public void benchFull() {
+    public void benchFull() throws Exception {
         trainer1.addCard(new GrassTypePokemonCard(50, attacks, trainer1));
         trainer1.playCard();
         trainer1.addCard(new GrassTypePokemonCard(50, attacks, trainer1));
@@ -290,7 +290,7 @@ public class TrainerTest {
     }
 
     @Test
-    public void addEnergy() {
+    public void addEnergy() throws Exception {
         trainer1.addCard(new ElectricTypePokemonCard(50, attacks,trainer1));
         trainer1.playCard();
         trainer1.addCard(new ElectricEnergyCard());
@@ -349,27 +349,9 @@ public class TrainerTest {
         assertEquals(0, trainer2.benchSize());
     }
 
-    @Test
-    public void prizeCard() {
-        assertEquals(0, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(1, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(2, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(3, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(4, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(5, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(6, trainer1.getPrizeCards().size());
-        trainer1.drawPrizeCard();
-        assertEquals(6, trainer1.getPrizeCards().size());
-    }
 
     @Test
-    public void deckTest() {
+    public void deckTest() throws Exception {
         assertEquals(60, trainer1.deckSize());
         trainer1.drawCard();
         assertEquals(59, trainer1.deckSize());
@@ -390,7 +372,7 @@ public class TrainerTest {
     }
 
     @Test
-    public void discardPile() {
+    public void discardPile() throws Exception {
         IBasicPokemon basicPokemon = new ElectricTypePokemonCard(trainer1);
         IPhase1Pokemon phase1Pokemon = new ElectricPhase1PokemonCard(trainer1);
         IPhase2Pokemon phase2Pokemon = new ElectricPhase2PokemonCard(trainer1);

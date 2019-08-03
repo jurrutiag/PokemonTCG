@@ -16,11 +16,14 @@ import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.stadium.implemented_stadium.LuckyStadium;
 import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorJuniper;
 import cc3002.tarea2.game.controller.GameController;
+import cc3002.tarea2.game.exceptions.EnergyCardAlreadyUsedException;
+import cc3002.tarea2.game.exceptions.OnceATurnAbilityPlayedException;
+import cc3002.tarea2.game.exceptions.SupportCardAlreadyUsedException;
+import cc3002.tarea2.game.states.PlayerOneTurn;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class GameControllerTest {
 
@@ -33,7 +36,7 @@ public class GameControllerTest {
     private IPokemonCard fightingPokemon;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         trainer1 = new Trainer();
         trainer2 = new Trainer();
 
@@ -45,11 +48,11 @@ public class GameControllerTest {
         trainer1.playCard();
         trainer2.playCard();
 
-        controller = new GameController(new Trainer[] {trainer1, trainer2}, 0);
+        controller = new GameController(new Trainer[] {trainer1, trainer2}, new PlayerOneTurn());
     }
 
     @Test
-    public void getTrainerPlaying() {
+    public void getTrainerPlaying() throws Exception {
         assertEquals(trainer1, controller.getTrainerPlaying());
         controller.nextTurn();
         assertEquals(trainer2, controller.getTrainerPlaying());
@@ -58,7 +61,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void getOpponent() {
+    public void getOpponent() throws Exception {
         assertEquals(trainer2, controller.getOpponent());
         controller.nextTurn();
         assertEquals(trainer1, controller.getOpponent());
@@ -67,7 +70,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void drawCard() {
+    public void drawCard() throws Exception {
         assertEquals(0, controller.getTrainerPlaying().handSize());
         assertEquals(0, controller.getOpponent().handSize());
         controller.drawCard();
@@ -80,7 +83,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void playCard() {
+    public void playCard() throws Exception {
         IPokemonCard waterPokemon = new WaterTypePokemonCard(controller.getTrainerPlaying());
         controller.getTrainerPlaying().addCard(waterPokemon);
         controller.selectCard(0);
@@ -91,7 +94,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void getPlayerHand() {
+    public void getPlayerHand() throws Exception {
         assertEquals(0, controller.getTrainerPlaying().handSize());
         controller.drawCard();
         assertEquals(1, controller.getTrainerPlaying().handSize());
@@ -103,7 +106,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void viewPlayerBench() {
+    public void viewPlayerBench() throws Exception {
         assertEquals(electricPokemon, controller.viewPlayerBench().get(0));
         IPokemonCard waterPokemon = new WaterTypePokemonCard(controller.getTrainerPlaying());
         controller.getTrainerPlaying().addCard(waterPokemon);
@@ -113,7 +116,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void viewOpponentBench() {
+    public void viewOpponentBench() throws Exception {
         assertEquals(fightingPokemon, controller.viewOpponentBench().get(0));
         IPokemonCard waterPokemon = new WaterTypePokemonCard(controller.getOpponent());
         controller.getOpponent().addCard(waterPokemon);
@@ -124,7 +127,7 @@ public class GameControllerTest {
 
 
     @Test
-    public void useActivePokemonAbility() {
+    public void useActivePokemonAbility() throws Exception {
         controller.getTrainerPlaying().addCard(new ElectricEnergyCard());
         assertEquals(1, controller.getPlayerHand().size());
         controller.selectActivePokemonAbility(1);
@@ -132,18 +135,17 @@ public class GameControllerTest {
         assertEquals(0, controller.getPlayerHand().size());
     }
 
-    @Test
-    public void visitEnergyCardPlayedEvent() {
+    @Test(expected = EnergyCardAlreadyUsedException.class)
+    public void visitEnergyCardPlayedEvent() throws Exception {
         controller.getTrainerPlaying().addCard(new ElectricEnergyCard());
         controller.selectCard(0);
         controller.playCard();
 
         new ElectricEnergyCard().accept(controller.getCanUseVisitor());
-        assertFalse(controller.getCanUseVisitor().canUseCard());
     }
 
     @Test(expected = AssertionError.class)
-    public void visitAbilityEffect() {
+    public void visitAbilityEffect() throws Exception {
         controller.getTrainerPlaying().addCard(new ElectricEnergyCard());
         controller.getTrainerPlaying().addCard(new ElectricEnergyCard());
         assertEquals(2, controller.getPlayerHand().size());
@@ -151,7 +153,7 @@ public class GameControllerTest {
         controller.useActivePokemonAbility();
         assertEquals(1, controller.getPlayerHand().size());
         controller.selectActivePokemonAbility(1);
-        controller.useActivePokemonAbility();
+        try {controller.useActivePokemonAbility();} catch (OnceATurnAbilityPlayedException e) {}
         assertEquals(1, controller.getPlayerHand().size());
 
         controller.nextTurn();
@@ -166,7 +168,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void visitStadiumCardPlayed() {
+    public void visitStadiumCardPlayed() throws Exception {
         IStadiumCard stadiumCard = new LuckyStadium();
         controller.getTrainerPlaying().addCard(stadiumCard);
         controller.selectCard(0);
@@ -179,7 +181,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void visitAttackEvent() {
+    public void visitAttackEvent() throws Exception {
         controller.getTrainerPlaying().addCard(electricPokemon);
         controller.selectCard(0);
         controller.playCard();
@@ -202,7 +204,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void visitActivePokemonDiedEvent() {
+    public void visitActivePokemonDiedEvent() throws Exception {
         WaterTypePokemonCard waterPokemon = new WaterTypePokemonCard(controller.getTrainerPlaying());
         controller.getTrainerPlaying().addCard(waterPokemon);
         controller.selectCard(0);
@@ -231,9 +233,9 @@ public class GameControllerTest {
         assertEquals(otroSet, controller.getTrainerPlaying().getActivePokemon().getEnergySet());
     }
 
-    @Test
-    public void testSupportPlayedOnce() {
-        controller.getTrainerPlaying().addCard(new ProfessorJuniper());
+    @Test(expected = SupportCardAlreadyUsedException.class)
+    public void testSupportPlayedOnce() throws Exception {
+        controller.getTrainerPlaying().addCard(new ProfessorJuniper(trainer1));
         controller.selectCard(0);
         controller.playCard();
         assertEquals(7, controller.getTrainerPlaying().handSize());
@@ -242,7 +244,7 @@ public class GameControllerTest {
         controller.selectCard(0);
         controller.discardSelected();
         assertEquals(5, controller.getTrainerPlaying().handSize());
-        controller.getTrainerPlaying().addCard(new ProfessorJuniper());
+        controller.getTrainerPlaying().addCard(new ProfessorJuniper(trainer1));
         assertEquals(6, controller.getTrainerPlaying().handSize());
         controller.selectCard(5);
         controller.playCard();

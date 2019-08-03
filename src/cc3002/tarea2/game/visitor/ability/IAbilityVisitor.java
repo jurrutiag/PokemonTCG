@@ -2,6 +2,7 @@ package cc3002.tarea2.game.visitor.ability;
 
 import cc3002.tarea2.game.ability.IAbility;
 import cc3002.tarea2.game.ability.attack.IAttack;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
 
 /**
  * Interface for classes that can visit ability visitables.
@@ -13,7 +14,7 @@ public interface IAbilityVisitor {
      * Visits an attack.
      * @param attack the attack to be visited.
      */
-    public void visitAttack(IAttack attack);
+    public void visitAttack(IAttack attack) throws NotEnoughEnergiesForAbilityException;
 
     /**
      * Visits an ability.

@@ -14,7 +14,7 @@ public class GrassPhase1PokemonCard extends GrassPhase1Pokemon {
     public GrassPhase1PokemonCard(Trainer trainer) {this(10, 401, new IAttack[] {}, trainer);}
 
     public GrassPhase1PokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "GrassPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "GrassPhase1PokemonCard", abilities, trainer);
     }
 
     @Override

@@ -2,6 +2,7 @@ package cc3002.tarea2.game.ability.attack;
 
 import cc3002.tarea2.game.ability.AbstractAbility;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
 import cc3002.tarea2.game.visitor.ability.IAbilityVisitor;
 
 /**
@@ -53,7 +54,7 @@ public abstract class AbstractAttack extends AbstractAbility implements IAttack 
      * {@inheritDoc}
      */
     @Override
-    public void accept(IAbilityVisitor visitor) {
+    public void accept(IAbilityVisitor visitor) throws NotEnoughEnergiesForAbilityException {
         visitor.visitAttack(this);
     }
 }

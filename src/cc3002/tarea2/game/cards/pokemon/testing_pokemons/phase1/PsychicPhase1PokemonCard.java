@@ -15,7 +15,7 @@ public class PsychicPhase1PokemonCard extends PsychicPhase1Pokemon {
 
 
     public PsychicPhase1PokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "PsychicPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "PsychicPhase1PokemonCard", abilities, trainer);
     }
 
     @Override

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="164.0" prefWidth="377.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane prefHeight="164.0" prefWidth="377.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button layoutX="110.0" layoutY="125.0" mnemonicParsing="false" onAction="#okAction" text="Yes" />
+        <Button layoutX="219.0" layoutY="125.0" mnemonicParsing="false" onAction="#noAction" prefWidth="49.0" text="No" />
+        <Label fx:id="label" alignment="CENTER" layoutX="14.0" layoutY="37.0" prefHeight="74.951171875" prefWidth="349.0" text="" wrapText="true">
+          <font>
+            <Font size="16.0" />
+          </font>
+        </Label>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

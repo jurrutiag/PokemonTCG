@@ -2,13 +2,7 @@ package cc3002.tarea2.game.visitor;
 
 import cc3002.tarea2.game.events.*;
 
-/**
- * Interface for classes that can visit event visitables.
- *
- * @author Juan Urrutia
- */
 public interface IEventVisitor {
-
     /**
      * Visits an attack event.
      * @param attackEvent the event to visit.
@@ -50,4 +44,10 @@ public interface IEventVisitor {
      * @param supportCardPlayedEvent the event to visit.
      */
     public void visitSupportCardPlayed(SupportCardPlayedEvent supportCardPlayedEvent);
+
+    void visitCardDrawnEvent(CardDrawnEvent cardDrawnEvent);
+
+    void visitDamageReceivedEvent(DamageReceivedEvent damageReceivedEvent);
+
+    void visitPokemonDiedEvent(PokemonDiedEvent pokemonDiedEvent);
 }

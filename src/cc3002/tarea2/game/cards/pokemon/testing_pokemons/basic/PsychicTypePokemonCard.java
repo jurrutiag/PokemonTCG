@@ -18,6 +18,6 @@ public class PsychicTypePokemonCard extends PsychicBasePokemon {
     }
 
     public PsychicTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "PsychicPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "PsychicBasePokemonCard", abilities, trainer);
     }
 }

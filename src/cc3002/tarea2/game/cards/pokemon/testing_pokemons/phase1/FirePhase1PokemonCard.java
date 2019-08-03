@@ -16,7 +16,7 @@ public class FirePhase1PokemonCard extends FirePhase1Pokemon {
     public FirePhase1PokemonCard(Trainer trainer) {this(10, 301, new IAttack[] {}, trainer);}
 
     public FirePhase1PokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "FirePhase2PokemonCard", abilities, trainer);
+        super(hp, id, "FirePhase1PokemonCard", abilities, trainer);
     }
 
     @Override

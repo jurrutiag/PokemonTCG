@@ -19,6 +19,6 @@ public class FightingTypePokemonCard extends FightingBasePokemon {
     }
 
     public FightingTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "FightingPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "FightingBasePokemonCard", abilities, trainer);
     }
 }

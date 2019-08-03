@@ -1,6 +1,7 @@
 package cc3002.tarea2.game.cards.trainer.stadium;
 
 import cc3002.tarea2.game.cards.trainer.AbstractTrainerCard;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.visitor.card.ICardVisitor;
 
 /**
@@ -14,7 +15,8 @@ public abstract class AbstractStadiumCard extends AbstractTrainerCard implements
      * {@inheritDoc}
      */
     @Override
-    public void accept(ICardVisitor visitor) {
+    public void accept(ICardVisitor visitor) throws PlayCardException {
+        super.accept(visitor);
         visitor.visitStadiumCard(this);
     }
 }

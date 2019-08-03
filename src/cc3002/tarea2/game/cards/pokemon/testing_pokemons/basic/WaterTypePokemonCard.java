@@ -20,6 +20,6 @@ public class WaterTypePokemonCard extends WaterBasePokemon {
     }
 
     public WaterTypePokemonCard(int hp, int id, IAbility[] abilities, Trainer trainer) {
-        super(hp, id, "WaterPhase2PokemonCard", abilities, trainer);
+        super(hp, id, "WaterBasePokemonCard", abilities, trainer);
     }
 }

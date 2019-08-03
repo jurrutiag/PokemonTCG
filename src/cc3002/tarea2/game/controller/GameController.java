@@ -8,10 +8,19 @@ import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObjec
 import cc3002.tarea2.game.cards.trainer.stadium.IStadiumCard;
 import cc3002.tarea2.game.cards.trainer.stadium.NullStadiumCard;
 import cc3002.tarea2.game.events.*;
+import cc3002.tarea2.game.exceptions.AbilityException;
+import cc3002.tarea2.game.exceptions.OnceATurnAbilityPlayedException;
+import cc3002.tarea2.game.exceptions.PlayCardException;
 import cc3002.tarea2.game.searching.methods.SearchObjectOwner;
+import cc3002.tarea2.game.states.PlayerOneSetUp;
+import cc3002.tarea2.game.states.State;
+import cc3002.tarea2.game.view.IGUI;
+import cc3002.tarea2.game.view.NullGUI;
+import cc3002.tarea2.game.view.PlayingGUI;
 import cc3002.tarea2.game.visitor.IEventVisitable;
 import cc3002.tarea2.game.visitor.IEventVisitor;
 import cc3002.tarea2.game.visitor.card.CanUseVisitor;
+import cc3002.tarea2.game.visitor.card.PokemonSearch;
 import cc3002.tarea2.game.visitor.stadium.PlayOnceATurnVisitor;
 
 import java.util.ArrayList;
@@ -25,15 +34,15 @@ import java.util.Observer;
  */
 public class GameController implements Observer, IEventVisitor {
 
+    private IGUI playingGui = new NullGUI();
+
+    private State state = new State();
+
     /**
      * A list of the trainers playing
      */
     private Trainer[] trainers;
 
-    /**
-     * Integer that represents the turn, according to the index of trainers.
-     */
-    private int turn;
 
     /**
      * The current stadium card being played.
@@ -53,19 +62,51 @@ public class GameController implements Observer, IEventVisitor {
     /**
      * Game Controller constructor.
      * @param trainers The trainers that will play.
-     * @param turn The starting turn.
+     *
      */
-    public GameController(Trainer[] trainers, int turn) {
+    public GameController(Trainer[] trainers, State state) {
         trainers[0].setOpponent(trainers[1]);
         trainers[1].setOpponent(trainers[0]);
         this.trainers = trainers;
         for (Trainer trainer : this.trainers) {
             trainer.addObserver(this);
         }
-        this.turn = turn;
+        this.setState(state);
+
         this.stadiumCard = new NullStadiumCard();
 
         canUseVisitor = new CanUseVisitor();
+    }
+
+    public GameController(Trainer[] trainers) {
+        this(trainers, new PlayerOneSetUp());
+    }
+
+    public GameController() {
+        this(new Trainer[] {new Trainer(), new Trainer()});
+    }
+
+    public void setState(State state) {
+        this.state.endState();
+        this.state = state;
+        this.state.setController(this);
+        this.state.initialize();
+    }
+
+    public State getState() {
+        return this.state;
+    }
+
+    public void setGUI(PlayingGUI playingGui) {
+        this.playingGui = playingGui;
+    }
+
+    public IGUI getPlayingGui() {
+        return this.playingGui;
+    }
+
+    public void handToDeck() {
+        this.getTrainerPlaying().handToDeck();
     }
 
     /**
@@ -73,7 +114,7 @@ public class GameController implements Observer, IEventVisitor {
      * @return Returns the current playing trainer.
      */
     public Trainer getTrainerPlaying() {
-        return trainers[turn];
+        return trainers[this.getTurn()];
     }
 
     /**
@@ -81,7 +122,11 @@ public class GameController implements Observer, IEventVisitor {
      * @return Returns the current playing trainer's opponent.
      */
     public Trainer getOpponent() {
-        return trainers[(turn == 0 ? 1 : 0)];
+        return trainers[(this.getTurn() == 0 ? 1 : 0)];
+    }
+
+    public int getOpponentTurn() {
+        return this.getTurn() == 0 ? 1 : 0;
     }
 
     /**
@@ -99,6 +144,10 @@ public class GameController implements Observer, IEventVisitor {
         this.getTrainerPlaying().drawCard();
     }
 
+    public void drawInitialCards() {
+        this.getTrainerPlaying().drawTopCards(7);
+    }
+
     /**
      * Makes the playing trainer select a card.
      * @param index The index in the hand of the card.
@@ -110,11 +159,10 @@ public class GameController implements Observer, IEventVisitor {
     /**
      * Makes the trainer play the selected card.
      */
-    public void playCard() {
+    public void playCard() throws PlayCardException {
+        //TODO: add try catch.
         this.getTrainerPlaying().getSelectedCard().accept(canUseVisitor);
-        if (canUseVisitor.canUseCard()) {
-            this.getTrainerPlaying().playCard();
-        }
+        this.getTrainerPlaying().playCard();
     }
 
     /**
@@ -159,9 +207,11 @@ public class GameController implements Observer, IEventVisitor {
     /**
      * Makes the trainer use the active pokemon's selected ability.
      */
-    public void useActivePokemonAbility() {
+    public void useActivePokemonAbility() throws AbilityException {
         if (!this.onceATurnAbilitiesPlayed.contains(this.getTrainerPlaying().getSelectedAbility())) {
             this.getTrainerPlaying().useAbility();
+        } else {
+            throw new OnceATurnAbilityPlayedException();
         }
     }
 
@@ -177,17 +227,28 @@ public class GameController implements Observer, IEventVisitor {
      * Skips to the next turn.
      */
     public void nextTurn() {
-        this.turn = (turn == 0 ? 1 : 0);
+        this.state.nextTurn();
         this.canUseVisitor = new CanUseVisitor();
         this.onceATurnAbilitiesPlayed = new ArrayList<>();
-        this.startTurn();
+        this.getState().startTurn();
+    }
+
+    public int getTurn() {
+        return this.state.getTurn();
+    }
+
+    public String getPlayerName() {
+        return this.getTrainerPlaying().getName();
     }
 
     /**
      * Starts a new turn.
      */
-    private void startTurn() {
+    public void startTurn() {
+        getPlayingGui().startTurnButtons();
+        this.getPlayingGui().startedPlaying(this.getPlayerName());
         this.stadiumCard.acceptStadiumVisitor(new PlayOnceATurnVisitor(this.getTrainerPlaying()));
+        this.getState().waitPlayer();
     }
 
     /**
@@ -239,6 +300,28 @@ public class GameController implements Observer, IEventVisitor {
         this.getCanUseVisitor().supportCardUsed();
     }
 
+
+    public void startGame() {
+        this.getState().waitPlayer();
+    }
+
+
+
+    @Override
+    public void visitCardDrawnEvent(CardDrawnEvent cardDrawnEvent) {
+
+    }
+
+    @Override
+    public void visitDamageReceivedEvent(DamageReceivedEvent damageReceivedEvent) {
+
+    }
+
+    @Override
+    public void visitPokemonDiedEvent(PokemonDiedEvent pokemonDiedEvent) {
+
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -279,5 +362,23 @@ public class GameController implements Observer, IEventVisitor {
      */
     public void changeActivePokemon() {
         this.getTrainerPlaying().swapActivePokemon();
+    }
+
+    public ArrayList<IAbility> getAbilities() {
+        return new ArrayList<>(this.getTrainerPlaying().getActivePokemon().getAbilities());
+    }
+
+    public PokemonSearch getSearchPokemonOnHandVisitor() throws PlayCardException {
+        PokemonSearch pokVisitor = new PokemonSearch();
+
+        for (ICard card : getPlayerHand()) {
+            card.accept(pokVisitor);
+        }
+
+        return pokVisitor;
+    }
+
+    public void drawPrizeCards() {
+
     }
 }

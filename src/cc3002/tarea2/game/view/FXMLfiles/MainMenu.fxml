@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <SplitPane dividerPositions="0.17362270450751252" focusTraversable="true" layoutX="-1.0" layoutY="1.0" prefHeight="399.0" prefWidth="601.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <Button fx:id="startButton" layoutX="0.0" layoutY="14.0" mnemonicParsing="false" onAction="#startGame" prefWidth="101.0" text="Start" />
+            <Button fx:id="settingsButton" layoutX="0.0" layoutY="66.0" mnemonicParsing="false" onAction="#toSettings" prefWidth="101.0" text="Settings" />
+            <Button fx:id="exitButton" layoutX="0.0" layoutY="338.0" mnemonicParsing="false" onAction="#exitGame" prefWidth="101.0" text="Exit" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="228.0" prefWidth="277.0">
+          <children>
+            <Label alignment="CENTER" contentDisplay="LEFT" layoutX="-14.0" layoutY="65.0" prefHeight="45.0" prefWidth="506.0" text="Pokemon Trade Card Game" textAlignment="CENTER" wrapText="false">
+              <font>
+                <Font size="24.0" />
+              </font>
+            </Label>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>

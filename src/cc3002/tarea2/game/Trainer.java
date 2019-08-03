@@ -5,6 +5,10 @@ import cc3002.tarea2.game.cards.ICard;
 import cc3002.tarea2.game.cards.NullCard;
 import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
 import cc3002.tarea2.game.events.ActivePokemonDiedEvent;
+import cc3002.tarea2.game.events.CardDrawnEvent;
+import cc3002.tarea2.game.exceptions.NotEnoughEnergiesForAbilityException;
+import cc3002.tarea2.game.exceptions.PlayCardException;
+import cc3002.tarea2.game.exceptions.WinException;
 import cc3002.tarea2.game.searching.ISearchCardMethod;
 import cc3002.tarea2.game.visitor.IEventVisitable;
 import cc3002.tarea2.game.visitor.card.PlayVisitor;
@@ -19,6 +23,8 @@ import java.util.Observable;
  * @author Juan Urrutia
  */
 public class Trainer extends Observable {
+
+    private String name;
 
     /**
      * Array of cards that represents the hand of the trainer, it has no limits in size.
@@ -81,13 +87,28 @@ public class Trainer extends Observable {
         abilityIndex = 0;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     /**
      * Notifies the trainer's observers of an event.
      * @param event the event to be notified.
      */
     public void notifyEvent(IEventVisitable event) {
+        event.setTrainer(this);
         setChanged();
         notifyObservers(event);
+    }
+
+    public void handToDeck() {
+        this.deck.addCards(this.hand);
+        this.deck.shuffleCards();
+        this.hand = new ArrayList<>();
     }
 
     /**
@@ -114,21 +135,20 @@ public class Trainer extends Observable {
         return this.discardPile;
     }
 
-    /**
-     * Draws a new prize card.
-     */
-    public void drawPrizeCard() {
-        if (this.prizeCards.size() < 6) {
-            prizeCards.add(this.deck.drawTopCards(1).get(0));
-        }
+
+    public void drawPrizeCards() {
+        prizeCards.addAll(this.deck.drawTopCards(6));
+
     }
 
-    /**
-     *
-     * @return Returns the prize cards.
-     */
-    public ArrayList<ICard> getPrizeCards() {
-        return this.prizeCards;
+    public ICard getPrizeCard() throws WinException {
+
+        ICard prize = prizeCards.get(0);
+        prizeCards.remove(0);
+        if (prizeCards.isEmpty())
+            throw new WinException();
+
+        return prize;
     }
 
     /**
@@ -143,7 +163,11 @@ public class Trainer extends Observable {
      * @param i the number of cards to be drawn.
      */
     public void drawTopCards(int i) {
-        hand.addAll(this.deck.drawTopCards(i));
+        ArrayList<ICard> cardsDrawn = this.deck.drawTopCards(i);
+        hand.addAll(cardsDrawn);
+        for (ICard card : cardsDrawn) {
+            notifyEvent(new CardDrawnEvent(card));
+        }
     }
 
     /**
@@ -193,15 +217,16 @@ public class Trainer extends Observable {
     /**
      * Plays a card from the hand and removes it from the hand if it was played successfully
      */
-    public void playCard() {
+    public void playCard() throws PlayCardException {
         PlayVisitor playVisitor = new PlayVisitor(this);
 
         ICard playCard = hand.get(handCardSelected);
 
-        playCard.accept(playVisitor);
-
-        if (playVisitor.wasPlayedCorrectly()) {
+        try {
+            playCard.accept(playVisitor);
             hand.remove(playCard);
+        } catch (PlayCardException e) {
+            throw e;
         }
     }
 
@@ -267,7 +292,7 @@ public class Trainer extends Observable {
     /**
      * Uses an active pokemon ability.
      */
-    public void useAbility() {
+    public void useAbility() throws NotEnoughEnergiesForAbilityException {
         getActivePokemon().useAbility(abilityIndex);
     }
 

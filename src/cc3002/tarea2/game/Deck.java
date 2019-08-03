@@ -1,10 +1,11 @@
 package cc3002.tarea2.game;
 
 import cc3002.tarea2.game.cards.ICard;
-import cc3002.tarea2.game.cards.energies.ElectricEnergyCard;
-import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.ElectricTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.testing_pokemons.basic.FightingTypePokemonCard;
-import cc3002.tarea2.game.cards.pokemon.testing_pokemons.phase1.ElectricPhase1PokemonCard;
+import cc3002.tarea2.game.cards.energies.FireEnergyCard;
+import cc3002.tarea2.game.cards.pokemon.playing_pokemons.*;
+import cc3002.tarea2.game.cards.trainer.object.implemented_objects.ExpShareObject;
+import cc3002.tarea2.game.cards.trainer.object.implemented_objects.PotionObject;
+import cc3002.tarea2.game.cards.trainer.support.implemented_support.ProfessorJuniper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,16 +37,38 @@ public class Deck {
 
         for (int i = 0; i < size; i++) {
             double randomNumber = Math.random();
-            if (randomNumber < 0.2)
-                cards.add(new ElectricTypePokemonCard(trainer));
-            else if (randomNumber >= 0.2 && randomNumber < 0.4)
-                cards.add(new FightingTypePokemonCard(trainer));
-            else if (randomNumber >= 0.4 && randomNumber < 0.6)
-                cards.add(new ElectricTypePokemonCard(trainer));
-            else if (randomNumber >= 0.6 && randomNumber < 0.8)
-                cards.add(new ElectricPhase1PokemonCard(trainer));
+
+            if (randomNumber < 0.1)
+                cards.add(new Bulbasaur(trainer));
+            else if (randomNumber >= 0.1 && randomNumber < 0.2)
+                cards.add(new Ivysaur(trainer));
+            else if (randomNumber >= 0.2 && randomNumber < 0.3)
+                cards.add(new Venusaur(trainer));
+            else if (randomNumber >= 0.3 && randomNumber < 0.4)
+                cards.add(new Charmander(trainer));
+            else if (randomNumber >= 0.4 && randomNumber < 0.5)
+                cards.add(new Charmeleon(trainer));
+            else if (randomNumber >= 0.5 && randomNumber < 0.6)
+                cards.add(new Charizard(trainer));
+            else if (randomNumber >= 0.6 && randomNumber < 0.7)
+                cards.add(new FireEnergyCard());
+            else if (randomNumber >= 0.7 && randomNumber < 0.8)
+                cards.add(new ProfessorJuniper(trainer));
+            else if (randomNumber >= 0.8 && randomNumber < 0.9)
+                cards.add(new ExpShareObject());
             else
-                cards.add(new ElectricEnergyCard());
+                cards.add(new PotionObject());
+
+//            if (randomNumber < 0.2)
+//                cards.add(new ElectricTypePokemonCard(trainer));
+//            else if (randomNumber >= 0.2 && randomNumber < 0.4)
+//                cards.add(new FightingTypePokemonCard(trainer));
+//            else if (randomNumber >= 0.4 && randomNumber < 0.6)
+//                cards.add(new ElectricTypePokemonCard(trainer));
+//            else if (randomNumber >= 0.6 && randomNumber < 0.8)
+//                cards.add(new ElectricPhase1PokemonCard(trainer));
+//            else
+//                cards.add(new ElectricEnergyCard());
         }
 
     }
@@ -82,6 +105,10 @@ public class Deck {
             }
         }
         return drawnCards;
+    }
+
+    public void addCards(ArrayList<ICard> cards) {
+        cards.addAll(cards);
     }
 
     /**

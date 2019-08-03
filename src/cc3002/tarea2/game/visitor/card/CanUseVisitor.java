@@ -1,9 +1,9 @@
 package cc3002.tarea2.game.visitor.card;
 
 import cc3002.tarea2.game.cards.energies.IEnergyCard;
-import cc3002.tarea2.game.cards.pokemon.IPokemonCard;
-import cc3002.tarea2.game.cards.trainer.ITrainerCard;
 import cc3002.tarea2.game.cards.trainer.support.ISupportCard;
+import cc3002.tarea2.game.exceptions.EnergyCardAlreadyUsedException;
+import cc3002.tarea2.game.exceptions.SupportCardAlreadyUsedException;
 
 /**
  * Class that checks if a card can be used using visitor pattern.
@@ -22,17 +22,12 @@ public class CanUseVisitor extends AbstractCardVisitor {
      */
     private int supportCardsUsed;
 
-    /**
-     * The variable that says if the card can be used.
-     */
-    private boolean canUseCard;
 
     /**
      * Can use visitor constructor.
      */
     public CanUseVisitor() {
         this.energyCardsUsed = 0;
-        this.canUseCard = true;
     }
 
     /**
@@ -50,44 +45,24 @@ public class CanUseVisitor extends AbstractCardVisitor {
     }
 
     /**
-     *
-     * @return Returns true if the card can be used.
-     */
-    public boolean canUseCard() {
-        return canUseCard;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void visitPokemonCard(IPokemonCard pokemonCard) {
-        this.canUseCard = true;
-    }
-
-    /**
      * {@inheritDoc}
      * Can use an energy card if there is no energy card used already.
      */
     @Override
-    public void visitEnergyCard(IEnergyCard energyCard) {
-        this.canUseCard = energyCardsUsed == 0;
+    public void visitEnergyCard(IEnergyCard energyCard) throws EnergyCardAlreadyUsedException {
+        if (energyCardsUsed != 0) {
+            throw new EnergyCardAlreadyUsedException();
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void visitTrainerCard(ITrainerCard trainerCard) {
-        this.canUseCard = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void visitSupportCard(ISupportCard supportCard) {
-        this.canUseCard = supportCardsUsed == 0;
+    public void visitSupportCard(ISupportCard supportCard) throws SupportCardAlreadyUsedException {
+        if (supportCardsUsed != 0) {
+            throw new SupportCardAlreadyUsedException();
+        }
     }
 
 }
