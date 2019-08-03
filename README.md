@@ -1,6 +1,6 @@
-# Tarea 1 CC3002
+# Pokemon TCG
 
-This project consists in a Pokemon Trading Card game where a trainer faces another trainer each with cards consisting on energies and pokemons. Trainers can use their energy cards to allow their pokemons to cast their abilities on the opponent. The objective of the game is to beat the opponent's pokemons.
+This project consists in a Pokemon Trading Card game where a trainer faces another trainer each with cards consisting on energies and pokemons. Trainers can use their energy cards to allow their pokemons to cast their abilities on the opponent. The objective of the game is to beat the opponent's pokemons. The creation of the game started as a homework for CC3002 at Universidad de Chile.
 
 ## Description
 
